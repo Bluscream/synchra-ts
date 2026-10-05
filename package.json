@@ -1,7 +1,7 @@
 {
   "name": "synchra-ts",
   "version": "0.1.0",
-  "description": "TypeScript client for the Synchra API — complete REST coverage and the realtime gateway, generated from the annotated OpenAPI description.",
+  "description": "TypeScript client for the Synchra API \u2014 complete REST coverage and the realtime gateway, generated from the annotated OpenAPI description.",
   "keywords": [
     "synchra",
     "twitch",
@@ -39,6 +39,7 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
+    "src",
     "README.md",
     "CHANGELOG.md",
     "LICENSE"

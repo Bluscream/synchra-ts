@@ -10,7 +10,7 @@ import { tmpdir } from 'node:os';
 import { join } from 'node:path';
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 
-import { Spec, isObject } from '../tools/generator/spec.js';
+import { Spec, isObject, requestPath } from '../tools/generator/spec.js';
 import { typeNames } from '../tools/generator/models.js';
 import { generate, readSources } from '../tools/generator/run.js';
 
@@ -99,6 +99,22 @@ describe('the generator', () => {
     // exists. Generating a method for it would offer a call that answers 426 over plain HTTP.
     expect(paths).not.toContain('/api/2/ws');
     expect(paths).toContain('/health');
+  });
+
+  it('marks the one route that is not under the API prefix', () => {
+    // `/health` is served from the host root. Treating it like the rest produced `/api/2/health`,
+    // which answers 404.
+    expect(requestPath('/health')).toEqual({ field: 'rootPath', value: '/health' });
+    expect(requestPath('/api/2/channels/{channel_id}')).toEqual({
+      field: 'path',
+      value: '/channels/{channel_id}',
+    });
+
+    const outside = sources.spec.operations.filter(
+      (operation) => requestPath(operation.path).field === 'rootPath',
+    );
+
+    expect(outside.map((operation) => operation.path)).toEqual(['/health']);
   });
 
   it('rejects two schemas that would map to one type name', () => {

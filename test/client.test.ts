@@ -156,6 +156,39 @@ describe('ApiClient', () => {
     await expect(client.request({ method: 'GET', path: '/x' })).resolves.toBeUndefined();
   });
 
+  it('resolves a rootPath against the host root, not under the API prefix', async () => {
+    const { fetch, calls } = fakeFetch([json([])]);
+    const client = new ApiClient(staticToken(null), { fetch });
+
+    // Regression: `GET /health` is served from the host root. Appending it to the base url asked
+    // for `/api/2/health`, which answers 404 — caught by a smoke test against the live API, not by
+    // the type checker, because both spellings are valid strings.
+    await client.send({ method: 'GET', rootPath: '/health' });
+
+    expect(calls[0]?.url).toBe('https://api.synchra.net/health');
+  });
+
+  it('keeps the base url\u2019s own path for an ordinary request', async () => {
+    const { fetch, calls } = fakeFetch([json([]), json([])]);
+    const client = new ApiClient(staticToken(null), {
+      fetch,
+      baseUrl: 'https://dash.synchra.net/api/2',
+    });
+
+    await client.request({ method: 'GET', path: '/user' });
+    await client.send({ method: 'GET', rootPath: '/health' });
+
+    expect(calls[0]?.url).toBe('https://dash.synchra.net/api/2/user');
+    // The root path follows the origin the caller configured, not api.synchra.net.
+    expect(calls[1]?.url).toBe('https://dash.synchra.net/health');
+  });
+
+  it('refuses a request with neither a path nor a rootPath', async () => {
+    const client = new ApiClient(staticToken(null), { fetch: () => Promise.resolve(json({})) });
+
+    await expect(client.request({ method: 'GET' })).rejects.toBeInstanceOf(ConfigurationError);
+  });
+
   it('rejects a base url that is not http or https', () => {
     expect(() => new ApiClient(staticToken(null), { baseUrl: 'ftp://example.com' })).toThrow(
       ConfigurationError,

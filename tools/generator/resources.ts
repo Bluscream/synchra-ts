@@ -14,7 +14,7 @@ import { docComment, type Emitter } from './emitter.js';
 import { camel, operationMethod, pascal, propertyAccess, propertyKey, tagClass } from './names.js';
 import {
   isObject,
-  relativePath,
+  requestPath,
   stringAt,
   requestBodyRequired,
   requestBodySchema,
@@ -319,9 +319,10 @@ function renderParams(name: string, operation: Operation, fields: readonly Field
 }
 
 function requestLines(operation: Operation, fields: readonly Field[]): string {
+  const target = requestPath(operation.path);
   const lines = [
     `      method: ${literal(operation.method)},`,
-    `      path: ${pathExpression(operation, fields)},`,
+    `      ${target.field}: ${pathExpression(operation, fields)},`,
   ];
 
   const query = fields.filter((field) => field.location === 'query');
@@ -365,7 +366,7 @@ function requestLines(operation: Operation, fields: readonly Field[]): string {
 }
 
 function pathExpression(operation: Operation, fields: readonly Field[]): string {
-  const template = relativePath(operation.path);
+  const template = requestPath(operation.path).value;
   const pathFields = fields.filter((field) => field.location === 'path');
 
   if (pathFields.length === 0) {

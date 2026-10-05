@@ -214,9 +214,16 @@ export class ApiClient {
   }
 
   private url(spec: ApiRequestSpec): string {
-    const path = spec.path.startsWith('/') ? spec.path : `/${spec.path}`;
+    const relative = spec.rootPath ?? spec.path;
 
-    return `${this.baseUrl}${path}${buildQuery(spec.query)}`;
+    if (relative === undefined) {
+      throw new ConfigurationError('A request needs either a path or a rootPath.');
+    }
+
+    const path = relative.startsWith('/') ? relative : `/${relative}`;
+    const base = spec.rootPath === undefined ? this.baseUrl : new URL(this.baseUrl).origin;
+
+    return `${base}${path}${buildQuery(spec.query)}`;
   }
 
   private encodeBody(spec: ApiRequestSpec): {

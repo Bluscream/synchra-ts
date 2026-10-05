@@ -35,7 +35,7 @@ await stream.connect();
 | Schemas              | **469** interfaces, aliases and value sets |
 | Gateway event types  |                                     **13** |
 | Runtime dependencies |                                      **0** |
-| Tests                |                            133, no network |
+| Tests                |                            137, no network |
 
 Requires Node 20 or newer, Bun, Deno, or a browser — anything with `fetch`. The gateway also needs
 `WebSocket`, which Node has had since 22; on 20, pass one in (see [The gateway](#the-gateway)).

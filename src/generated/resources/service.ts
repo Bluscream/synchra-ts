@@ -40,7 +40,7 @@ export class Service {
   health(params: ServiceHealthParams = {}): Promise<void> {
     return this.client.send({
       method: 'GET',
-      path: '/health',
+      rootPath: '/health',
       options: params,
     });
   }

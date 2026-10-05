@@ -87,8 +87,19 @@ export const DEFAULT_RETRY_POLICY: RetryPolicy = {
 /** One request, as the generated layer describes it. */
 export interface ApiRequestSpec {
   readonly method: string;
+
   /** Relative to the client's base URL, with path parameters already substituted. */
-  readonly path: string;
+  readonly path?: string | undefined;
+
+  /**
+   * Resolved against the base URL's *origin* rather than its path.
+   *
+   * `GET /health` is served from the host root, not from under `/api/2`, so appending it to the
+   * base URL would ask for `/api/2/health` — which answers 404. It is the only such route in the
+   * description, and the generator picks this field for any path that does not start with the API
+   * prefix, so a second one would be handled the same way without anybody noticing it had to be.
+   */
+  readonly rootPath?: string | undefined;
   readonly query?: Readonly<Record<string, ParamValue | readonly ParamValue[]>> | undefined;
   readonly headers?: Readonly<Record<string, ParamValue>> | undefined;
   /** JSON-encoded before it is sent. */
