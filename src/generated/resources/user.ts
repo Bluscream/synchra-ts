@@ -56,8 +56,7 @@ export interface UserGetUsersAsAdminParams extends RequestOptions {
  *
  * Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.
  */
-export interface UserUserGlobalAdminStatusParams extends RequestOptions {
-}
+export type UserUserGlobalAdminStatusParams = RequestOptions;
 
 /**
  * Options for `DELETE /api/2/user/providers/{user_provider_id}`.
@@ -82,16 +81,14 @@ export interface UserGetUserProviderParams extends RequestOptions {
  *
  * Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.
  */
-export interface UserGetUserProvidersParams extends RequestOptions {
-}
+export type UserGetUserProvidersParams = RequestOptions;
 
 /**
  * Options for `GET /api/2/user/settings`.
  *
  * Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.
  */
-export interface UserUserSettingsParams extends RequestOptions {
-}
+export type UserUserSettingsParams = RequestOptions;
 
 /**
  * Options for `PUT /api/2/user/settings`.
@@ -117,8 +114,7 @@ export interface UserDeleteUserParams extends RequestOptions {
  *
  * Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.
  */
-export interface UserUserInfoParams extends RequestOptions {
-}
+export type UserUserInfoParams = RequestOptions;
 
 /**
  * The `User` endpoints.
@@ -133,11 +129,13 @@ export class User {
    *
    * `GET /api/2/admin/users/{user_id}/channels`
    */
-  getUserChannelsAsAdmin(params: UserGetUserChannelsAsAdminParams): Promise<Models.PageCursorUserChannelSummary> {
+  getUserChannelsAsAdmin(
+    params: UserGetUserChannelsAsAdminParams,
+  ): Promise<Models.PageCursorUserChannelSummary> {
     return this.client.request<Models.PageCursorUserChannelSummary>({
-      method: "GET",
-      path: expandPath("/admin/users/{user_id}/channels", { user_id: params["user_id"] }),
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/admin/users/{user_id}/channels', { user_id: params.user_id }),
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -148,9 +146,12 @@ export class User {
    * `DELETE /api/2/admin/users/{user_id}/providers/{user_provider_id}`
    */
   disconnectUserProviderAsAdmin(params: UserDisconnectUserProviderAsAdminParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/admin/users/{user_id}/providers/{user_provider_id}", { user_id: params["user_id"], user_provider_id: params["user_provider_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/admin/users/{user_id}/providers/{user_provider_id}', {
+        user_id: params.user_id,
+        user_provider_id: params.user_provider_id,
+      }),
       options: params,
     });
   }
@@ -161,9 +162,9 @@ export class User {
    * `DELETE /api/2/admin/users/{user_id}`
    */
   deleteUserAsAdmin(params: UserDeleteUserAsAdminParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/admin/users/{user_id}", { user_id: params["user_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/admin/users/{user_id}', { user_id: params.user_id }),
       options: params,
     });
   }
@@ -175,9 +176,9 @@ export class User {
    */
   getUsersAsAdmin(params: UserGetUsersAsAdminParams = {}): Promise<Models.PageCursorUserSummary> {
     return this.client.request<Models.PageCursorUserSummary>({
-      method: "GET",
-      path: "/admin/users",
-      query: { search: params["search"], cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: '/admin/users',
+      query: { search: params.search, cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -187,10 +188,12 @@ export class User {
    *
    * `GET /api/2/user/global-admin`
    */
-  userGlobalAdminStatus(params: UserUserGlobalAdminStatusParams = {}): Promise<Models.UserGlobalAdminStatus> {
+  userGlobalAdminStatus(
+    params: UserUserGlobalAdminStatusParams = {},
+  ): Promise<Models.UserGlobalAdminStatus> {
     return this.client.request<Models.UserGlobalAdminStatus>({
-      method: "GET",
-      path: "/user/global-admin",
+      method: 'GET',
+      path: '/user/global-admin',
       options: params,
     });
   }
@@ -203,9 +206,11 @@ export class User {
    * Requires the `user:provider:write` scope.
    */
   deleteUserProvider(params: UserDeleteUserProviderParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/user/providers/{user_provider_id}", { user_provider_id: params["user_provider_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/user/providers/{user_provider_id}', {
+        user_provider_id: params.user_provider_id,
+      }),
       options: params,
     });
   }
@@ -219,8 +224,10 @@ export class User {
    */
   getUserProvider(params: UserGetUserProviderParams): Promise<Models.UserProviderPublic> {
     return this.client.request<Models.UserProviderPublic>({
-      method: "GET",
-      path: expandPath("/user/providers/{user_provider_id}", { user_provider_id: params["user_provider_id"] }),
+      method: 'GET',
+      path: expandPath('/user/providers/{user_provider_id}', {
+        user_provider_id: params.user_provider_id,
+      }),
       options: params,
     });
   }
@@ -234,8 +241,8 @@ export class User {
    */
   getUserProviders(params: UserGetUserProvidersParams = {}): Promise<Models.UserProviderPublic[]> {
     return this.client.request<Models.UserProviderPublic[]>({
-      method: "GET",
-      path: "/user/providers",
+      method: 'GET',
+      path: '/user/providers',
       options: params,
     });
   }
@@ -247,8 +254,8 @@ export class User {
    */
   userSettings(params: UserUserSettingsParams = {}): Promise<Models.UserSettings> {
     return this.client.request<Models.UserSettings>({
-      method: "GET",
-      path: "/user/settings",
+      method: 'GET',
+      path: '/user/settings',
       options: params,
     });
   }
@@ -261,9 +268,9 @@ export class User {
    * @param params.body The request body.
    */
   updateUserSettings(params: UserUpdateUserSettingsParams): Promise<void> {
-    return this.client.request<void>({
-      method: "PUT",
-      path: "/user/settings",
+    return this.client.send({
+      method: 'PUT',
+      path: '/user/settings',
       body: params.body,
       options: params,
     });
@@ -275,10 +282,10 @@ export class User {
    * `DELETE /api/2/user`
    */
   deleteUser(params: UserDeleteUserParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: "/user",
-      query: { username: params["username"] },
+    return this.client.send({
+      method: 'DELETE',
+      path: '/user',
+      query: { username: params.username },
       options: params,
     });
   }
@@ -290,8 +297,8 @@ export class User {
    */
   userInfo(params: UserUserInfoParams = {}): Promise<Models.UserPublic> {
     return this.client.request<Models.UserPublic>({
-      method: "GET",
-      path: "/user",
+      method: 'GET',
+      path: '/user',
       options: params,
     });
   }

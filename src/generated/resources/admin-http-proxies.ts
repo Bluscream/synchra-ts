@@ -63,8 +63,7 @@ export interface AdminHttpProxiesDeleteHttpProxyParams extends RequestOptions {
  *
  * Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.
  */
-export interface AdminHttpProxiesGetHttpProxiesParams extends RequestOptions {
-}
+export type AdminHttpProxiesGetHttpProxiesParams = RequestOptions;
 
 /**
  * Options for `POST /api/2/admin/http-proxies`.
@@ -91,8 +90,10 @@ export class AdminHttpProxies {
    */
   disableHttpProxy(params: AdminHttpProxiesDisableHttpProxyParams): Promise<Models.HttpProxy> {
     return this.client.request<Models.HttpProxy>({
-      method: "POST",
-      path: expandPath("/admin/http-proxies/{http_proxy_id}/disable", { http_proxy_id: params["http_proxy_id"] }),
+      method: 'POST',
+      path: expandPath('/admin/http-proxies/{http_proxy_id}/disable', {
+        http_proxy_id: params.http_proxy_id,
+      }),
       options: params,
     });
   }
@@ -102,10 +103,15 @@ export class AdminHttpProxies {
    *
    * `POST /api/2/admin/http-proxies/{http_proxy_id}/domains/{domain}/reset`
    */
-  resetHttpProxyDomain(params: AdminHttpProxiesResetHttpProxyDomainParams): Promise<Models.HttpProxy> {
+  resetHttpProxyDomain(
+    params: AdminHttpProxiesResetHttpProxyDomainParams,
+  ): Promise<Models.HttpProxy> {
     return this.client.request<Models.HttpProxy>({
-      method: "POST",
-      path: expandPath("/admin/http-proxies/{http_proxy_id}/domains/{domain}/reset", { http_proxy_id: params["http_proxy_id"], domain: params["domain"] }),
+      method: 'POST',
+      path: expandPath('/admin/http-proxies/{http_proxy_id}/domains/{domain}/reset', {
+        http_proxy_id: params.http_proxy_id,
+        domain: params.domain,
+      }),
       options: params,
     });
   }
@@ -117,8 +123,10 @@ export class AdminHttpProxies {
    */
   resetHttpProxy(params: AdminHttpProxiesResetHttpProxyParams): Promise<Models.HttpProxy> {
     return this.client.request<Models.HttpProxy>({
-      method: "POST",
-      path: expandPath("/admin/http-proxies/{http_proxy_id}/reset", { http_proxy_id: params["http_proxy_id"] }),
+      method: 'POST',
+      path: expandPath('/admin/http-proxies/{http_proxy_id}/reset', {
+        http_proxy_id: params.http_proxy_id,
+      }),
       options: params,
     });
   }
@@ -132,8 +140,10 @@ export class AdminHttpProxies {
    */
   testHttpProxy(params: AdminHttpProxiesTestHttpProxyParams): Promise<Models.HttpProxyTestResult> {
     return this.client.request<Models.HttpProxyTestResult>({
-      method: "POST",
-      path: expandPath("/admin/http-proxies/{http_proxy_id}/test", { http_proxy_id: params["http_proxy_id"] }),
+      method: 'POST',
+      path: expandPath('/admin/http-proxies/{http_proxy_id}/test', {
+        http_proxy_id: params.http_proxy_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -145,9 +155,11 @@ export class AdminHttpProxies {
    * `DELETE /api/2/admin/http-proxies/{http_proxy_id}`
    */
   deleteHttpProxy(params: AdminHttpProxiesDeleteHttpProxyParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/admin/http-proxies/{http_proxy_id}", { http_proxy_id: params["http_proxy_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/admin/http-proxies/{http_proxy_id}', {
+        http_proxy_id: params.http_proxy_id,
+      }),
       options: params,
     });
   }
@@ -159,8 +171,8 @@ export class AdminHttpProxies {
    */
   getHttpProxies(params: AdminHttpProxiesGetHttpProxiesParams = {}): Promise<Models.HttpProxy[]> {
     return this.client.request<Models.HttpProxy[]>({
-      method: "GET",
-      path: "/admin/http-proxies",
+      method: 'GET',
+      path: '/admin/http-proxies',
       options: params,
     });
   }
@@ -174,8 +186,8 @@ export class AdminHttpProxies {
    */
   createHttpProxy(params: AdminHttpProxiesCreateHttpProxyParams): Promise<Models.HttpProxy> {
     return this.client.request<Models.HttpProxy>({
-      method: "POST",
-      path: "/admin/http-proxies",
+      method: 'POST',
+      path: '/admin/http-proxies',
       body: params.body,
       options: params,
     });

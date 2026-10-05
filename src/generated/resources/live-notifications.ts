@@ -80,8 +80,7 @@ export interface LiveNotificationsCreateLiveNotificationWebhookParams extends Re
  *
  * Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.
  */
-export interface LiveNotificationsGetLiveNotificationWebhookServicesParams extends RequestOptions {
-}
+export type LiveNotificationsGetLiveNotificationWebhookServicesParams = RequestOptions;
 
 /**
  * The `Live Notifications` endpoints.
@@ -96,10 +95,15 @@ export class LiveNotifications {
    *
    * `DELETE /api/2/channels/{channel_id}/live-notifications/{live_notification_webhook_id}`
    */
-  deleteLiveNotificationWebhook(params: LiveNotificationsDeleteLiveNotificationWebhookParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/live-notifications/{live_notification_webhook_id}", { channel_id: params["channel_id"], live_notification_webhook_id: params["live_notification_webhook_id"] }),
+  deleteLiveNotificationWebhook(
+    params: LiveNotificationsDeleteLiveNotificationWebhookParams,
+  ): Promise<void> {
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/live-notifications/{live_notification_webhook_id}', {
+        channel_id: params.channel_id,
+        live_notification_webhook_id: params.live_notification_webhook_id,
+      }),
       options: params,
     });
   }
@@ -109,10 +113,15 @@ export class LiveNotifications {
    *
    * `GET /api/2/channels/{channel_id}/live-notifications/{live_notification_webhook_id}`
    */
-  getLiveNotificationWebhook(params: LiveNotificationsGetLiveNotificationWebhookParams): Promise<Models.LiveNotificationWebhook> {
+  getLiveNotificationWebhook(
+    params: LiveNotificationsGetLiveNotificationWebhookParams,
+  ): Promise<Models.LiveNotificationWebhook> {
     return this.client.request<Models.LiveNotificationWebhook>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/live-notifications/{live_notification_webhook_id}", { channel_id: params["channel_id"], live_notification_webhook_id: params["live_notification_webhook_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/live-notifications/{live_notification_webhook_id}', {
+        channel_id: params.channel_id,
+        live_notification_webhook_id: params.live_notification_webhook_id,
+      }),
       options: params,
     });
   }
@@ -124,10 +133,15 @@ export class LiveNotifications {
    *
    * @param params.body The request body.
    */
-  updateLiveNotificationWebhook(params: LiveNotificationsUpdateLiveNotificationWebhookParams): Promise<Models.LiveNotificationWebhook> {
+  updateLiveNotificationWebhook(
+    params: LiveNotificationsUpdateLiveNotificationWebhookParams,
+  ): Promise<Models.LiveNotificationWebhook> {
     return this.client.request<Models.LiveNotificationWebhook>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/live-notifications/{live_notification_webhook_id}", { channel_id: params["channel_id"], live_notification_webhook_id: params["live_notification_webhook_id"] }),
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/live-notifications/{live_notification_webhook_id}', {
+        channel_id: params.channel_id,
+        live_notification_webhook_id: params.live_notification_webhook_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -140,10 +154,14 @@ export class LiveNotifications {
    *
    * @param params.body The request body.
    */
-  testLiveNotificationMessage(params: LiveNotificationsTestLiveNotificationMessageParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/live-notifications/test-message", { channel_id: params["channel_id"] }),
+  testLiveNotificationMessage(
+    params: LiveNotificationsTestLiveNotificationMessageParams,
+  ): Promise<void> {
+    return this.client.send({
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/live-notifications/test-message', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -154,11 +172,15 @@ export class LiveNotifications {
    *
    * `GET /api/2/channels/{channel_id}/live-notifications`
    */
-  getLiveNotificationWebhooks(params: LiveNotificationsGetLiveNotificationWebhooksParams): Promise<Models.PageCursorLiveNotificationWebhook> {
+  getLiveNotificationWebhooks(
+    params: LiveNotificationsGetLiveNotificationWebhooksParams,
+  ): Promise<Models.PageCursorLiveNotificationWebhook> {
     return this.client.request<Models.PageCursorLiveNotificationWebhook>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/live-notifications", { channel_id: params["channel_id"] }),
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/live-notifications', {
+        channel_id: params.channel_id,
+      }),
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -170,10 +192,14 @@ export class LiveNotifications {
    *
    * @param params.body The request body.
    */
-  createLiveNotificationWebhook(params: LiveNotificationsCreateLiveNotificationWebhookParams): Promise<Models.LiveNotificationWebhook> {
+  createLiveNotificationWebhook(
+    params: LiveNotificationsCreateLiveNotificationWebhookParams,
+  ): Promise<Models.LiveNotificationWebhook> {
     return this.client.request<Models.LiveNotificationWebhook>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/live-notifications", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/live-notifications', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -184,10 +210,12 @@ export class LiveNotifications {
    *
    * `GET /api/2/live-notification-webhook-services`
    */
-  getLiveNotificationWebhookServices(params: LiveNotificationsGetLiveNotificationWebhookServicesParams = {}): Promise<Models.LiveNotificationWebhookServiceInfo[]> {
+  getLiveNotificationWebhookServices(
+    params: LiveNotificationsGetLiveNotificationWebhookServicesParams = {},
+  ): Promise<Models.LiveNotificationWebhookServiceInfo[]> {
     return this.client.request<Models.LiveNotificationWebhookServiceInfo[]>({
-      method: "GET",
-      path: "/live-notification-webhook-services",
+      method: 'GET',
+      path: '/live-notification-webhook-services',
       options: params,
     });
   }

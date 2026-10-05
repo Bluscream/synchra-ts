@@ -91,9 +91,12 @@ export class Commands {
    * Requires the `command:write` scope.
    */
   deleteCommand(params: CommandsDeleteCommandParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/commands/{command_id}", { channel_id: params["channel_id"], command_id: params["command_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/commands/{command_id}', {
+        channel_id: params.channel_id,
+        command_id: params.command_id,
+      }),
       options: params,
     });
   }
@@ -107,8 +110,11 @@ export class Commands {
    */
   getCommand(params: CommandsGetCommandParams): Promise<Models.Command> {
     return this.client.request<Models.Command>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/commands/{command_id}", { channel_id: params["channel_id"], command_id: params["command_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/commands/{command_id}', {
+        channel_id: params.channel_id,
+        command_id: params.command_id,
+      }),
       options: params,
     });
   }
@@ -124,8 +130,11 @@ export class Commands {
    */
   updateCommand(params: CommandsUpdateCommandParams): Promise<Models.Command> {
     return this.client.request<Models.Command>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/commands/{command_id}", { channel_id: params["channel_id"], command_id: params["command_id"] }),
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/commands/{command_id}', {
+        channel_id: params.channel_id,
+        command_id: params.command_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -140,10 +149,14 @@ export class Commands {
    *
    * @param params.body The request body.
    */
-  testCommandScript(params: CommandsTestCommandScriptParams): Promise<Models.CustomScriptRunResult> {
+  testCommandScript(
+    params: CommandsTestCommandScriptParams,
+  ): Promise<Models.CustomScriptRunResult> {
     return this.client.request<Models.CustomScriptRunResult>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/commands/script-test", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/commands/script-test', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -158,9 +171,9 @@ export class Commands {
    */
   getCommands(params: CommandsGetCommandsParams): Promise<Models.PageCursorCommand> {
     return this.client.request<Models.PageCursorCommand>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/commands", { channel_id: params["channel_id"] }),
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/commands', { channel_id: params.channel_id }),
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -176,8 +189,8 @@ export class Commands {
    */
   createCommand(params: CommandsCreateCommandParams): Promise<Models.Command> {
     return this.client.request<Models.Command>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/commands", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/commands', { channel_id: params.channel_id }),
       body: params.body,
       options: params,
     });

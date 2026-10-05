@@ -65,10 +65,14 @@ export class ChannelGambling {
    *
    * Requires the `channel_point_settings:read` scope.
    */
-  getRouletteSettings(params: ChannelGamblingGetRouletteSettingsParams): Promise<Models.RouletteSettings> {
+  getRouletteSettings(
+    params: ChannelGamblingGetRouletteSettingsParams,
+  ): Promise<Models.RouletteSettings> {
     return this.client.request<Models.RouletteSettings>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/roulette-settings", { channel_id: params["channel_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/roulette-settings', {
+        channel_id: params.channel_id,
+      }),
       options: params,
     });
   }
@@ -82,10 +86,14 @@ export class ChannelGambling {
    *
    * @param params.body The request body.
    */
-  updateRouletteSettings(params: ChannelGamblingUpdateRouletteSettingsParams): Promise<Models.RouletteSettings> {
+  updateRouletteSettings(
+    params: ChannelGamblingUpdateRouletteSettingsParams,
+  ): Promise<Models.RouletteSettings> {
     return this.client.request<Models.RouletteSettings>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/roulette-settings", { channel_id: params["channel_id"] }),
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/roulette-settings', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -100,8 +108,8 @@ export class ChannelGambling {
    */
   getSlotsSettings(params: ChannelGamblingGetSlotsSettingsParams): Promise<Models.SlotsSettings> {
     return this.client.request<Models.SlotsSettings>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/slots-settings", { channel_id: params["channel_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/slots-settings', { channel_id: params.channel_id }),
       options: params,
     });
   }
@@ -115,10 +123,12 @@ export class ChannelGambling {
    *
    * @param params.body The request body.
    */
-  updateSlotsSettings(params: ChannelGamblingUpdateSlotsSettingsParams): Promise<Models.SlotsSettings> {
+  updateSlotsSettings(
+    params: ChannelGamblingUpdateSlotsSettingsParams,
+  ): Promise<Models.SlotsSettings> {
     return this.client.request<Models.SlotsSettings>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/slots-settings", { channel_id: params["channel_id"] }),
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/slots-settings', { channel_id: params.channel_id }),
       body: params.body,
       options: params,
     });

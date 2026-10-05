@@ -90,9 +90,12 @@ export class ChannelQuotes {
    * Requires the `channel_quote:write` scope.
    */
   deleteChannelQuote(params: ChannelQuotesDeleteChannelQuoteParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/quotes/{quote_id}", { channel_id: params["channel_id"], quote_id: params["quote_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/quotes/{quote_id}', {
+        channel_id: params.channel_id,
+        quote_id: params.quote_id,
+      }),
       options: params,
     });
   }
@@ -106,8 +109,11 @@ export class ChannelQuotes {
    */
   getChannelQuote(params: ChannelQuotesGetChannelQuoteParams): Promise<Models.ChannelQuote> {
     return this.client.request<Models.ChannelQuote>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/quotes/{quote_id}", { channel_id: params["channel_id"], quote_id: params["quote_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/quotes/{quote_id}', {
+        channel_id: params.channel_id,
+        quote_id: params.quote_id,
+      }),
       options: params,
     });
   }
@@ -123,8 +129,11 @@ export class ChannelQuotes {
    */
   updateChannelQuote(params: ChannelQuotesUpdateChannelQuoteParams): Promise<Models.ChannelQuote> {
     return this.client.request<Models.ChannelQuote>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/quotes/{quote_id}", { channel_id: params["channel_id"], quote_id: params["quote_id"] }),
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/quotes/{quote_id}', {
+        channel_id: params.channel_id,
+        quote_id: params.quote_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -137,10 +146,15 @@ export class ChannelQuotes {
    *
    * Requires the `channel_quote:read` scope.
    */
-  getChannelQuoteByNumber(params: ChannelQuotesGetChannelQuoteByNumberParams): Promise<Models.ChannelQuote> {
+  getChannelQuoteByNumber(
+    params: ChannelQuotesGetChannelQuoteByNumberParams,
+  ): Promise<Models.ChannelQuote> {
     return this.client.request<Models.ChannelQuote>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/quotes/number/{number}", { channel_id: params["channel_id"], number: params["number"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/quotes/number/{number}', {
+        channel_id: params.channel_id,
+        number: params.number,
+      }),
       options: params,
     });
   }
@@ -152,11 +166,13 @@ export class ChannelQuotes {
    *
    * Requires the `channel_quote:read` scope.
    */
-  getChannelQuotes(params: ChannelQuotesGetChannelQuotesParams): Promise<Models.PageCursorChannelQuote> {
+  getChannelQuotes(
+    params: ChannelQuotesGetChannelQuotesParams,
+  ): Promise<Models.PageCursorChannelQuote> {
     return this.client.request<Models.PageCursorChannelQuote>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/quotes", { channel_id: params["channel_id"] }),
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/quotes', { channel_id: params.channel_id }),
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -172,8 +188,8 @@ export class ChannelQuotes {
    */
   createChannelQuote(params: ChannelQuotesCreateChannelQuoteParams): Promise<Models.ChannelQuote> {
     return this.client.request<Models.ChannelQuote>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/quotes", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/quotes', { channel_id: params.channel_id }),
       body: params.body,
       options: params,
     });

@@ -53,7 +53,30 @@ export interface ChannelQueueGetQueueViewersParams extends RequestOptions {
   channel_queue_id: string | number;
   cursor?: string | null | undefined;
   per_page?: number | undefined;
-  provider?: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast" | null | undefined;
+  provider?:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+    | null
+    | undefined;
   provider_viewer_id?: string | null | undefined;
 }
 
@@ -141,9 +164,12 @@ export class ChannelQueue {
    * @param params.body The request body.
    */
   moveViewerToTopOfQueue(params: ChannelQueueMoveViewerToTopOfQueueParams): Promise<void> {
-    return this.client.request<void>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/queues/{channel_queue_id}/move-to-top", { channel_id: params["channel_id"], channel_queue_id: params["channel_queue_id"] }),
+    return this.client.send({
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/queues/{channel_queue_id}/move-to-top', {
+        channel_id: params.channel_id,
+        channel_queue_id: params.channel_queue_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -156,10 +182,19 @@ export class ChannelQueue {
    *
    * Requires the `channel_viewer_queue:write` scope.
    */
-  removeViewerFromChannelQueue(params: ChannelQueueRemoveViewerFromChannelQueueParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/queues/{channel_queue_id}/viewers/{channel_queue_viewer_id}", { channel_id: params["channel_id"], channel_queue_id: params["channel_queue_id"], channel_queue_viewer_id: params["channel_queue_viewer_id"] }),
+  removeViewerFromChannelQueue(
+    params: ChannelQueueRemoveViewerFromChannelQueueParams,
+  ): Promise<void> {
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath(
+        '/channels/{channel_id}/queues/{channel_queue_id}/viewers/{channel_queue_viewer_id}',
+        {
+          channel_id: params.channel_id,
+          channel_queue_id: params.channel_queue_id,
+          channel_queue_viewer_id: params.channel_queue_viewer_id,
+        },
+      ),
       options: params,
     });
   }
@@ -172,9 +207,12 @@ export class ChannelQueue {
    * Requires the `channel_viewer_queue:write` scope.
    */
   clearViewerQueue(params: ChannelQueueClearViewerQueueParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/queues/{channel_queue_id}/viewers", { channel_id: params["channel_id"], channel_queue_id: params["channel_queue_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/queues/{channel_queue_id}/viewers', {
+        channel_id: params.channel_id,
+        channel_queue_id: params.channel_queue_id,
+      }),
       options: params,
     });
   }
@@ -186,11 +224,21 @@ export class ChannelQueue {
    *
    * Requires the `channel_viewer_queue:read` scope.
    */
-  getQueueViewers(params: ChannelQueueGetQueueViewersParams): Promise<Models.PageCursorQueueViewer> {
+  getQueueViewers(
+    params: ChannelQueueGetQueueViewersParams,
+  ): Promise<Models.PageCursorQueueViewer> {
     return this.client.request<Models.PageCursorQueueViewer>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/queues/{channel_queue_id}/viewers", { channel_id: params["channel_id"], channel_queue_id: params["channel_queue_id"] }),
-      query: { provider: params["provider"], provider_viewer_id: params["provider_viewer_id"], cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/queues/{channel_queue_id}/viewers', {
+        channel_id: params.channel_id,
+        channel_queue_id: params.channel_queue_id,
+      }),
+      query: {
+        provider: params.provider,
+        provider_viewer_id: params.provider_viewer_id,
+        cursor: params.cursor,
+        per_page: params.per_page,
+      },
       options: params,
     });
   }
@@ -204,10 +252,15 @@ export class ChannelQueue {
    *
    * @param params.body The request body.
    */
-  addViewerToChannelQueue(params: ChannelQueueAddViewerToChannelQueueParams): Promise<Models.QueueViewer> {
+  addViewerToChannelQueue(
+    params: ChannelQueueAddViewerToChannelQueueParams,
+  ): Promise<Models.QueueViewer> {
     return this.client.request<Models.QueueViewer>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/queues/{channel_queue_id}/viewers", { channel_id: params["channel_id"], channel_queue_id: params["channel_queue_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/queues/{channel_queue_id}/viewers', {
+        channel_id: params.channel_id,
+        channel_queue_id: params.channel_queue_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -221,9 +274,12 @@ export class ChannelQueue {
    * Requires the `channel_viewer_queue:write` scope.
    */
   deleteQueue(params: ChannelQueueDeleteQueueParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/queues/{channel_queue_id}", { channel_id: params["channel_id"], channel_queue_id: params["channel_queue_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/queues/{channel_queue_id}', {
+        channel_id: params.channel_id,
+        channel_queue_id: params.channel_queue_id,
+      }),
       options: params,
     });
   }
@@ -237,8 +293,11 @@ export class ChannelQueue {
    */
   getQueue(params: ChannelQueueGetQueueParams): Promise<Models.Queue> {
     return this.client.request<Models.Queue>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/queues/{channel_queue_id}", { channel_id: params["channel_id"], channel_queue_id: params["channel_queue_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/queues/{channel_queue_id}', {
+        channel_id: params.channel_id,
+        channel_queue_id: params.channel_queue_id,
+      }),
       options: params,
     });
   }
@@ -254,8 +313,11 @@ export class ChannelQueue {
    */
   updateQueue(params: ChannelQueueUpdateQueueParams): Promise<Models.Queue> {
     return this.client.request<Models.Queue>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/queues/{channel_queue_id}", { channel_id: params["channel_id"], channel_queue_id: params["channel_queue_id"] }),
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/queues/{channel_queue_id}', {
+        channel_id: params.channel_id,
+        channel_queue_id: params.channel_queue_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -270,9 +332,9 @@ export class ChannelQueue {
    */
   getQueues(params: ChannelQueueGetQueuesParams): Promise<Models.PageCursorQueue> {
     return this.client.request<Models.PageCursorQueue>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/queues", { channel_id: params["channel_id"] }),
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/queues', { channel_id: params.channel_id }),
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -288,8 +350,8 @@ export class ChannelQueue {
    */
   createQueue(params: ChannelQueueCreateQueueParams): Promise<Models.Queue> {
     return this.client.request<Models.Queue>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/queues", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/queues', { channel_id: params.channel_id }),
       body: params.body,
       options: params,
     });

@@ -19,8 +19,31 @@ export interface ChannelProviderGetChannelProviderStreamsParams extends RequestO
   channel_id: string | number;
   cursor?: string | null | undefined;
   per_page?: number | undefined;
-  provider?: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast" | null | undefined;
-  status?: ("pending" | "live" | "ended")[] | null | undefined;
+  provider?:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+    | null
+    | undefined;
+  status?: ('pending' | 'live' | 'ended')[] | null | undefined;
 }
 
 /**
@@ -52,7 +75,9 @@ export interface ChannelProviderStartCommercialParams extends RequestOptions {
   channel_id: string | number;
   channel_provider_id: string | number;
   /** The request body. */
-  body?: Models.BodyStartCommercialApi2ChannelsChannelIdProvidersChannelProviderIdRunCommercialPost | undefined;
+  body?:
+    | Models.BodyStartCommercialApi2ChannelsChannelIdProvidersChannelProviderIdRunCommercialPost
+    | undefined;
 }
 
 /**
@@ -114,7 +139,28 @@ export interface ChannelProviderGetChannelProvidersParams extends RequestOptions
  * Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.
  */
 export interface ChannelProviderGetStreamCategoriesParams extends RequestOptions {
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   query: string;
   cursor?: string | null | undefined;
   per_page?: number | undefined;
@@ -140,11 +186,20 @@ export class ChannelProvider {
    * **Public** — verified to answer without a token. Carries status, title, `viewer_count`,
    * `peak_viewer_count` and `started_at`.
    */
-  getChannelProviderStreams(params: ChannelProviderGetChannelProviderStreamsParams): Promise<Models.PageCursorChannelProviderStream> {
+  getChannelProviderStreams(
+    params: ChannelProviderGetChannelProviderStreamsParams,
+  ): Promise<Models.PageCursorChannelProviderStream> {
     return this.client.request<Models.PageCursorChannelProviderStream>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/provider-streams", { channel_id: params["channel_id"] }),
-      query: { status: params["status"], provider: params["provider"], cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/provider-streams', {
+        channel_id: params.channel_id,
+      }),
+      query: {
+        status: params.status,
+        provider: params.provider,
+        cursor: params.cursor,
+        per_page: params.per_page,
+      },
       options: params,
     });
   }
@@ -156,10 +211,15 @@ export class ChannelProvider {
    *
    * Requires the `channel_providers:write` scope.
    */
-  disconnectChannelProviderBot(params: ChannelProviderDisconnectChannelProviderBotParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/providers/{channel_provider_id}/bot", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+  disconnectChannelProviderBot(
+    params: ChannelProviderDisconnectChannelProviderBotParams,
+  ): Promise<void> {
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/providers/{channel_provider_id}/bot', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       options: params,
     });
   }
@@ -171,10 +231,15 @@ export class ChannelProvider {
    *
    * Requires the `channel_providers:write` scope.
    */
-  checkChannelProviderLiveStatus(params: ChannelProviderCheckChannelProviderLiveStatusParams): Promise<unknown> {
+  checkChannelProviderLiveStatus(
+    params: ChannelProviderCheckChannelProviderLiveStatusParams,
+  ): Promise<unknown> {
     return this.client.request<unknown>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/providers/{channel_provider_id}/check-live", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/providers/{channel_provider_id}/check-live', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       options: params,
     });
   }
@@ -189,9 +254,12 @@ export class ChannelProvider {
    * @param params.body The request body.
    */
   startCommercial(params: ChannelProviderStartCommercialParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/providers/{channel_provider_id}/run-commercial", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+    return this.client.send({
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/providers/{channel_provider_id}/run-commercial', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -208,8 +276,11 @@ export class ChannelProvider {
    */
   updateStream(params: ChannelProviderUpdateStreamParams): Promise<Models.ChannelProviderPublic> {
     return this.client.request<Models.ChannelProviderPublic>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/providers/{channel_provider_id}/stream", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/providers/{channel_provider_id}/stream', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -223,9 +294,12 @@ export class ChannelProvider {
    * Requires the `channel_providers:write` scope.
    */
   deleteChannelProvider(params: ChannelProviderDeleteChannelProviderParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/providers/{channel_provider_id}", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/providers/{channel_provider_id}', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       options: params,
     });
   }
@@ -237,10 +311,15 @@ export class ChannelProvider {
    *
    * Requires the `channel_providers:read` scope.
    */
-  getChannelProvider(params: ChannelProviderGetChannelProviderParams): Promise<Models.ChannelProviderPublic> {
+  getChannelProvider(
+    params: ChannelProviderGetChannelProviderParams,
+  ): Promise<Models.ChannelProviderPublic> {
     return this.client.request<Models.ChannelProviderPublic>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/providers/{channel_provider_id}", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/providers/{channel_provider_id}', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       options: params,
     });
   }
@@ -254,10 +333,15 @@ export class ChannelProvider {
    *
    * @param params.body The request body.
    */
-  updateChannelProvider(params: ChannelProviderUpdateChannelProviderParams): Promise<Models.ChannelProviderPublic> {
+  updateChannelProvider(
+    params: ChannelProviderUpdateChannelProviderParams,
+  ): Promise<Models.ChannelProviderPublic> {
     return this.client.request<Models.ChannelProviderPublic>({
-      method: "PATCH",
-      path: expandPath("/channels/{channel_id}/providers/{channel_provider_id}", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+      method: 'PATCH',
+      path: expandPath('/channels/{channel_id}/providers/{channel_provider_id}', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -275,10 +359,12 @@ export class ChannelProvider {
    * **Public** — verified to answer without a token. With `provider-streams`, this is enough to
    * build a live-status page with no credentials at all.
    */
-  getChannelProviders(params: ChannelProviderGetChannelProvidersParams): Promise<Models.ChannelProviderPublic[]> {
+  getChannelProviders(
+    params: ChannelProviderGetChannelProvidersParams,
+  ): Promise<Models.ChannelProviderPublic[]> {
     return this.client.request<Models.ChannelProviderPublic[]>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/providers", { channel_id: params["channel_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/providers', { channel_id: params.channel_id }),
       options: params,
     });
   }
@@ -288,11 +374,18 @@ export class ChannelProvider {
    *
    * `GET /api/2/stream-categories`
    */
-  getStreamCategories(params: ChannelProviderGetStreamCategoriesParams): Promise<Models.PageCursorStreamCategory> {
+  getStreamCategories(
+    params: ChannelProviderGetStreamCategoriesParams,
+  ): Promise<Models.PageCursorStreamCategory> {
     return this.client.request<Models.PageCursorStreamCategory>({
-      method: "GET",
-      path: "/stream-categories",
-      query: { provider: params["provider"], query: params["query"], cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: '/stream-categories',
+      query: {
+        provider: params.provider,
+        query: params.query,
+        cursor: params.cursor,
+        per_page: params.per_page,
+      },
       options: params,
     });
   }

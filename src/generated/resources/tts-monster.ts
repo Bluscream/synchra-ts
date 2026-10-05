@@ -38,10 +38,14 @@ export class TtsMonster {
    *
    * @param params.body The request body.
    */
-  registerTtsmonsterChannelProvider(params: TtsMonsterRegisterTtsmonsterChannelProviderParams): Promise<Models.ChannelProviderPublic> {
+  registerTtsmonsterChannelProvider(
+    params: TtsMonsterRegisterTtsmonsterChannelProviderParams,
+  ): Promise<Models.ChannelProviderPublic> {
     return this.client.request<Models.ChannelProviderPublic>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/register-provider/ttsmonster", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/register-provider/ttsmonster', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });

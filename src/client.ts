@@ -10,7 +10,12 @@
  * reach an endpoint the vendored description does not cover yet.
  */
 import { type TokenProvider, staticToken } from './auth.js';
-import { ConfigurationError, SerializationError, TransportError, errorForStatus } from './errors.js';
+import {
+  ConfigurationError,
+  SerializationError,
+  TransportError,
+  errorForStatus,
+} from './errors.js';
 import type { ErrorBody } from './generated/models.js';
 import {
   DEFAULT_RETRY_POLICY,
@@ -93,6 +98,21 @@ export class ApiClient {
    * `undefined`, which the generated methods type as `void`.
    */
   async request<T>(spec: ApiRequestSpec): Promise<T> {
+    return (await this.exchange(spec)) as T;
+  }
+
+  /**
+   * Sends one request whose success response has no body.
+   *
+   * Separate from {@link ApiClient.request} rather than `request<void>`: `void` as a type argument
+   * means "ignore whatever this resolves to", which is not what a `204` is — there is genuinely
+   * nothing there, and 58 of the operations answer this way.
+   */
+  async send(spec: ApiRequestSpec): Promise<void> {
+    await this.exchange(spec);
+  }
+
+  private async exchange(spec: ApiRequestSpec): Promise<unknown> {
     const url = this.url(spec);
     const method = spec.method.toUpperCase();
     const { body, contentType } = this.encodeBody(spec);
@@ -108,7 +128,7 @@ export class ApiClient {
 
       const startedAt = Date.now();
 
-      response = await this.send(method, url, headers, body, signal);
+      response = await this.fetchOnce(method, url, headers, body, signal);
 
       this.onRequest?.({
         method,
@@ -128,20 +148,20 @@ export class ApiClient {
     const text = await this.readBody(response, method, url);
 
     if (response.status >= 400) {
-      throw errorForStatus(
-        response.status,
-        parseErrorBody(text),
-        text,
+      throw errorForStatus({
+        status: response.status,
+        error: parseErrorBody(text),
+        body: text,
         method,
         url,
-        headersOf(response),
-      );
+        headers: headersOf(response),
+      });
     }
 
-    return this.decode<T>(text, response.status, method, url);
+    return this.decode(text, response.status, method, url);
   }
 
-  private async send(
+  private async fetchOnce(
     method: string,
     url: string,
     headers: Record<string, string>,
@@ -169,19 +189,22 @@ export class ApiClient {
     try {
       return await response.text();
     } catch (cause) {
-      throw new TransportError(`${method} ${url} answered ${String(response.status)} but the body could not be read.`, {
-        cause,
-      });
+      throw new TransportError(
+        `${method} ${url} answered ${String(response.status)} but the body could not be read.`,
+        {
+          cause,
+        },
+      );
     }
   }
 
-  private decode<T>(text: string, status: number, method: string, url: string): T {
+  private decode(text: string, status: number, method: string, url: string): unknown {
     if (status === 204 || text.trim() === '') {
-      return undefined as T;
+      return undefined;
     }
 
     try {
-      return JSON.parse(text) as T;
+      return JSON.parse(text);
     } catch (cause) {
       throw new SerializationError(
         `${method} ${url} answered ${String(status)} with a body that is not valid JSON.`,
@@ -229,7 +252,7 @@ export class ApiClient {
     const token = await this.token();
 
     if (token !== null && token !== '') {
-      headers['authorization'] = `Bearer ${token}`;
+      headers.authorization = `Bearer ${token}`;
     }
 
     return headers;
@@ -295,9 +318,7 @@ export function shouldRetry(
   attempt: number,
 ): boolean {
   return (
-    attempt < policy.attempts &&
-    policy.methods.includes(method) &&
-    policy.statuses.includes(status)
+    attempt < policy.attempts && policy.methods.includes(method) && policy.statuses.includes(status)
   );
 }
 

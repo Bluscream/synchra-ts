@@ -22,14 +22,33 @@ export type { IsoDateTime, OpenEnum };
 export * from './enums.js';
 
 export interface Activity {
-  activity_group: "subscription" | "subscription_gift" | "donation" | "virtual_currency" | "follow" | "raid" | "redeem" | "like" | null;
+  activity_group:
+    | 'subscription'
+    | 'subscription_gift'
+    | 'donation'
+    | 'virtual_currency'
+    | 'follow'
+    | 'raid'
+    | 'redeem'
+    | 'like'
+    | null;
   /**
    *
    * Format: `uuid`.
    */
   channel_id: string;
   color: string;
-  contribution_group: "currency_amount" | "follows" | "kick_subs" | "redeems" | "rumble_subs" | "tiktok_superfans" | "twitch_subs" | "virtual_currency" | "youtube_memberships" | null;
+  contribution_group:
+    | 'currency_amount'
+    | 'follows'
+    | 'kick_subs'
+    | 'redeems'
+    | 'rumble_subs'
+    | 'tiktok_superfans'
+    | 'twitch_subs'
+    | 'virtual_currency'
+    | 'youtube_memberships'
+    | null;
   count: number;
   count_currency: string | null;
   count_decimal_place: number;
@@ -53,7 +72,28 @@ export interface Activity {
    * where its content is.
    */
   message_parts: ChatMessagePart[] | null;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   provider_channel_id: string;
   provider_message_id: string;
   provider_viewer_id: string;
@@ -61,7 +101,57 @@ export interface Activity {
   sub_type: string;
   sub_type_display_name: string;
   system_message: string;
-  type: OpenEnum<"sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create">;
+  type: OpenEnum<
+    | 'sub'
+    | 'resub'
+    | 'sub_gift'
+    | 'community_sub_gift'
+    | 'raid'
+    | 'charity_donation'
+    | 'bits'
+    | 'follow'
+    | 'points'
+    | 'twitch_shoutout'
+    | 'twitch_watch_streak'
+    | 'youtube_subscription'
+    | 'newSponsorEvent'
+    | 'superChatEvent'
+    | 'superStickerEvent'
+    | 'membershipGiftingEvent'
+    | 'memberMilestoneChatEvent'
+    | 'giftEvent'
+    | 'tiktok_gift'
+    | 'tiktok_follow'
+    | 'tiktok_share'
+    | 'tiktok_like'
+    | 'tiktok_superfan'
+    | 'tiktok_superfanbox'
+    | 'rumble_follow'
+    | 'rumble_sub'
+    | 'rumble_gift_subs'
+    | 'rumble_rant'
+    | 'rumble_raid'
+    | 'kick_sub'
+    | 'kick_resub'
+    | 'kick_gift_subs'
+    | 'kick_gift_sub'
+    | 'kick_follow'
+    | 'kick_kicks_gift'
+    | 'kick_reward_redemption'
+    | 'streamelements_tip'
+    | 'streamlabs_donation'
+    | 'kofi_donation'
+    | 'kofi_subscription'
+    | 'kofi_resub'
+    | 'kofi_shop_order'
+    | 'kofi_commission'
+    | 'fourthwall_donation'
+    | 'fourthwall_shop_order'
+    | 'fourthwall_gift_purchase'
+    | 'fourthwall_subscription'
+    | 'patreon_member_create'
+    | 'patreon_member_pledge_create'
+  >;
   type_display_name: string;
   viewer_display_name: string;
   viewer_name: string;
@@ -78,7 +168,7 @@ export interface Activity {
 }
 
 export interface ActivityAlertControlActionCreate {
-  action: "mute" | "unmute" | "pause" | "unpause" | "playNext" | "skip";
+  action: 'mute' | 'unmute' | 'pause' | 'unpause' | 'playNext' | 'skip';
 }
 
 export interface ActivityAlertControlState {
@@ -103,8 +193,39 @@ export interface ActivityAlertFilterPayload {
 }
 
 export interface ActivityAlertGroup {
-  animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
-  celebration_type?: "confetti" | "fireworks" | "stars" | "sparkles" | "hearts" | "snow" | "christmas" | "halloween" | "diwali" | "lunarNewYear" | "cherryBlossom" | "stPatricks" | null | undefined;
+  animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
+  celebration_type?:
+    | 'confetti'
+    | 'fireworks'
+    | 'stars'
+    | 'sparkles'
+    | 'hearts'
+    | 'snow'
+    | 'christmas'
+    | 'halloween'
+    | 'diwali'
+    | 'lunarNewYear'
+    | 'cherryBlossom'
+    | 'stPatricks'
+    | null
+    | undefined;
   count_color?: string | undefined;
   count_name_color?: string | undefined;
   custom_css?: string | undefined;
@@ -112,15 +233,49 @@ export interface ActivityAlertGroup {
   custom_script_typescript?: string | undefined;
   duration_seconds?: number | null | undefined;
   enabled?: boolean | undefined;
-  exit_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  exit_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   filter_currency?: string | undefined;
   font_family_id?: string | null | undefined;
   font_size?: number | null | undefined;
   id?: string | undefined;
   max_width?: number | null | undefined;
-  media_position?: "above" | "below" | "left" | "right" | "behind" | "front" | null | undefined;
-  message_alignment?: "left" | "center" | "right" | null | undefined;
-  message_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  media_position?: 'above' | 'below' | 'left' | 'right' | 'behind' | 'front' | null | undefined;
+  message_alignment?: 'left' | 'center' | 'right' | null | undefined;
+  message_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   message_delay_seconds?: number | null | undefined;
   message_offset_x?: number | null | undefined;
   message_offset_y?: number | null | undefined;
@@ -129,8 +284,25 @@ export interface ActivityAlertGroup {
   rules?: ActivityAlertRule[] | undefined;
   text_color?: string | undefined;
   theme_id?: string | undefined;
-  title_alignment?: "left" | "center" | "right" | null | undefined;
-  title_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  title_alignment?: 'left' | 'center' | 'right' | null | undefined;
+  title_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   title_delay_seconds?: number | null | undefined;
   title_offset_x?: number | null | undefined;
   title_offset_y?: number | null | undefined;
@@ -139,8 +311,39 @@ export interface ActivityAlertGroup {
 }
 
 export interface ActivityAlertGroupPayload {
-  animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
-  celebration_type?: "confetti" | "fireworks" | "stars" | "sparkles" | "hearts" | "snow" | "christmas" | "halloween" | "diwali" | "lunarNewYear" | "cherryBlossom" | "stPatricks" | null | undefined;
+  animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
+  celebration_type?:
+    | 'confetti'
+    | 'fireworks'
+    | 'stars'
+    | 'sparkles'
+    | 'hearts'
+    | 'snow'
+    | 'christmas'
+    | 'halloween'
+    | 'diwali'
+    | 'lunarNewYear'
+    | 'cherryBlossom'
+    | 'stPatricks'
+    | null
+    | undefined;
   count_color?: string | undefined;
   count_name_color?: string | undefined;
   custom_css?: string | undefined;
@@ -148,15 +351,228 @@ export interface ActivityAlertGroupPayload {
   custom_script_typescript?: string | undefined;
   duration_seconds?: number | null | undefined;
   enabled?: boolean | undefined;
-  exit_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
-  filter_currency?: "AED" | "AFN" | "ALL" | "AMD" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BOV" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHE" | "CHF" | "CHW" | "CLF" | "CLP" | "CNY" | "COP" | "COU" | "CRC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HTG" | "HUF" | "IDR" | "ILS" | "INR" | "IQD" | "IRR" | "ISK" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRU" | "MUR" | "MVR" | "MWK" | "MXN" | "MXV" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLE" | "SOS" | "SRD" | "SSP" | "STN" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "USN" | "UYI" | "UYU" | "UYW" | "UZS" | "VED" | "VES" | "VND" | "VUV" | "WST" | "XAD" | "XAF" | "XAG" | "XAU" | "XBA" | "XBB" | "XBC" | "XBD" | "XCD" | "XCG" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "XSU" | "XTS" | "XUA" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWG" | undefined;
+  exit_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
+  filter_currency?:
+    | 'AED'
+    | 'AFN'
+    | 'ALL'
+    | 'AMD'
+    | 'AOA'
+    | 'ARS'
+    | 'AUD'
+    | 'AWG'
+    | 'AZN'
+    | 'BAM'
+    | 'BBD'
+    | 'BDT'
+    | 'BHD'
+    | 'BIF'
+    | 'BMD'
+    | 'BND'
+    | 'BOB'
+    | 'BOV'
+    | 'BRL'
+    | 'BSD'
+    | 'BTN'
+    | 'BWP'
+    | 'BYN'
+    | 'BZD'
+    | 'CAD'
+    | 'CDF'
+    | 'CHE'
+    | 'CHF'
+    | 'CHW'
+    | 'CLF'
+    | 'CLP'
+    | 'CNY'
+    | 'COP'
+    | 'COU'
+    | 'CRC'
+    | 'CUP'
+    | 'CVE'
+    | 'CZK'
+    | 'DJF'
+    | 'DKK'
+    | 'DOP'
+    | 'DZD'
+    | 'EGP'
+    | 'ERN'
+    | 'ETB'
+    | 'EUR'
+    | 'FJD'
+    | 'FKP'
+    | 'GBP'
+    | 'GEL'
+    | 'GHS'
+    | 'GIP'
+    | 'GMD'
+    | 'GNF'
+    | 'GTQ'
+    | 'GYD'
+    | 'HKD'
+    | 'HNL'
+    | 'HTG'
+    | 'HUF'
+    | 'IDR'
+    | 'ILS'
+    | 'INR'
+    | 'IQD'
+    | 'IRR'
+    | 'ISK'
+    | 'JMD'
+    | 'JOD'
+    | 'JPY'
+    | 'KES'
+    | 'KGS'
+    | 'KHR'
+    | 'KMF'
+    | 'KPW'
+    | 'KRW'
+    | 'KWD'
+    | 'KYD'
+    | 'KZT'
+    | 'LAK'
+    | 'LBP'
+    | 'LKR'
+    | 'LRD'
+    | 'LSL'
+    | 'LYD'
+    | 'MAD'
+    | 'MDL'
+    | 'MGA'
+    | 'MKD'
+    | 'MMK'
+    | 'MNT'
+    | 'MOP'
+    | 'MRU'
+    | 'MUR'
+    | 'MVR'
+    | 'MWK'
+    | 'MXN'
+    | 'MXV'
+    | 'MYR'
+    | 'MZN'
+    | 'NAD'
+    | 'NGN'
+    | 'NIO'
+    | 'NOK'
+    | 'NPR'
+    | 'NZD'
+    | 'OMR'
+    | 'PAB'
+    | 'PEN'
+    | 'PGK'
+    | 'PHP'
+    | 'PKR'
+    | 'PLN'
+    | 'PYG'
+    | 'QAR'
+    | 'RON'
+    | 'RSD'
+    | 'RUB'
+    | 'RWF'
+    | 'SAR'
+    | 'SBD'
+    | 'SCR'
+    | 'SDG'
+    | 'SEK'
+    | 'SGD'
+    | 'SHP'
+    | 'SLE'
+    | 'SOS'
+    | 'SRD'
+    | 'SSP'
+    | 'STN'
+    | 'SVC'
+    | 'SYP'
+    | 'SZL'
+    | 'THB'
+    | 'TJS'
+    | 'TMT'
+    | 'TND'
+    | 'TOP'
+    | 'TRY'
+    | 'TTD'
+    | 'TWD'
+    | 'TZS'
+    | 'UAH'
+    | 'UGX'
+    | 'USD'
+    | 'USN'
+    | 'UYI'
+    | 'UYU'
+    | 'UYW'
+    | 'UZS'
+    | 'VED'
+    | 'VES'
+    | 'VND'
+    | 'VUV'
+    | 'WST'
+    | 'XAD'
+    | 'XAF'
+    | 'XAG'
+    | 'XAU'
+    | 'XBA'
+    | 'XBB'
+    | 'XBC'
+    | 'XBD'
+    | 'XCD'
+    | 'XCG'
+    | 'XDR'
+    | 'XOF'
+    | 'XPD'
+    | 'XPF'
+    | 'XPT'
+    | 'XSU'
+    | 'XTS'
+    | 'XUA'
+    | 'XXX'
+    | 'YER'
+    | 'ZAR'
+    | 'ZMW'
+    | 'ZWG'
+    | undefined;
   font_family_id?: string | null | undefined;
   font_size?: number | null | undefined;
   id?: string | undefined;
   max_width?: number | null | undefined;
-  media_position?: "above" | "below" | "left" | "right" | "behind" | "front" | null | undefined;
-  message_alignment?: "left" | "center" | "right" | null | undefined;
-  message_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  media_position?: 'above' | 'below' | 'left' | 'right' | 'behind' | 'front' | null | undefined;
+  message_alignment?: 'left' | 'center' | 'right' | null | undefined;
+  message_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   message_delay_seconds?: number | null | undefined;
   message_offset_x?: number | null | undefined;
   message_offset_y?: number | null | undefined;
@@ -165,8 +581,25 @@ export interface ActivityAlertGroupPayload {
   rules?: ActivityAlertRulePayload[] | undefined;
   text_color?: string | undefined;
   theme_id?: string | undefined;
-  title_alignment?: "left" | "center" | "right" | null | undefined;
-  title_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  title_alignment?: 'left' | 'center' | 'right' | null | undefined;
+  title_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   title_delay_seconds?: number | null | undefined;
   title_offset_x?: number | null | undefined;
   title_offset_y?: number | null | undefined;
@@ -207,7 +640,56 @@ export interface ActivityAlertMediaPackPayload {
 }
 
 export interface ActivityAlertRule {
-  activity_type: "sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create";
+  activity_type:
+    | 'sub'
+    | 'resub'
+    | 'sub_gift'
+    | 'community_sub_gift'
+    | 'raid'
+    | 'charity_donation'
+    | 'bits'
+    | 'follow'
+    | 'points'
+    | 'twitch_shoutout'
+    | 'twitch_watch_streak'
+    | 'youtube_subscription'
+    | 'newSponsorEvent'
+    | 'superChatEvent'
+    | 'superStickerEvent'
+    | 'membershipGiftingEvent'
+    | 'memberMilestoneChatEvent'
+    | 'giftEvent'
+    | 'tiktok_gift'
+    | 'tiktok_follow'
+    | 'tiktok_share'
+    | 'tiktok_like'
+    | 'tiktok_superfan'
+    | 'tiktok_superfanbox'
+    | 'rumble_follow'
+    | 'rumble_sub'
+    | 'rumble_gift_subs'
+    | 'rumble_rant'
+    | 'rumble_raid'
+    | 'kick_sub'
+    | 'kick_resub'
+    | 'kick_gift_subs'
+    | 'kick_gift_sub'
+    | 'kick_follow'
+    | 'kick_kicks_gift'
+    | 'kick_reward_redemption'
+    | 'streamelements_tip'
+    | 'streamlabs_donation'
+    | 'kofi_donation'
+    | 'kofi_subscription'
+    | 'kofi_resub'
+    | 'kofi_shop_order'
+    | 'kofi_commission'
+    | 'fourthwall_donation'
+    | 'fourthwall_shop_order'
+    | 'fourthwall_gift_purchase'
+    | 'fourthwall_subscription'
+    | 'patreon_member_create'
+    | 'patreon_member_pledge_create';
   name: string;
   enabled?: boolean | undefined;
   id?: string | undefined;
@@ -215,7 +697,57 @@ export interface ActivityAlertRule {
 }
 
 export interface ActivityAlertRulePayload {
-  activity_type?: "sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create" | undefined;
+  activity_type?:
+    | 'sub'
+    | 'resub'
+    | 'sub_gift'
+    | 'community_sub_gift'
+    | 'raid'
+    | 'charity_donation'
+    | 'bits'
+    | 'follow'
+    | 'points'
+    | 'twitch_shoutout'
+    | 'twitch_watch_streak'
+    | 'youtube_subscription'
+    | 'newSponsorEvent'
+    | 'superChatEvent'
+    | 'superStickerEvent'
+    | 'membershipGiftingEvent'
+    | 'memberMilestoneChatEvent'
+    | 'giftEvent'
+    | 'tiktok_gift'
+    | 'tiktok_follow'
+    | 'tiktok_share'
+    | 'tiktok_like'
+    | 'tiktok_superfan'
+    | 'tiktok_superfanbox'
+    | 'rumble_follow'
+    | 'rumble_sub'
+    | 'rumble_gift_subs'
+    | 'rumble_rant'
+    | 'rumble_raid'
+    | 'kick_sub'
+    | 'kick_resub'
+    | 'kick_gift_subs'
+    | 'kick_gift_sub'
+    | 'kick_follow'
+    | 'kick_kicks_gift'
+    | 'kick_reward_redemption'
+    | 'streamelements_tip'
+    | 'streamlabs_donation'
+    | 'kofi_donation'
+    | 'kofi_subscription'
+    | 'kofi_resub'
+    | 'kofi_shop_order'
+    | 'kofi_commission'
+    | 'fourthwall_donation'
+    | 'fourthwall_shop_order'
+    | 'fourthwall_gift_purchase'
+    | 'fourthwall_subscription'
+    | 'patreon_member_create'
+    | 'patreon_member_pledge_create'
+    | undefined;
   enabled?: boolean | undefined;
   id?: string | undefined;
   name?: string | undefined;
@@ -235,29 +767,111 @@ export interface ActivityAlertSoundPackPayload {
 }
 
 export interface ActivityAlertTheme {
-  animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
-  celebration_type?: "confetti" | "fireworks" | "stars" | "sparkles" | "hearts" | "snow" | "christmas" | "halloween" | "diwali" | "lunarNewYear" | "cherryBlossom" | "stPatricks" | null | undefined;
+  animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
+  celebration_type?:
+    | 'confetti'
+    | 'fireworks'
+    | 'stars'
+    | 'sparkles'
+    | 'hearts'
+    | 'snow'
+    | 'christmas'
+    | 'halloween'
+    | 'diwali'
+    | 'lunarNewYear'
+    | 'cherryBlossom'
+    | 'stPatricks'
+    | null
+    | undefined;
   count_color?: string | undefined;
   count_name_color?: string | undefined;
   custom_css?: string | undefined;
   custom_script_javascript?: string | undefined;
   custom_script_typescript?: string | undefined;
   duration_seconds?: number | null | undefined;
-  exit_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  exit_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   font_family_id?: string | null | undefined;
   font_size?: number | null | undefined;
   id?: string | undefined;
   max_width?: number | null | undefined;
-  media_position?: "above" | "below" | "left" | "right" | "behind" | "front" | null | undefined;
-  message_alignment?: "left" | "center" | "right" | null | undefined;
-  message_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  media_position?: 'above' | 'below' | 'left' | 'right' | 'behind' | 'front' | null | undefined;
+  message_alignment?: 'left' | 'center' | 'right' | null | undefined;
+  message_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   message_delay_seconds?: number | null | undefined;
   message_offset_x?: number | null | undefined;
   message_offset_y?: number | null | undefined;
   name?: string | undefined;
   text_color?: string | undefined;
-  title_alignment?: "left" | "center" | "right" | null | undefined;
-  title_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  title_alignment?: 'left' | 'center' | 'right' | null | undefined;
+  title_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   title_delay_seconds?: number | null | undefined;
   title_offset_x?: number | null | undefined;
   title_offset_y?: number | null | undefined;
@@ -265,29 +879,111 @@ export interface ActivityAlertTheme {
 }
 
 export interface ActivityAlertThemePayload {
-  animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
-  celebration_type?: "confetti" | "fireworks" | "stars" | "sparkles" | "hearts" | "snow" | "christmas" | "halloween" | "diwali" | "lunarNewYear" | "cherryBlossom" | "stPatricks" | null | undefined;
+  animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
+  celebration_type?:
+    | 'confetti'
+    | 'fireworks'
+    | 'stars'
+    | 'sparkles'
+    | 'hearts'
+    | 'snow'
+    | 'christmas'
+    | 'halloween'
+    | 'diwali'
+    | 'lunarNewYear'
+    | 'cherryBlossom'
+    | 'stPatricks'
+    | null
+    | undefined;
   count_color?: string | undefined;
   count_name_color?: string | undefined;
   custom_css?: string | undefined;
   custom_script_javascript?: string | undefined;
   custom_script_typescript?: string | undefined;
   duration_seconds?: number | null | undefined;
-  exit_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  exit_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   font_family_id?: string | null | undefined;
   font_size?: number | null | undefined;
   id?: string | undefined;
   max_width?: number | null | undefined;
-  media_position?: "above" | "below" | "left" | "right" | "behind" | "front" | null | undefined;
-  message_alignment?: "left" | "center" | "right" | null | undefined;
-  message_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  media_position?: 'above' | 'below' | 'left' | 'right' | 'behind' | 'front' | null | undefined;
+  message_alignment?: 'left' | 'center' | 'right' | null | undefined;
+  message_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   message_delay_seconds?: number | null | undefined;
   message_offset_x?: number | null | undefined;
   message_offset_y?: number | null | undefined;
   name?: string | undefined;
   text_color?: string | undefined;
-  title_alignment?: "left" | "center" | "right" | null | undefined;
-  title_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  title_alignment?: 'left' | 'center' | 'right' | null | undefined;
+  title_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   title_delay_seconds?: number | null | undefined;
   title_offset_x?: number | null | undefined;
   title_offset_y?: number | null | undefined;
@@ -301,7 +997,30 @@ export interface ActivityAlertTtsAsset {
   filter?: ActivityAlertFilter | null | undefined;
   max_duration_seconds?: number | null | undefined;
   name?: string | undefined;
-  provider?: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast" | null | undefined;
+  provider?:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+    | null
+    | undefined;
   provider_settings?: { [key: string]: string } | undefined;
   read_message?: boolean | undefined;
   read_title?: boolean | undefined;
@@ -318,7 +1037,30 @@ export interface ActivityAlertTtsAssetPayload {
   filter?: ActivityAlertFilterPayload | null | undefined;
   max_duration_seconds?: number | null | undefined;
   name?: string | undefined;
-  provider?: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast" | null | undefined;
+  provider?:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+    | null
+    | undefined;
   provider_settings?: { [key: string]: string } | undefined;
   read_message?: boolean | undefined;
   read_title?: boolean | undefined;
@@ -341,8 +1083,39 @@ export interface ActivityAlertTtsPackPayload {
 }
 
 export interface ActivityAlertVariant {
-  animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
-  celebration_type?: "confetti" | "fireworks" | "stars" | "sparkles" | "hearts" | "snow" | "christmas" | "halloween" | "diwali" | "lunarNewYear" | "cherryBlossom" | "stPatricks" | null | undefined;
+  animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
+  celebration_type?:
+    | 'confetti'
+    | 'fireworks'
+    | 'stars'
+    | 'sparkles'
+    | 'hearts'
+    | 'snow'
+    | 'christmas'
+    | 'halloween'
+    | 'diwali'
+    | 'lunarNewYear'
+    | 'cherryBlossom'
+    | 'stPatricks'
+    | null
+    | undefined;
   count_color?: string | undefined;
   count_name_color?: string | undefined;
   custom_css?: string | undefined;
@@ -350,7 +1123,24 @@ export interface ActivityAlertVariant {
   custom_script_typescript?: string | undefined;
   duration_seconds?: number | null | undefined;
   enabled?: boolean | undefined;
-  exit_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  exit_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   filter?: ActivityAlertFilter | undefined;
   font_family_id?: string | null | undefined;
   font_size?: number | null | undefined;
@@ -358,9 +1148,26 @@ export interface ActivityAlertVariant {
   max_width?: number | null | undefined;
   media?: ActivityAlertVisualMediaAsset[] | undefined;
   media_pack_ids?: string[] | undefined;
-  media_position?: "above" | "below" | "left" | "right" | "behind" | "front" | null | undefined;
-  message_alignment?: "left" | "center" | "right" | null | undefined;
-  message_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  media_position?: 'above' | 'below' | 'left' | 'right' | 'behind' | 'front' | null | undefined;
+  message_alignment?: 'left' | 'center' | 'right' | null | undefined;
+  message_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   message_delay_seconds?: number | null | undefined;
   message_offset_x?: number | null | undefined;
   message_offset_y?: number | null | undefined;
@@ -370,8 +1177,25 @@ export interface ActivityAlertVariant {
   sounds?: ActivityAlertMediaAsset[] | undefined;
   text_color?: string | undefined;
   theme_id?: string | undefined;
-  title_alignment?: "left" | "center" | "right" | null | undefined;
-  title_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  title_alignment?: 'left' | 'center' | 'right' | null | undefined;
+  title_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   title_delay_seconds?: number | null | undefined;
   title_offset_x?: number | null | undefined;
   title_offset_y?: number | null | undefined;
@@ -396,8 +1220,39 @@ export interface ActivityAlertVariantPackPayload {
 }
 
 export interface ActivityAlertVariantPackVariant {
-  animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
-  celebration_type?: "confetti" | "fireworks" | "stars" | "sparkles" | "hearts" | "snow" | "christmas" | "halloween" | "diwali" | "lunarNewYear" | "cherryBlossom" | "stPatricks" | null | undefined;
+  animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
+  celebration_type?:
+    | 'confetti'
+    | 'fireworks'
+    | 'stars'
+    | 'sparkles'
+    | 'hearts'
+    | 'snow'
+    | 'christmas'
+    | 'halloween'
+    | 'diwali'
+    | 'lunarNewYear'
+    | 'cherryBlossom'
+    | 'stPatricks'
+    | null
+    | undefined;
   count_color?: string | undefined;
   count_name_color?: string | undefined;
   custom_css?: string | undefined;
@@ -405,7 +1260,24 @@ export interface ActivityAlertVariantPackVariant {
   custom_script_typescript?: string | undefined;
   duration_seconds?: number | null | undefined;
   enabled?: boolean | undefined;
-  exit_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  exit_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   filter?: ActivityAlertFilter | undefined;
   font_family_id?: string | null | undefined;
   font_size?: number | null | undefined;
@@ -413,9 +1285,26 @@ export interface ActivityAlertVariantPackVariant {
   max_width?: number | null | undefined;
   media?: ActivityAlertVisualMediaAsset[] | undefined;
   media_pack_ids?: string[] | undefined;
-  media_position?: "above" | "below" | "left" | "right" | "behind" | "front" | null | undefined;
-  message_alignment?: "left" | "center" | "right" | null | undefined;
-  message_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  media_position?: 'above' | 'below' | 'left' | 'right' | 'behind' | 'front' | null | undefined;
+  message_alignment?: 'left' | 'center' | 'right' | null | undefined;
+  message_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   message_delay_seconds?: number | null | undefined;
   message_offset_x?: number | null | undefined;
   message_offset_y?: number | null | undefined;
@@ -425,8 +1314,25 @@ export interface ActivityAlertVariantPackVariant {
   sounds?: ActivityAlertMediaAsset[] | undefined;
   text_color?: string | undefined;
   theme_id?: string | undefined;
-  title_alignment?: "left" | "center" | "right" | null | undefined;
-  title_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  title_alignment?: 'left' | 'center' | 'right' | null | undefined;
+  title_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   title_delay_seconds?: number | null | undefined;
   title_offset_x?: number | null | undefined;
   title_offset_y?: number | null | undefined;
@@ -439,8 +1345,39 @@ export interface ActivityAlertVariantPackVariant {
 }
 
 export interface ActivityAlertVariantPayload {
-  animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
-  celebration_type?: "confetti" | "fireworks" | "stars" | "sparkles" | "hearts" | "snow" | "christmas" | "halloween" | "diwali" | "lunarNewYear" | "cherryBlossom" | "stPatricks" | null | undefined;
+  animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
+  celebration_type?:
+    | 'confetti'
+    | 'fireworks'
+    | 'stars'
+    | 'sparkles'
+    | 'hearts'
+    | 'snow'
+    | 'christmas'
+    | 'halloween'
+    | 'diwali'
+    | 'lunarNewYear'
+    | 'cherryBlossom'
+    | 'stPatricks'
+    | null
+    | undefined;
   count_color?: string | undefined;
   count_name_color?: string | undefined;
   custom_css?: string | undefined;
@@ -448,7 +1385,24 @@ export interface ActivityAlertVariantPayload {
   custom_script_typescript?: string | undefined;
   duration_seconds?: number | null | undefined;
   enabled?: boolean | undefined;
-  exit_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  exit_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   filter?: ActivityAlertFilterPayload | undefined;
   font_family_id?: string | null | undefined;
   font_size?: number | null | undefined;
@@ -456,9 +1410,26 @@ export interface ActivityAlertVariantPayload {
   max_width?: number | null | undefined;
   media?: ActivityAlertVisualMediaAssetPayload[] | undefined;
   media_pack_ids?: string[] | undefined;
-  media_position?: "above" | "below" | "left" | "right" | "behind" | "front" | null | undefined;
-  message_alignment?: "left" | "center" | "right" | null | undefined;
-  message_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  media_position?: 'above' | 'below' | 'left' | 'right' | 'behind' | 'front' | null | undefined;
+  message_alignment?: 'left' | 'center' | 'right' | null | undefined;
+  message_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   message_delay_seconds?: number | null | undefined;
   message_offset_x?: number | null | undefined;
   message_offset_y?: number | null | undefined;
@@ -468,8 +1439,25 @@ export interface ActivityAlertVariantPayload {
   sounds?: ActivityAlertMediaAssetPayload[] | undefined;
   text_color?: string | undefined;
   theme_id?: string | undefined;
-  title_alignment?: "left" | "center" | "right" | null | undefined;
-  title_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | null | undefined;
+  title_alignment?: 'left' | 'center' | 'right' | null | undefined;
+  title_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | null
+    | undefined;
   title_delay_seconds?: number | null | undefined;
   title_offset_x?: number | null | undefined;
   title_offset_y?: number | null | undefined;
@@ -487,7 +1475,7 @@ export interface ActivityAlertVisualMediaAsset {
   max_duration_seconds?: number | null | undefined;
   name?: string | undefined;
   sound_url?: string | undefined;
-  type?: "image" | "video" | undefined;
+  type?: 'image' | 'video' | undefined;
   url?: string | undefined;
   volume?: number | undefined;
   weight?: number | undefined;
@@ -499,7 +1487,7 @@ export interface ActivityAlertVisualMediaAssetPayload {
   max_duration_seconds?: number | null | undefined;
   name?: string | undefined;
   sound_url?: string | undefined;
-  type?: "image" | "video" | undefined;
+  type?: 'image' | 'video' | undefined;
   url?: string | undefined;
   volume?: number | undefined;
   weight?: number | undefined;
@@ -529,12 +1517,12 @@ export interface ActivityAlertWidget {
   updated_at: IsoDateTime;
   last_used_at?: IsoDateTime | null | undefined;
   settings?: ActivityAlertWidgetSettings | undefined;
-  type?: "activity_alert_widget" | undefined;
+  type?: 'activity_alert_widget' | undefined;
 }
 
 export interface ActivityAlertWidgetCreate {
   name: string;
-  type: "activity_alert_widget";
+  type: 'activity_alert_widget';
   settings?: ActivityAlertWidgetSettingsPayload | undefined;
 }
 
@@ -578,12 +1566,62 @@ export interface ActivityAlertWidgetTest {
 
 export interface ActivityAlertWidgetTestAlertCreate {
   activity?: Activity | undefined;
-  activity_type?: "sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create" | undefined;
+  activity_type?:
+    | 'sub'
+    | 'resub'
+    | 'sub_gift'
+    | 'community_sub_gift'
+    | 'raid'
+    | 'charity_donation'
+    | 'bits'
+    | 'follow'
+    | 'points'
+    | 'twitch_shoutout'
+    | 'twitch_watch_streak'
+    | 'youtube_subscription'
+    | 'newSponsorEvent'
+    | 'superChatEvent'
+    | 'superStickerEvent'
+    | 'membershipGiftingEvent'
+    | 'memberMilestoneChatEvent'
+    | 'giftEvent'
+    | 'tiktok_gift'
+    | 'tiktok_follow'
+    | 'tiktok_share'
+    | 'tiktok_like'
+    | 'tiktok_superfan'
+    | 'tiktok_superfanbox'
+    | 'rumble_follow'
+    | 'rumble_sub'
+    | 'rumble_gift_subs'
+    | 'rumble_rant'
+    | 'rumble_raid'
+    | 'kick_sub'
+    | 'kick_resub'
+    | 'kick_gift_subs'
+    | 'kick_gift_sub'
+    | 'kick_follow'
+    | 'kick_kicks_gift'
+    | 'kick_reward_redemption'
+    | 'streamelements_tip'
+    | 'streamlabs_donation'
+    | 'kofi_donation'
+    | 'kofi_subscription'
+    | 'kofi_resub'
+    | 'kofi_shop_order'
+    | 'kofi_commission'
+    | 'fourthwall_donation'
+    | 'fourthwall_shop_order'
+    | 'fourthwall_gift_purchase'
+    | 'fourthwall_subscription'
+    | 'patreon_member_create'
+    | 'patreon_member_pledge_create'
+    | undefined;
   settings?: ActivityAlertWidgetSettingsPayload | undefined;
 }
 
 export interface ActivityAlertWidgetUpdate {
-  type: "activity_alert_widget";
+  type: 'activity_alert_widget';
   name?: string | undefined;
   settings?: ActivityAlertWidgetSettingsPayload | undefined;
 }
@@ -621,11 +1659,82 @@ export interface ActivityCreate {
    * Format: `uuid`.
    */
   channel_id: string;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   provider_channel_id: string;
   provider_message_id: string;
   provider_viewer_id: string;
-  type: OpenEnum<"sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create">;
+  type: OpenEnum<
+    | 'sub'
+    | 'resub'
+    | 'sub_gift'
+    | 'community_sub_gift'
+    | 'raid'
+    | 'charity_donation'
+    | 'bits'
+    | 'follow'
+    | 'points'
+    | 'twitch_shoutout'
+    | 'twitch_watch_streak'
+    | 'youtube_subscription'
+    | 'newSponsorEvent'
+    | 'superChatEvent'
+    | 'superStickerEvent'
+    | 'membershipGiftingEvent'
+    | 'memberMilestoneChatEvent'
+    | 'giftEvent'
+    | 'tiktok_gift'
+    | 'tiktok_follow'
+    | 'tiktok_share'
+    | 'tiktok_like'
+    | 'tiktok_superfan'
+    | 'tiktok_superfanbox'
+    | 'rumble_follow'
+    | 'rumble_sub'
+    | 'rumble_gift_subs'
+    | 'rumble_rant'
+    | 'rumble_raid'
+    | 'kick_sub'
+    | 'kick_resub'
+    | 'kick_gift_subs'
+    | 'kick_gift_sub'
+    | 'kick_follow'
+    | 'kick_kicks_gift'
+    | 'kick_reward_redemption'
+    | 'streamelements_tip'
+    | 'streamlabs_donation'
+    | 'kofi_donation'
+    | 'kofi_subscription'
+    | 'kofi_resub'
+    | 'kofi_shop_order'
+    | 'kofi_commission'
+    | 'fourthwall_donation'
+    | 'fourthwall_shop_order'
+    | 'fourthwall_gift_purchase'
+    | 'fourthwall_subscription'
+    | 'patreon_member_create'
+    | 'patreon_member_pledge_create'
+  >;
   viewer_display_name: string;
   viewer_name: string;
   count?: number | undefined;
@@ -647,11 +1756,33 @@ export interface ActivityCreate {
   read?: boolean | undefined;
   sub_type?: string | undefined;
   system_message?: string | undefined;
-  viewer_created_at?: IsoDateTime | string | null | undefined;
+  viewer_created_at?: string | null | undefined;
   viewer_profile_picture_url?: string | null | undefined;
 }
 
-export type ActivityFeedAlertControlBar = "synchra" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+export type ActivityFeedAlertControlBar =
+  | 'synchra'
+  | 'twitch'
+  | 'discord'
+  | 'youtube'
+  | 'spotify'
+  | 'tiktok'
+  | 'x'
+  | 'rumble'
+  | 'kick'
+  | '7tv'
+  | 'betterttv'
+  | 'frankerfacez'
+  | 'streamelements'
+  | 'streamlabs'
+  | 'ttsmonster'
+  | 'elevenlabs'
+  | 'amazon_polly'
+  | 'obs_remote'
+  | 'kofi'
+  | 'fourthwall'
+  | 'patreon'
+  | 'owncast';
 
 export type ActivityFeedMinCount = number;
 
@@ -660,15 +1791,119 @@ export interface ActivityFeedProfileData {
   hidden_alert_control_bars?: ActivityFeedAlertControlBar[] | undefined;
   hide_provider?: boolean | undefined;
   local_currency?: string | null | undefined;
-  not_types?: ("sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create")[] | undefined;
-  notification_not_types?: ("sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create")[] | undefined;
+  not_types?:
+    | (
+        | 'sub'
+        | 'resub'
+        | 'sub_gift'
+        | 'community_sub_gift'
+        | 'raid'
+        | 'charity_donation'
+        | 'bits'
+        | 'follow'
+        | 'points'
+        | 'twitch_shoutout'
+        | 'twitch_watch_streak'
+        | 'youtube_subscription'
+        | 'newSponsorEvent'
+        | 'superChatEvent'
+        | 'superStickerEvent'
+        | 'membershipGiftingEvent'
+        | 'memberMilestoneChatEvent'
+        | 'giftEvent'
+        | 'tiktok_gift'
+        | 'tiktok_follow'
+        | 'tiktok_share'
+        | 'tiktok_like'
+        | 'tiktok_superfan'
+        | 'tiktok_superfanbox'
+        | 'rumble_follow'
+        | 'rumble_sub'
+        | 'rumble_gift_subs'
+        | 'rumble_rant'
+        | 'rumble_raid'
+        | 'kick_sub'
+        | 'kick_resub'
+        | 'kick_gift_subs'
+        | 'kick_gift_sub'
+        | 'kick_follow'
+        | 'kick_kicks_gift'
+        | 'kick_reward_redemption'
+        | 'streamelements_tip'
+        | 'streamlabs_donation'
+        | 'kofi_donation'
+        | 'kofi_subscription'
+        | 'kofi_resub'
+        | 'kofi_shop_order'
+        | 'kofi_commission'
+        | 'fourthwall_donation'
+        | 'fourthwall_shop_order'
+        | 'fourthwall_gift_purchase'
+        | 'fourthwall_subscription'
+        | 'patreon_member_create'
+        | 'patreon_member_pledge_create'
+      )[]
+    | undefined;
+  notification_not_types?:
+    | (
+        | 'sub'
+        | 'resub'
+        | 'sub_gift'
+        | 'community_sub_gift'
+        | 'raid'
+        | 'charity_donation'
+        | 'bits'
+        | 'follow'
+        | 'points'
+        | 'twitch_shoutout'
+        | 'twitch_watch_streak'
+        | 'youtube_subscription'
+        | 'newSponsorEvent'
+        | 'superChatEvent'
+        | 'superStickerEvent'
+        | 'membershipGiftingEvent'
+        | 'memberMilestoneChatEvent'
+        | 'giftEvent'
+        | 'tiktok_gift'
+        | 'tiktok_follow'
+        | 'tiktok_share'
+        | 'tiktok_like'
+        | 'tiktok_superfan'
+        | 'tiktok_superfanbox'
+        | 'rumble_follow'
+        | 'rumble_sub'
+        | 'rumble_gift_subs'
+        | 'rumble_rant'
+        | 'rumble_raid'
+        | 'kick_sub'
+        | 'kick_resub'
+        | 'kick_gift_subs'
+        | 'kick_gift_sub'
+        | 'kick_follow'
+        | 'kick_kicks_gift'
+        | 'kick_reward_redemption'
+        | 'streamelements_tip'
+        | 'streamlabs_donation'
+        | 'kofi_donation'
+        | 'kofi_subscription'
+        | 'kofi_resub'
+        | 'kofi_shop_order'
+        | 'kofi_commission'
+        | 'fourthwall_donation'
+        | 'fourthwall_shop_order'
+        | 'fourthwall_gift_purchase'
+        | 'fourthwall_subscription'
+        | 'patreon_member_create'
+        | 'patreon_member_pledge_create'
+      )[]
+    | undefined;
   notification_sound?: boolean | undefined;
   notification_sound_cooldown_ms?: number | undefined;
   notification_sound_tone?: Enums.ActivityFeedNotificationSoundTone | undefined;
   notification_sound_url?: string | undefined;
   notification_sound_volume?: number | undefined;
   notification_type_min_count?: { [key: string]: number } | undefined;
-  provider_logo_display?: "default" | "badge" | "dot" | undefined;
+  provider_logo_display?: 'default' | 'badge' | 'dot' | undefined;
   read_indicator?: boolean | undefined;
   render_animated_emotes?: boolean | undefined;
   show_local_currency?: boolean | undefined;
@@ -681,16 +1916,300 @@ export interface ActivityFeedProfileDataPayload {
   alert_controls?: boolean | undefined;
   hidden_alert_control_bars?: ActivityFeedAlertControlBar[] | undefined;
   hide_provider?: boolean | undefined;
-  local_currency?: "AED" | "AFN" | "ALL" | "AMD" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BOV" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHE" | "CHF" | "CHW" | "CLF" | "CLP" | "CNY" | "COP" | "COU" | "CRC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HTG" | "HUF" | "IDR" | "ILS" | "INR" | "IQD" | "IRR" | "ISK" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRU" | "MUR" | "MVR" | "MWK" | "MXN" | "MXV" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLE" | "SOS" | "SRD" | "SSP" | "STN" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "USN" | "UYI" | "UYU" | "UYW" | "UZS" | "VED" | "VES" | "VND" | "VUV" | "WST" | "XAD" | "XAF" | "XAG" | "XAU" | "XBA" | "XBB" | "XBC" | "XBD" | "XCD" | "XCG" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "XSU" | "XTS" | "XUA" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWG" | null | undefined;
-  not_types?: ("sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create")[] | undefined;
-  notification_not_types?: ("sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create")[] | undefined;
+  local_currency?:
+    | 'AED'
+    | 'AFN'
+    | 'ALL'
+    | 'AMD'
+    | 'AOA'
+    | 'ARS'
+    | 'AUD'
+    | 'AWG'
+    | 'AZN'
+    | 'BAM'
+    | 'BBD'
+    | 'BDT'
+    | 'BHD'
+    | 'BIF'
+    | 'BMD'
+    | 'BND'
+    | 'BOB'
+    | 'BOV'
+    | 'BRL'
+    | 'BSD'
+    | 'BTN'
+    | 'BWP'
+    | 'BYN'
+    | 'BZD'
+    | 'CAD'
+    | 'CDF'
+    | 'CHE'
+    | 'CHF'
+    | 'CHW'
+    | 'CLF'
+    | 'CLP'
+    | 'CNY'
+    | 'COP'
+    | 'COU'
+    | 'CRC'
+    | 'CUP'
+    | 'CVE'
+    | 'CZK'
+    | 'DJF'
+    | 'DKK'
+    | 'DOP'
+    | 'DZD'
+    | 'EGP'
+    | 'ERN'
+    | 'ETB'
+    | 'EUR'
+    | 'FJD'
+    | 'FKP'
+    | 'GBP'
+    | 'GEL'
+    | 'GHS'
+    | 'GIP'
+    | 'GMD'
+    | 'GNF'
+    | 'GTQ'
+    | 'GYD'
+    | 'HKD'
+    | 'HNL'
+    | 'HTG'
+    | 'HUF'
+    | 'IDR'
+    | 'ILS'
+    | 'INR'
+    | 'IQD'
+    | 'IRR'
+    | 'ISK'
+    | 'JMD'
+    | 'JOD'
+    | 'JPY'
+    | 'KES'
+    | 'KGS'
+    | 'KHR'
+    | 'KMF'
+    | 'KPW'
+    | 'KRW'
+    | 'KWD'
+    | 'KYD'
+    | 'KZT'
+    | 'LAK'
+    | 'LBP'
+    | 'LKR'
+    | 'LRD'
+    | 'LSL'
+    | 'LYD'
+    | 'MAD'
+    | 'MDL'
+    | 'MGA'
+    | 'MKD'
+    | 'MMK'
+    | 'MNT'
+    | 'MOP'
+    | 'MRU'
+    | 'MUR'
+    | 'MVR'
+    | 'MWK'
+    | 'MXN'
+    | 'MXV'
+    | 'MYR'
+    | 'MZN'
+    | 'NAD'
+    | 'NGN'
+    | 'NIO'
+    | 'NOK'
+    | 'NPR'
+    | 'NZD'
+    | 'OMR'
+    | 'PAB'
+    | 'PEN'
+    | 'PGK'
+    | 'PHP'
+    | 'PKR'
+    | 'PLN'
+    | 'PYG'
+    | 'QAR'
+    | 'RON'
+    | 'RSD'
+    | 'RUB'
+    | 'RWF'
+    | 'SAR'
+    | 'SBD'
+    | 'SCR'
+    | 'SDG'
+    | 'SEK'
+    | 'SGD'
+    | 'SHP'
+    | 'SLE'
+    | 'SOS'
+    | 'SRD'
+    | 'SSP'
+    | 'STN'
+    | 'SVC'
+    | 'SYP'
+    | 'SZL'
+    | 'THB'
+    | 'TJS'
+    | 'TMT'
+    | 'TND'
+    | 'TOP'
+    | 'TRY'
+    | 'TTD'
+    | 'TWD'
+    | 'TZS'
+    | 'UAH'
+    | 'UGX'
+    | 'USD'
+    | 'USN'
+    | 'UYI'
+    | 'UYU'
+    | 'UYW'
+    | 'UZS'
+    | 'VED'
+    | 'VES'
+    | 'VND'
+    | 'VUV'
+    | 'WST'
+    | 'XAD'
+    | 'XAF'
+    | 'XAG'
+    | 'XAU'
+    | 'XBA'
+    | 'XBB'
+    | 'XBC'
+    | 'XBD'
+    | 'XCD'
+    | 'XCG'
+    | 'XDR'
+    | 'XOF'
+    | 'XPD'
+    | 'XPF'
+    | 'XPT'
+    | 'XSU'
+    | 'XTS'
+    | 'XUA'
+    | 'XXX'
+    | 'YER'
+    | 'ZAR'
+    | 'ZMW'
+    | 'ZWG'
+    | null
+    | undefined;
+  not_types?:
+    | (
+        | 'sub'
+        | 'resub'
+        | 'sub_gift'
+        | 'community_sub_gift'
+        | 'raid'
+        | 'charity_donation'
+        | 'bits'
+        | 'follow'
+        | 'points'
+        | 'twitch_shoutout'
+        | 'twitch_watch_streak'
+        | 'youtube_subscription'
+        | 'newSponsorEvent'
+        | 'superChatEvent'
+        | 'superStickerEvent'
+        | 'membershipGiftingEvent'
+        | 'memberMilestoneChatEvent'
+        | 'giftEvent'
+        | 'tiktok_gift'
+        | 'tiktok_follow'
+        | 'tiktok_share'
+        | 'tiktok_like'
+        | 'tiktok_superfan'
+        | 'tiktok_superfanbox'
+        | 'rumble_follow'
+        | 'rumble_sub'
+        | 'rumble_gift_subs'
+        | 'rumble_rant'
+        | 'rumble_raid'
+        | 'kick_sub'
+        | 'kick_resub'
+        | 'kick_gift_subs'
+        | 'kick_gift_sub'
+        | 'kick_follow'
+        | 'kick_kicks_gift'
+        | 'kick_reward_redemption'
+        | 'streamelements_tip'
+        | 'streamlabs_donation'
+        | 'kofi_donation'
+        | 'kofi_subscription'
+        | 'kofi_resub'
+        | 'kofi_shop_order'
+        | 'kofi_commission'
+        | 'fourthwall_donation'
+        | 'fourthwall_shop_order'
+        | 'fourthwall_gift_purchase'
+        | 'fourthwall_subscription'
+        | 'patreon_member_create'
+        | 'patreon_member_pledge_create'
+      )[]
+    | undefined;
+  notification_not_types?:
+    | (
+        | 'sub'
+        | 'resub'
+        | 'sub_gift'
+        | 'community_sub_gift'
+        | 'raid'
+        | 'charity_donation'
+        | 'bits'
+        | 'follow'
+        | 'points'
+        | 'twitch_shoutout'
+        | 'twitch_watch_streak'
+        | 'youtube_subscription'
+        | 'newSponsorEvent'
+        | 'superChatEvent'
+        | 'superStickerEvent'
+        | 'membershipGiftingEvent'
+        | 'memberMilestoneChatEvent'
+        | 'giftEvent'
+        | 'tiktok_gift'
+        | 'tiktok_follow'
+        | 'tiktok_share'
+        | 'tiktok_like'
+        | 'tiktok_superfan'
+        | 'tiktok_superfanbox'
+        | 'rumble_follow'
+        | 'rumble_sub'
+        | 'rumble_gift_subs'
+        | 'rumble_rant'
+        | 'rumble_raid'
+        | 'kick_sub'
+        | 'kick_resub'
+        | 'kick_gift_subs'
+        | 'kick_gift_sub'
+        | 'kick_follow'
+        | 'kick_kicks_gift'
+        | 'kick_reward_redemption'
+        | 'streamelements_tip'
+        | 'streamlabs_donation'
+        | 'kofi_donation'
+        | 'kofi_subscription'
+        | 'kofi_resub'
+        | 'kofi_shop_order'
+        | 'kofi_commission'
+        | 'fourthwall_donation'
+        | 'fourthwall_shop_order'
+        | 'fourthwall_gift_purchase'
+        | 'fourthwall_subscription'
+        | 'patreon_member_create'
+        | 'patreon_member_pledge_create'
+      )[]
+    | undefined;
   notification_sound?: boolean | undefined;
   notification_sound_cooldown_ms?: number | undefined;
   notification_sound_tone?: Enums.ActivityFeedNotificationSoundTone | undefined;
-  notification_sound_url?: OpenEnum<""> | undefined;
+  notification_sound_url?: OpenEnum<''> | undefined;
   notification_sound_volume?: number | undefined;
   notification_type_min_count?: { [key: string]: ActivityFeedMinCount } | undefined;
-  provider_logo_display?: "default" | "badge" | "dot" | undefined;
+  provider_logo_display?: 'default' | 'badge' | 'dot' | undefined;
   read_indicator?: boolean | undefined;
   render_animated_emotes?: boolean | undefined;
   show_local_currency?: boolean | undefined;
@@ -713,7 +2232,7 @@ export interface ActivityFeedUserProfile {
   id: string;
   name: string;
   sort_order: string;
-  type: "activity-feed";
+  type: 'activity-feed';
   /**
    *
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
@@ -728,12 +2247,12 @@ export interface ActivityFeedUserProfile {
 
 export interface ActivityFeedUserProfileCreate {
   name: string;
-  type: "activity-feed";
+  type: 'activity-feed';
   data?: ActivityFeedProfileDataPayload | undefined;
 }
 
 export interface ActivityFeedUserProfileUpdate {
-  type: "activity-feed";
+  type: 'activity-feed';
   data?: ActivityFeedProfileDataPayload | undefined;
   name?: string | undefined;
 }
@@ -743,19 +2262,120 @@ export interface ActivityTypeName {
   count_name: string;
   display_name: string;
   font_color: string;
-  name: "sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create";
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
-  activity_group?: "subscription" | "subscription_gift" | "donation" | "virtual_currency" | "follow" | "raid" | "redeem" | "like" | null | undefined;
-  contribution_group?: "currency_amount" | "follows" | "kick_subs" | "redeems" | "rumble_subs" | "tiktok_superfans" | "twitch_subs" | "virtual_currency" | "youtube_memberships" | null | undefined;
+  name:
+    | 'sub'
+    | 'resub'
+    | 'sub_gift'
+    | 'community_sub_gift'
+    | 'raid'
+    | 'charity_donation'
+    | 'bits'
+    | 'follow'
+    | 'points'
+    | 'twitch_shoutout'
+    | 'twitch_watch_streak'
+    | 'youtube_subscription'
+    | 'newSponsorEvent'
+    | 'superChatEvent'
+    | 'superStickerEvent'
+    | 'membershipGiftingEvent'
+    | 'memberMilestoneChatEvent'
+    | 'giftEvent'
+    | 'tiktok_gift'
+    | 'tiktok_follow'
+    | 'tiktok_share'
+    | 'tiktok_like'
+    | 'tiktok_superfan'
+    | 'tiktok_superfanbox'
+    | 'rumble_follow'
+    | 'rumble_sub'
+    | 'rumble_gift_subs'
+    | 'rumble_rant'
+    | 'rumble_raid'
+    | 'kick_sub'
+    | 'kick_resub'
+    | 'kick_gift_subs'
+    | 'kick_gift_sub'
+    | 'kick_follow'
+    | 'kick_kicks_gift'
+    | 'kick_reward_redemption'
+    | 'streamelements_tip'
+    | 'streamlabs_donation'
+    | 'kofi_donation'
+    | 'kofi_subscription'
+    | 'kofi_resub'
+    | 'kofi_shop_order'
+    | 'kofi_commission'
+    | 'fourthwall_donation'
+    | 'fourthwall_shop_order'
+    | 'fourthwall_gift_purchase'
+    | 'fourthwall_subscription'
+    | 'patreon_member_create'
+    | 'patreon_member_pledge_create';
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
+  activity_group?:
+    | 'subscription'
+    | 'subscription_gift'
+    | 'donation'
+    | 'virtual_currency'
+    | 'follow'
+    | 'raid'
+    | 'redeem'
+    | 'like'
+    | null
+    | undefined;
+  contribution_group?:
+    | 'currency_amount'
+    | 'follows'
+    | 'kick_subs'
+    | 'redeems'
+    | 'rumble_subs'
+    | 'tiktok_superfans'
+    | 'twitch_subs'
+    | 'virtual_currency'
+    | 'youtube_memberships'
+    | null
+    | undefined;
   count_name_singular?: string | null | undefined;
   filter_min_count?: boolean | undefined;
   has_amount?: boolean | undefined;
   has_message?: boolean | undefined;
   has_recipient?: boolean | undefined;
   has_subtype?: boolean | undefined;
-  source_group?: "subscription" | "subscription_gift" | "donation" | "virtual_currency" | "follow" | "raid" | "redeem" | "like" | null | undefined;
+  source_group?:
+    | 'subscription'
+    | 'subscription_gift'
+    | 'donation'
+    | 'virtual_currency'
+    | 'follow'
+    | 'raid'
+    | 'redeem'
+    | 'like'
+    | null
+    | undefined;
   sub_type_default_multipliers?: { [key: string]: number } | undefined;
-  sub_type_input_mode?: "fixed" | "suggested" | undefined;
+  sub_type_input_mode?: 'fixed' | 'suggested' | undefined;
   sub_type_names?: { [key: string]: string } | undefined;
   title_template?: string | undefined;
   unit_value?: ActivityUnitValue | null | undefined;
@@ -785,7 +2405,7 @@ export interface BannedTerm {
    */
   id: string;
   text: string;
-  type: "phrase" | "regex";
+  type: 'phrase' | 'regex';
 }
 
 export interface BannedTermPayload {
@@ -795,7 +2415,7 @@ export interface BannedTermPayload {
    */
   id: string;
   text: string;
-  type: "phrase" | "regex";
+  type: 'phrase' | 'regex';
 }
 
 export interface BannedTermsTest {
@@ -913,7 +2533,7 @@ export interface BodyRemoveVipUserApi2ChannelsChannelIdTwitchChannelProviderIdVi
 }
 
 export interface BodySeAlertsActionRouteApi2ChannelsChannelIdProvidersChannelProviderIdStreamelementsAlertsActionPut {
-  action: "reload" | "mute" | "unmute" | "pause" | "unpause" | "playNext" | "skip";
+  action: 'reload' | 'mute' | 'unmute' | 'pause' | 'unpause' | 'playNext' | 'skip';
 }
 
 export interface BodyShoutoutUserApi2ChannelsChannelIdTwitchChannelProviderIdShoutoutPost {
@@ -935,7 +2555,28 @@ export interface BotProviderPublic {
    * Format: `uuid`.
    */
   id: string;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   scope_needed: boolean;
   name?: string | null | undefined;
   provider_channel_id?: string | null | undefined;
@@ -1035,7 +2676,7 @@ export interface ChannelLinkStatsMetricItem {
 }
 
 export interface ChannelLinkStatsPoint {
-  x: IsoDateTime | string;
+  x: string;
   y: number;
 }
 
@@ -1107,7 +2748,28 @@ export interface ChannelProviderPublic {
    * Format: `uuid`.
    */
   id: string;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   provider_channel_display_name: string | null;
   provider_channel_id: string | null;
   provider_channel_name: string | null;
@@ -1134,12 +2796,33 @@ export interface ChannelProviderStream {
    */
   id: string;
   peak_viewer_count: number | null;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   provider_channel_id: string;
   provider_logo_variant: string | null;
   provider_stream_id: string | null;
   started_at: IsoDateTime | null;
-  status: "pending" | "live" | "ended";
+  status: 'pending' | 'live' | 'ended';
   tags: string[];
   title: string | null;
   unique_chatter_count: number | null;
@@ -1184,14 +2867,56 @@ export interface ChannelQuote {
   id: string;
   message: string;
   number: number;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   updated_at?: IsoDateTime | null | undefined;
 }
 
 export interface ChannelQuoteCreate {
   created_by_display_name: string;
   message: string;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   created_by_provider_viewer_id?: string | undefined;
 }
 
@@ -1199,7 +2924,29 @@ export interface ChannelQuoteUpdate {
   created_by_display_name?: string | undefined;
   created_by_provider_viewer_id?: string | undefined;
   message?: string | undefined;
-  provider?: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast" | undefined;
+  provider?:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+    | undefined;
 }
 
 export interface ChannelStream {
@@ -1223,7 +2970,31 @@ export interface ChannelStream {
   chat_viewer_ratio?: string | undefined;
   duration_seconds?: number | null | undefined;
   peak_viewer_count?: number | null | undefined;
-  providers?: ("twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   unique_chatter_count?: number | null | undefined;
   viewer_watched_minutes?: number | null | undefined;
 }
@@ -1348,7 +3119,28 @@ export interface ChannelViewerStats {
    * Format: `uuid`.
    */
   channel_id: string;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   provider_viewer_id: string;
   last_channel_provider_stream?: ChannelProviderStream | null | undefined;
   streams?: number | undefined;
@@ -1375,11 +3167,32 @@ export interface ChatEvent {
    */
   id: string;
   name: string;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   provider_channel_id: string;
   provider_event_id: string;
-  status: "open" | "locked" | "completed" | "terminated" | "archived" | "unknown";
-  type: "poll" | "progress" | "countdown" | "notice" | "pinned";
+  status: 'open' | 'locked' | 'completed' | 'terminated' | 'archived' | 'unknown';
+  type: 'poll' | 'progress' | 'countdown' | 'notice' | 'pinned';
   /**
    *
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
@@ -1414,10 +3227,33 @@ export interface ChatFilterBannedTerms {
    */
   id: string;
   name: string;
-  providers: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[];
+  providers: (
+    | 'all'
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+  )[];
   timeout_duration: number;
   timeout_message: string;
-  type: "banned_terms";
+  type: 'banned_terms';
   /**
    *
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
@@ -1430,11 +3266,36 @@ export interface ChatFilterBannedTerms {
 }
 
 export interface ChatFilterBannedTermsCreate {
-  type: "banned_terms";
+  type: 'banned_terms';
   enabled?: boolean | undefined;
   exclude_access_level?: Enums.TAccessLevel | undefined;
   name?: string | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   settings?: ChatFilterBannedTermsSettingsPayload | undefined;
   timeout_duration?: number | undefined;
   timeout_message?: string | undefined;
@@ -1452,11 +3313,36 @@ export interface ChatFilterBannedTermsSettingsPayload {
 }
 
 export interface ChatFilterBannedTermsUpdate {
-  type: "banned_terms";
+  type: 'banned_terms';
   enabled?: boolean | undefined;
   exclude_access_level?: Enums.TAccessLevel | undefined;
   name?: string | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   settings?: ChatFilterBannedTermsSettingsPayload | undefined;
   timeout_duration?: number | undefined;
   timeout_message?: string | undefined;
@@ -1484,7 +3370,30 @@ export interface ChatFilterBase {
    */
   id: string;
   name: string;
-  providers: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[];
+  providers: (
+    | 'all'
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+  )[];
   timeout_duration: number;
   timeout_message: string;
   type: string;
@@ -1517,10 +3426,33 @@ export interface ChatFilterCaps {
    */
   id: string;
   name: string;
-  providers: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[];
+  providers: (
+    | 'all'
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+  )[];
   timeout_duration: number;
   timeout_message: string;
-  type: "caps";
+  type: 'caps';
   /**
    *
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
@@ -1533,11 +3465,36 @@ export interface ChatFilterCaps {
 }
 
 export interface ChatFilterCapsCreate {
-  type: "caps";
+  type: 'caps';
   enabled?: boolean | undefined;
   exclude_access_level?: Enums.TAccessLevel | undefined;
   name?: string | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   settings?: ChatFilterCapsSettingsPayload | undefined;
   timeout_duration?: number | undefined;
   timeout_message?: string | undefined;
@@ -1557,11 +3514,36 @@ export interface ChatFilterCapsSettingsPayload {
 }
 
 export interface ChatFilterCapsUpdate {
-  type: "caps";
+  type: 'caps';
   enabled?: boolean | undefined;
   exclude_access_level?: Enums.TAccessLevel | undefined;
   name?: string | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   settings?: ChatFilterCapsSettingsPayload | undefined;
   timeout_duration?: number | undefined;
   timeout_message?: string | undefined;
@@ -1589,10 +3571,33 @@ export interface ChatFilterEmote {
    */
   id: string;
   name: string;
-  providers: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[];
+  providers: (
+    | 'all'
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+  )[];
   timeout_duration: number;
   timeout_message: string;
-  type: "emote";
+  type: 'emote';
   /**
    *
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
@@ -1605,11 +3610,36 @@ export interface ChatFilterEmote {
 }
 
 export interface ChatFilterEmoteCreate {
-  type: "emote";
+  type: 'emote';
   enabled?: boolean | undefined;
   exclude_access_level?: Enums.TAccessLevel | undefined;
   name?: string | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   settings?: ChatFilterEmoteSettingsPayload | undefined;
   timeout_duration?: number | undefined;
   timeout_message?: string | undefined;
@@ -1627,11 +3657,36 @@ export interface ChatFilterEmoteSettingsPayload {
 }
 
 export interface ChatFilterEmoteUpdate {
-  type: "emote";
+  type: 'emote';
   enabled?: boolean | undefined;
   exclude_access_level?: Enums.TAccessLevel | undefined;
   name?: string | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   settings?: ChatFilterEmoteSettingsPayload | undefined;
   timeout_duration?: number | undefined;
   timeout_message?: string | undefined;
@@ -1659,10 +3714,33 @@ export interface ChatFilterLink {
    */
   id: string;
   name: string;
-  providers: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[];
+  providers: (
+    | 'all'
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+  )[];
   timeout_duration: number;
   timeout_message: string;
-  type: "link";
+  type: 'link';
   /**
    *
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
@@ -1675,11 +3753,36 @@ export interface ChatFilterLink {
 }
 
 export interface ChatFilterLinkCreate {
-  type: "link";
+  type: 'link';
   enabled?: boolean | undefined;
   exclude_access_level?: Enums.TAccessLevel | undefined;
   name?: string | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   settings?: ChatFilterLinkSettingsPayload | undefined;
   timeout_duration?: number | undefined;
   timeout_message?: string | undefined;
@@ -1697,11 +3800,36 @@ export interface ChatFilterLinkSettingsPayload {
 }
 
 export interface ChatFilterLinkUpdate {
-  type: "link";
+  type: 'link';
   enabled?: boolean | undefined;
   exclude_access_level?: Enums.TAccessLevel | undefined;
   name?: string | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   settings?: ChatFilterLinkSettingsPayload | undefined;
   timeout_duration?: number | undefined;
   timeout_message?: string | undefined;
@@ -1729,10 +3857,33 @@ export interface ChatFilterNonLatin {
    */
   id: string;
   name: string;
-  providers: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[];
+  providers: (
+    | 'all'
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+  )[];
   timeout_duration: number;
   timeout_message: string;
-  type: "non_latin";
+  type: 'non_latin';
   /**
    *
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
@@ -1745,11 +3896,36 @@ export interface ChatFilterNonLatin {
 }
 
 export interface ChatFilterNonLatinCreate {
-  type: "non_latin";
+  type: 'non_latin';
   enabled?: boolean | undefined;
   exclude_access_level?: Enums.TAccessLevel | undefined;
   name?: string | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   settings?: ChatFilterNonLatinSettingsPayload | undefined;
   timeout_duration?: number | undefined;
   timeout_message?: string | undefined;
@@ -1769,11 +3945,36 @@ export interface ChatFilterNonLatinSettingsPayload {
 }
 
 export interface ChatFilterNonLatinUpdate {
-  type: "non_latin";
+  type: 'non_latin';
   enabled?: boolean | undefined;
   exclude_access_level?: Enums.TAccessLevel | undefined;
   name?: string | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   settings?: ChatFilterNonLatinSettingsPayload | undefined;
   timeout_duration?: number | undefined;
   timeout_message?: string | undefined;
@@ -1801,10 +4002,33 @@ export interface ChatFilterParagraph {
    */
   id: string;
   name: string;
-  providers: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[];
+  providers: (
+    | 'all'
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+  )[];
   timeout_duration: number;
   timeout_message: string;
-  type: "paragraph";
+  type: 'paragraph';
   /**
    *
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
@@ -1817,11 +4041,36 @@ export interface ChatFilterParagraph {
 }
 
 export interface ChatFilterParagraphCreate {
-  type: "paragraph";
+  type: 'paragraph';
   enabled?: boolean | undefined;
   exclude_access_level?: Enums.TAccessLevel | undefined;
   name?: string | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   settings?: ChatFilterParagraphSettingsPayload | undefined;
   timeout_duration?: number | undefined;
   timeout_message?: string | undefined;
@@ -1839,11 +4088,36 @@ export interface ChatFilterParagraphSettingsPayload {
 }
 
 export interface ChatFilterParagraphUpdate {
-  type: "paragraph";
+  type: 'paragraph';
   enabled?: boolean | undefined;
   exclude_access_level?: Enums.TAccessLevel | undefined;
   name?: string | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   settings?: ChatFilterParagraphSettingsPayload | undefined;
   timeout_duration?: number | undefined;
   timeout_message?: string | undefined;
@@ -1871,10 +4145,33 @@ export interface ChatFilterSymbol {
    */
   id: string;
   name: string;
-  providers: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[];
+  providers: (
+    | 'all'
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+  )[];
   timeout_duration: number;
   timeout_message: string;
-  type: "symbol";
+  type: 'symbol';
   /**
    *
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
@@ -1887,11 +4184,36 @@ export interface ChatFilterSymbol {
 }
 
 export interface ChatFilterSymbolCreate {
-  type: "symbol";
+  type: 'symbol';
   enabled?: boolean | undefined;
   exclude_access_level?: Enums.TAccessLevel | undefined;
   name?: string | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   settings?: ChatFilterSymbolSettingsPayload | undefined;
   timeout_duration?: number | undefined;
   timeout_message?: string | undefined;
@@ -1909,11 +4231,36 @@ export interface ChatFilterSymbolSettingsPayload {
 }
 
 export interface ChatFilterSymbolUpdate {
-  type: "symbol";
+  type: 'symbol';
   enabled?: boolean | undefined;
   exclude_access_level?: Enums.TAccessLevel | undefined;
   name?: string | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   settings?: ChatFilterSymbolSettingsPayload | undefined;
   timeout_duration?: number | undefined;
   timeout_message?: string | undefined;
@@ -1971,7 +4318,28 @@ export interface ChatMessage {
   outgoing_group_id: string | null;
   parent: ChatMessageParent | null;
   parent_provider_thread_id: string | null;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   provider_channel_id: string;
   provider_logo_variant: string | null;
   provider_message_id: string;
@@ -1980,7 +4348,7 @@ export interface ChatMessage {
   source_provider_channel_id: string | null;
   source_provider_channel_name: string | null;
   sub_type: string | null;
-  type: "message" | "notice" | "status" | "automod";
+  type: 'message' | 'notice' | 'status' | 'automod';
   updated_at: IsoDateTime | null;
   viewer_color: string | null;
   viewer_created_at: IsoDateTime | null;
@@ -2036,7 +4404,7 @@ export interface ChatMessageParent {
  */
 export interface ChatMessagePart {
   text: string;
-  type: "text" | "emote" | "mention" | "gift" | "date" | "link";
+  type: 'text' | 'emote' | 'mention' | 'gift' | 'date' | 'link';
   date?: IsoDateTime | null | undefined;
   emote?: EmotePart | null | undefined;
   gift?: GiftPart | null | undefined;
@@ -2046,7 +4414,7 @@ export interface ChatMessagePart {
 
 export interface ChatMessagePartRequest {
   text: string;
-  type: "text" | "emote" | "mention" | "gift" | "date" | "link";
+  type: 'text' | 'emote' | 'mention' | 'gift' | 'date' | 'link';
   date?: IsoDateTime | null | undefined;
   emote?: EmotePartRequest | null | undefined;
   gift?: GiftPartRequest | null | undefined;
@@ -2103,7 +4471,7 @@ export interface ChatProfileData {
   notification_sound_tone?: Enums.ChatNotificationSoundTone | undefined;
   notification_sound_url?: string | undefined;
   notification_sound_volume?: number | undefined;
-  provider_logo_display?: "default" | "badge" | "dot" | undefined;
+  provider_logo_display?: 'default' | 'badge' | 'dot' | undefined;
   show_badges?: boolean | undefined;
   show_chat_events?: boolean | undefined;
   show_chat_input?: boolean | undefined;
@@ -2127,9 +4495,9 @@ export interface ChatProfileDataPayload {
   notification_sound?: boolean | undefined;
   notification_sound_cooldown_ms?: number | undefined;
   notification_sound_tone?: Enums.ChatNotificationSoundTone | undefined;
-  notification_sound_url?: OpenEnum<""> | undefined;
+  notification_sound_url?: OpenEnum<''> | undefined;
   notification_sound_volume?: number | undefined;
-  provider_logo_display?: "default" | "badge" | "dot" | undefined;
+  provider_logo_display?: 'default' | 'badge' | 'dot' | undefined;
   show_badges?: boolean | undefined;
   show_chat_events?: boolean | undefined;
   show_chat_input?: boolean | undefined;
@@ -2191,22 +4559,70 @@ export interface ChatProfileKeywordFilterPayload {
 
 export interface ChatProfileMessageTypeFilter {
   mode?: Enums.ChatProfileFilterMode | undefined;
-  values?: ("message" | "notice" | "status" | "automod")[] | undefined;
+  values?: ('message' | 'notice' | 'status' | 'automod')[] | undefined;
 }
 
 export interface ChatProfileMessageTypeFilterPayload {
   mode?: Enums.ChatProfileFilterMode | undefined;
-  values?: ("message" | "notice" | "status" | "automod")[] | undefined;
+  values?: ('message' | 'notice' | 'status' | 'automod')[] | undefined;
 }
 
 export interface ChatProfileProviderFilter {
   mode?: Enums.ChatProfileFilterMode | undefined;
-  values?: ("twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  values?:
+    | (
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
 }
 
 export interface ChatProfileProviderFilterPayload {
   mode?: Enums.ChatProfileFilterMode | undefined;
-  values?: ("twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  values?:
+    | (
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
 }
 
 export interface ChatUserProfile {
@@ -2223,7 +4639,7 @@ export interface ChatUserProfile {
   id: string;
   name: string;
   sort_order: string;
-  type: "chat";
+  type: 'chat';
   /**
    *
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
@@ -2238,12 +4654,12 @@ export interface ChatUserProfile {
 
 export interface ChatUserProfileCreate {
   name: string;
-  type: "chat";
+  type: 'chat';
   data?: ChatProfileDataPayload | undefined;
 }
 
 export interface ChatUserProfileUpdate {
-  type: "chat";
+  type: 'chat';
   data?: ChatProfileDataPayload | undefined;
   name?: string | undefined;
 }
@@ -2272,12 +4688,12 @@ export interface ChatWidget {
   updated_at: IsoDateTime;
   last_used_at?: IsoDateTime | null | undefined;
   settings?: ChatWidgetSettings | undefined;
-  type?: "chat_widget" | undefined;
+  type?: 'chat_widget' | undefined;
 }
 
 export interface ChatWidgetCreate {
   name: string;
-  type: "chat_widget";
+  type: 'chat_widget';
   settings?: ChatWidgetSettingsPayload | undefined;
 }
 
@@ -2293,14 +4709,39 @@ export interface ChatWidgetSettings {
   entrance_animation_type?: string | undefined;
   font_family_id?: string | null | undefined;
   ignore_names?: string[] | undefined;
-  message_alignment?: "left" | "right" | undefined;
+  message_alignment?: 'left' | 'right' | undefined;
   message_delay_seconds?: number | undefined;
   message_fade_duration_seconds?: number | undefined;
-  message_order?: "top" | "bottom" | undefined;
+  message_order?: 'top' | 'bottom' | undefined;
   notices?: boolean | undefined;
   provider_logo?: boolean | undefined;
-  provider_logo_display?: "default" | "badge" | "dot" | null | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  provider_logo_display?: 'default' | 'badge' | 'dot' | null | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   size?: Enums.ChatWidgetSize | undefined;
   style_type?: string | undefined;
   text_color?: string | undefined;
@@ -2321,14 +4762,39 @@ export interface ChatWidgetSettingsPayload {
   entrance_animation_type?: string | undefined;
   font_family_id?: string | null | undefined;
   ignore_names?: string[] | undefined;
-  message_alignment?: "left" | "right" | undefined;
+  message_alignment?: 'left' | 'right' | undefined;
   message_delay_seconds?: number | undefined;
   message_fade_duration_seconds?: number | undefined;
-  message_order?: "top" | "bottom" | undefined;
+  message_order?: 'top' | 'bottom' | undefined;
   notices?: boolean | undefined;
   provider_logo?: boolean | undefined;
-  provider_logo_display?: "default" | "badge" | "dot" | null | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  provider_logo_display?: 'default' | 'badge' | 'dot' | null | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   size?: Enums.ChatWidgetSize | undefined;
   style_type?: string | undefined;
   text_color?: string | undefined;
@@ -2347,7 +4813,7 @@ export interface ChatWidgetTheme {
   font_family_id?: string | undefined;
   id?: string | undefined;
   name?: string | undefined;
-  provider_logo_display?: "default" | "badge" | "dot" | undefined;
+  provider_logo_display?: 'default' | 'badge' | 'dot' | undefined;
   text_color?: string | undefined;
   text_shadow_color?: string | undefined;
 }
@@ -2362,23 +4828,23 @@ export interface ChatWidgetThemePayload {
   font_family_id?: string | undefined;
   id?: string | undefined;
   name?: string | undefined;
-  provider_logo_display?: "default" | "badge" | "dot" | undefined;
+  provider_logo_display?: 'default' | 'badge' | 'dot' | undefined;
   text_color?: string | undefined;
   text_shadow_color?: string | undefined;
 }
 
 export interface ChatWidgetUpdate {
-  type: "chat_widget";
+  type: 'chat_widget';
   name?: string | undefined;
   settings?: ChatWidgetSettingsPayload | undefined;
 }
 
 export interface Command {
   access_level: number;
-  action_type: "response" | "script";
+  action_type: 'response' | 'script';
   active_categories: string[];
   active_from_date: IsoDateTime | null;
-  active_mode: "always" | "online" | "offline";
+  active_mode: 'always' | 'online' | 'offline';
   active_title_patterns: string[];
   active_to_date: IsoDateTime | null;
   activity_triggers: CommandActivityTrigger[];
@@ -2405,7 +4871,30 @@ export interface Command {
   mod_cooldown: number;
   name: string;
   patterns: string[];
-  providers: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[];
+  providers: (
+    | 'all'
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+  )[];
   public: boolean;
   response: string | null;
   script_source: string | null;
@@ -2417,7 +4906,16 @@ export interface Command {
 }
 
 export interface CommandActivityTrigger {
-  activity_groups: ("subscription" | "subscription_gift" | "donation" | "virtual_currency" | "follow" | "raid" | "redeem" | "like")[];
+  activity_groups: (
+    | 'subscription'
+    | 'subscription_gift'
+    | 'donation'
+    | 'virtual_currency'
+    | 'follow'
+    | 'raid'
+    | 'redeem'
+    | 'like'
+  )[];
   activity_types: string[];
   enabled: boolean;
   id: string;
@@ -2431,10 +4929,10 @@ export interface CommandActivityTrigger {
 export interface CommandCreate {
   /** 0: PUBLIC - 1: SUB - 2: VIP - 7: MOD - 8: LEAD_MOD - 100: EDITOR - 200: ADMIN - 500: OWNER - 1000: GLOBAL_ADMIN */
   access_level?: Enums.TAccessLevel | undefined;
-  action_type?: "response" | "script" | undefined;
+  action_type?: 'response' | 'script' | undefined;
   active_categories?: string[] | undefined;
   active_from_date?: IsoDateTime | null | undefined;
-  active_mode?: "always" | "online" | "offline" | undefined;
+  active_mode?: 'always' | 'online' | 'offline' | undefined;
   active_title_patterns?: string[] | undefined;
   active_to_date?: IsoDateTime | null | undefined;
   activity_triggers?: CommandActivityTrigger[] | undefined;
@@ -2446,7 +4944,32 @@ export interface CommandCreate {
   mod_cooldown?: number | undefined;
   name?: string | undefined;
   patterns?: string[] | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   public?: boolean | undefined;
   response?: string | undefined;
   script_source?: string | null | undefined;
@@ -2454,12 +4977,12 @@ export interface CommandCreate {
 
 export interface CommandScriptTestActivityContext {
   activity: ActivityCreate;
-  trigger: "activity";
+  trigger: 'activity';
 }
 
 export interface CommandScriptTestChatContext {
   message: string;
-  trigger: "chat_message";
+  trigger: 'chat_message';
   viewer_display_name: string;
   viewer_name: string;
 }
@@ -2490,10 +5013,10 @@ export interface CommandTemplate {
 export interface CommandUpdate {
   /** 0: PUBLIC - 1: SUB - 2: VIP - 7: MOD - 8: LEAD_MOD - 100: EDITOR - 200: ADMIN - 500: OWNER - 1000: GLOBAL_ADMIN */
   access_level?: Enums.TAccessLevel | undefined;
-  action_type?: "response" | "script" | undefined;
+  action_type?: 'response' | 'script' | undefined;
   active_categories?: string[] | undefined;
   active_from_date?: IsoDateTime | null | undefined;
-  active_mode?: "always" | "online" | "offline" | undefined;
+  active_mode?: 'always' | 'online' | 'offline' | undefined;
   active_title_patterns?: string[] | undefined;
   active_to_date?: IsoDateTime | null | undefined;
   activity_triggers?: CommandActivityTrigger[] | undefined;
@@ -2505,7 +5028,32 @@ export interface CommandUpdate {
   mod_cooldown?: number | undefined;
   name?: string | undefined;
   patterns?: string[] | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   public?: boolean | undefined;
   response?: string | null | undefined;
   script_source?: string | null | undefined;
@@ -2521,7 +5069,30 @@ export interface ControlsProfileControl {
   input?: string | undefined;
   name?: string | undefined;
   order?: number | undefined;
-  provider?: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast" | null | undefined;
+  provider?:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+    | null
+    | undefined;
   type?: string | undefined;
 }
 
@@ -2531,7 +5102,30 @@ export interface ControlsProfileControlPayload {
   input?: string | undefined;
   name?: string | undefined;
   order?: number | undefined;
-  provider?: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast" | null | undefined;
+  provider?:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+    | null
+    | undefined;
   type?: string | undefined;
 }
 
@@ -2557,7 +5151,7 @@ export interface ControlsUserProfile {
   id: string;
   name: string;
   sort_order: string;
-  type: "controls";
+  type: 'controls';
   /**
    *
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
@@ -2572,12 +5166,12 @@ export interface ControlsUserProfile {
 
 export interface ControlsUserProfileCreate {
   name: string;
-  type: "controls";
+  type: 'controls';
   data?: ControlsProfileDataPayload | undefined;
 }
 
 export interface ControlsUserProfileUpdate {
-  type: "controls";
+  type: 'controls';
   data?: ControlsProfileDataPayload | undefined;
   name?: string | undefined;
 }
@@ -2598,7 +5192,7 @@ export type CurrencyCode = string;
 export interface CurrencyRates {
   date: string;
   rates: { [key: string]: number };
-  base?: "EUR" | undefined;
+  base?: 'EUR' | undefined;
   crypto?: CryptoCurrencyRates | null | undefined;
   source?: string | undefined;
   source_url?: string | undefined;
@@ -2607,13 +5201,35 @@ export interface CurrencyRates {
 /** CustomScriptChatSendAction. */
 export interface CustomScriptAction {
   message: string;
-  type: "chat.send";
-  provider?: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast" | undefined;
+  type: 'chat.send';
+  provider?:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+    | undefined;
   reply_message_id?: string | undefined;
 }
 
 export interface CustomScriptLogEntry {
-  level: "info" | "error";
+  level: 'info' | 'error';
   message: string;
   time_ms: number;
 }
@@ -2636,7 +5252,7 @@ export interface CustomScriptLogRecord {
    */
   id: string;
   logs: CustomScriptLogEntry[];
-  owner_module: "command";
+  owner_module: 'command';
   /**
    *
    * Format: `uuid`.
@@ -2675,7 +5291,7 @@ export interface CustomWidget {
   updated_at: IsoDateTime;
   last_used_at?: IsoDateTime | null | undefined;
   settings?: CustomWidgetSettings | undefined;
-  type?: "custom_widget" | undefined;
+  type?: 'custom_widget' | undefined;
 }
 
 export interface CustomWidgetBuild {
@@ -2687,7 +5303,7 @@ export interface CustomWidgetBuild {
 
 export interface CustomWidgetCreate {
   name: string;
-  type: "custom_widget";
+  type: 'custom_widget';
   settings?: CustomWidgetSettingsPayload | undefined;
 }
 
@@ -2696,9 +5312,21 @@ export interface CustomWidgetProject {
   files: { [key: string]: string };
 }
 
-export type CustomWidgetSettingJsonValueInput = { [key: string]: CustomWidgetSettingJsonValueInput } | CustomWidgetSettingJsonValueInput[] | string | number | boolean | null;
+export type CustomWidgetSettingJsonValueInput =
+  | { [key: string]: CustomWidgetSettingJsonValueInput }
+  | CustomWidgetSettingJsonValueInput[]
+  | string
+  | number
+  | boolean
+  | null;
 
-export type CustomWidgetSettingJsonValueOutput = { [key: string]: CustomWidgetSettingJsonValueOutput } | CustomWidgetSettingJsonValueOutput[] | string | number | boolean | null;
+export type CustomWidgetSettingJsonValueOutput =
+  | { [key: string]: CustomWidgetSettingJsonValueOutput }
+  | CustomWidgetSettingJsonValueOutput[]
+  | string
+  | number
+  | boolean
+  | null;
 
 export interface CustomWidgetSettings {
   build?: CustomWidgetBuild | undefined;
@@ -2714,12 +5342,16 @@ export interface CustomWidgetSettingsPayload {
   settings_values?: CustomWidgetSettingsValuesInput | undefined;
 }
 
-export type CustomWidgetSettingsValuesInput = { [key: string]: CustomWidgetSettingJsonValueInput };
+export interface CustomWidgetSettingsValuesInput {
+  [key: string]: CustomWidgetSettingJsonValueInput;
+}
 
-export type CustomWidgetSettingsValuesOutput = { [key: string]: CustomWidgetSettingJsonValueOutput };
+export interface CustomWidgetSettingsValuesOutput {
+  [key: string]: CustomWidgetSettingJsonValueOutput;
+}
 
 export interface CustomWidgetUpdate {
-  type: "custom_widget";
+  type: 'custom_widget';
   name?: string | undefined;
   settings?: CustomWidgetSettingsPayload | undefined;
 }
@@ -2732,13 +5364,13 @@ export interface DashboardLayoutSplitNode {
   children?: DashboardLayoutNode[] | undefined;
   direction?: Enums.DashboardSplitDirection | undefined;
   split_percentages?: number[] | null | undefined;
-  type?: "split" | undefined;
+  type?: 'split' | undefined;
 }
 
 export interface DashboardLayoutSplitNodePayload {
   children: DashboardLayoutNodePayload[];
   direction: Enums.DashboardSplitDirection;
-  type: "split";
+  type: 'split';
   split_percentages?: DashboardSplitPercentage[] | undefined;
 }
 
@@ -2770,7 +5402,7 @@ export interface DashboardUserProfile {
   id: string;
   name: string;
   sort_order: string;
-  type: "dashboard";
+  type: 'dashboard';
   /**
    *
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
@@ -2785,12 +5417,12 @@ export interface DashboardUserProfile {
 
 export interface DashboardUserProfileCreate {
   name: string;
-  type: "dashboard";
+  type: 'dashboard';
   data?: DashboardProfileDataPayload | undefined;
 }
 
 export interface DashboardUserProfileUpdate {
-  type: "dashboard";
+  type: 'dashboard';
   data?: DashboardProfileDataPayload | undefined;
   name?: string | undefined;
 }
@@ -2811,14 +5443,16 @@ export type DashboardWidgetId = string;
 
 export type DashboardWidgetProfileId = string;
 
-export type DashboardWidgetsConfigPayload = { [key: string]: DashboardWidgetConfigPayload };
+export interface DashboardWidgetsConfigPayload {
+  [key: string]: DashboardWidgetConfigPayload;
+}
 
 export interface Emote {
   animated: boolean;
   emote_provider: string;
   id: string;
   name: string;
-  display_size?: "normal" | "large" | undefined;
+  display_size?: 'normal' | 'large' | undefined;
   group?: string | undefined;
   urls?: ImageUrls | null | undefined;
 }
@@ -2828,7 +5462,7 @@ export interface EmotePart {
   emote_provider: string;
   id: string;
   name: string;
-  display_size?: "normal" | "large" | undefined;
+  display_size?: 'normal' | 'large' | undefined;
   urls?: ImageUrls | null | undefined;
 }
 
@@ -2837,7 +5471,7 @@ export interface EmotePartRequest {
   emote_provider: string;
   id: string;
   name: string;
-  display_size?: "normal" | "large" | undefined;
+  display_size?: 'normal' | 'large' | undefined;
   urls?: ImageUrls | null | undefined;
 }
 
@@ -2886,10 +5520,10 @@ export interface File {
    * Format: `uuid`.
    */
   owner_id: string;
-  owner_module: "channel";
+  owner_module: 'channel';
   reserved_size_bytes: number;
   size_bytes: number;
-  status: "pending" | "uploaded" | "delete_pending" | "upload_failed";
+  status: 'pending' | 'uploaded' | 'delete_pending' | 'upload_failed';
   storage_key: string;
   url: string;
 }
@@ -2900,14 +5534,14 @@ export interface FileStorageUsage {
    * Format: `uuid`.
    */
   owner_id: string;
-  owner_module: "channel";
+  owner_module: 'channel';
   total_bytes: number;
   used_bytes: number;
 }
 
 export interface FilterMatchResult {
   filter: ChatFilterBase;
-  action?: "warning" | "timeout" | null | undefined;
+  action?: 'warning' | 'timeout' | null | undefined;
   matched?: boolean | undefined;
   sub_id?: string | null | undefined;
 }
@@ -2957,7 +5591,7 @@ export interface GiftPartRequest {
   count: number;
   id: string;
   name: string;
-  type: OpenEnum<"bits" | "kicks" | "diamond" | "jewels" | "currency">;
+  type: OpenEnum<'bits' | 'kicks' | 'diamond' | 'jewels' | 'currency'>;
   animated?: boolean | undefined;
   count_currency?: CurrencyCode | null | undefined;
   count_currency_type?: Enums.CurrencyType | undefined;
@@ -3019,7 +5653,28 @@ export interface GiveawayEntry {
    */
   id: string;
   name: string;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   provider_viewer_id: string;
 }
 
@@ -3057,12 +5712,12 @@ export interface GiveawayWidget {
   updated_at: IsoDateTime;
   last_used_at?: IsoDateTime | null | undefined;
   settings?: GiveawayWidgetSettings | undefined;
-  type?: "giveaway_widget" | undefined;
+  type?: 'giveaway_widget' | undefined;
 }
 
 export interface GiveawayWidgetCreate {
   name: string;
-  type: "giveaway_widget";
+  type: 'giveaway_widget';
   settings?: GiveawayWidgetSettingsPayload | undefined;
 }
 
@@ -3075,15 +5730,47 @@ export interface GiveawayWidgetSettings {
   canvas_scale?: number | undefined;
   custom_css?: string | undefined;
   enabled?: boolean | undefined;
-  entry_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | undefined;
-  exit_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | undefined;
+  entry_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | undefined;
+  exit_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | undefined;
   font_family_id?: string | null | undefined;
   font_size?: number | null | undefined;
   giveaway_id?: string | null | undefined;
   image_url?: string | undefined;
   max_width?: number | null | undefined;
   min_width?: number | null | undefined;
-  mode?: "latest" | "specific" | undefined;
+  mode?: 'latest' | 'specific' | undefined;
   muted_color?: string | undefined;
   padding?: number | null | undefined;
   recent_count?: number | undefined;
@@ -3107,15 +5794,47 @@ export interface GiveawayWidgetSettingsPayload {
   canvas_scale?: number | undefined;
   custom_css?: string | undefined;
   enabled?: boolean | undefined;
-  entry_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | undefined;
-  exit_animation_type?: "none" | "fade" | "slide_up" | "slide_down" | "slide_left" | "slide_right" | "pop" | "bounce" | "flip" | "zoom" | "spin" | "drop" | "swing" | "blur" | "glitch" | undefined;
+  entry_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | undefined;
+  exit_animation_type?:
+    | 'none'
+    | 'fade'
+    | 'slide_up'
+    | 'slide_down'
+    | 'slide_left'
+    | 'slide_right'
+    | 'pop'
+    | 'bounce'
+    | 'flip'
+    | 'zoom'
+    | 'spin'
+    | 'drop'
+    | 'swing'
+    | 'blur'
+    | 'glitch'
+    | undefined;
   font_family_id?: string | null | undefined;
   font_size?: number | null | undefined;
   giveaway_id?: string | null | undefined;
   image_url?: string | undefined;
   max_width?: number | null | undefined;
   min_width?: number | null | undefined;
-  mode?: "latest" | "specific" | undefined;
+  mode?: 'latest' | 'specific' | undefined;
   muted_color?: string | undefined;
   padding?: number | null | undefined;
   recent_count?: number | undefined;
@@ -3178,7 +5897,7 @@ export interface GiveawayWidgetThemePayload {
 }
 
 export interface GiveawayWidgetUpdate {
-  type: "giveaway_widget";
+  type: 'giveaway_widget';
   name?: string | undefined;
   settings?: GiveawayWidgetSettingsPayload | undefined;
 }
@@ -3211,28 +5930,168 @@ export interface GoalWidget {
   updated_at: IsoDateTime;
   last_used_at?: IsoDateTime | null | undefined;
   settings?: GoalWidgetSettings | undefined;
-  type?: "goal_widget" | undefined;
+  type?: 'goal_widget' | undefined;
 }
 
 export interface GoalWidgetActivitySource {
-  activity_type: "sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create";
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  activity_type:
+    | 'sub'
+    | 'resub'
+    | 'sub_gift'
+    | 'community_sub_gift'
+    | 'raid'
+    | 'charity_donation'
+    | 'bits'
+    | 'follow'
+    | 'points'
+    | 'twitch_shoutout'
+    | 'twitch_watch_streak'
+    | 'youtube_subscription'
+    | 'newSponsorEvent'
+    | 'superChatEvent'
+    | 'superStickerEvent'
+    | 'membershipGiftingEvent'
+    | 'memberMilestoneChatEvent'
+    | 'giftEvent'
+    | 'tiktok_gift'
+    | 'tiktok_follow'
+    | 'tiktok_share'
+    | 'tiktok_like'
+    | 'tiktok_superfan'
+    | 'tiktok_superfanbox'
+    | 'rumble_follow'
+    | 'rumble_sub'
+    | 'rumble_gift_subs'
+    | 'rumble_rant'
+    | 'rumble_raid'
+    | 'kick_sub'
+    | 'kick_resub'
+    | 'kick_gift_subs'
+    | 'kick_gift_sub'
+    | 'kick_follow'
+    | 'kick_kicks_gift'
+    | 'kick_reward_redemption'
+    | 'streamelements_tip'
+    | 'streamlabs_donation'
+    | 'kofi_donation'
+    | 'kofi_subscription'
+    | 'kofi_resub'
+    | 'kofi_shop_order'
+    | 'kofi_commission'
+    | 'fourthwall_donation'
+    | 'fourthwall_shop_order'
+    | 'fourthwall_gift_purchase'
+    | 'fourthwall_subscription'
+    | 'patreon_member_create'
+    | 'patreon_member_pledge_create';
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   default_multiplier?: number | undefined;
   enabled?: boolean | undefined;
   sub_type_multipliers?: { [key: string]: number } | undefined;
 }
 
 export interface GoalWidgetActivitySourcePayload {
-  activity_type: "sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create";
+  activity_type:
+    | 'sub'
+    | 'resub'
+    | 'sub_gift'
+    | 'community_sub_gift'
+    | 'raid'
+    | 'charity_donation'
+    | 'bits'
+    | 'follow'
+    | 'points'
+    | 'twitch_shoutout'
+    | 'twitch_watch_streak'
+    | 'youtube_subscription'
+    | 'newSponsorEvent'
+    | 'superChatEvent'
+    | 'superStickerEvent'
+    | 'membershipGiftingEvent'
+    | 'memberMilestoneChatEvent'
+    | 'giftEvent'
+    | 'tiktok_gift'
+    | 'tiktok_follow'
+    | 'tiktok_share'
+    | 'tiktok_like'
+    | 'tiktok_superfan'
+    | 'tiktok_superfanbox'
+    | 'rumble_follow'
+    | 'rumble_sub'
+    | 'rumble_gift_subs'
+    | 'rumble_rant'
+    | 'rumble_raid'
+    | 'kick_sub'
+    | 'kick_resub'
+    | 'kick_gift_subs'
+    | 'kick_gift_sub'
+    | 'kick_follow'
+    | 'kick_kicks_gift'
+    | 'kick_reward_redemption'
+    | 'streamelements_tip'
+    | 'streamlabs_donation'
+    | 'kofi_donation'
+    | 'kofi_subscription'
+    | 'kofi_resub'
+    | 'kofi_shop_order'
+    | 'kofi_commission'
+    | 'fourthwall_donation'
+    | 'fourthwall_shop_order'
+    | 'fourthwall_gift_purchase'
+    | 'fourthwall_subscription'
+    | 'patreon_member_create'
+    | 'patreon_member_pledge_create';
   default_multiplier: number;
   enabled: boolean;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   sub_type_multipliers: { [key: string]: number };
 }
 
 export interface GoalWidgetCreate {
   name: string;
-  type: "goal_widget";
+  type: 'goal_widget';
   settings?: GoalWidgetSettingsPayload | undefined;
 }
 
@@ -3253,7 +6112,7 @@ export interface GoalWidgetQueueGoalPayload {
 export interface GoalWidgetSettings {
   activity_checkpoint_at?: IsoDateTime | null | undefined;
   activity_checkpoint_value?: number | null | undefined;
-  activity_period?: "custom" | "monthly" | "stream" | undefined;
+  activity_period?: 'custom' | 'monthly' | 'stream' | undefined;
   activity_sources?: GoalWidgetActivitySource[] | undefined;
   background_color?: string | undefined;
   bar_height?: number | null | undefined;
@@ -3265,7 +6124,7 @@ export interface GoalWidgetSettings {
   completed_fill_color?: string | undefined;
   currency?: string | null | undefined;
   custom_css?: string | undefined;
-  display_mode?: "points" | "currency" | undefined;
+  display_mode?: 'points' | 'currency' | undefined;
   enabled?: boolean | undefined;
   end_at?: IsoDateTime | null | undefined;
   font_family_id?: string | null | undefined;
@@ -3299,7 +6158,7 @@ export interface GoalWidgetSettings {
 export interface GoalWidgetSettingsPayload {
   activity_checkpoint_at?: IsoDateTime | null | undefined;
   activity_checkpoint_value?: number | null | undefined;
-  activity_period?: "custom" | "monthly" | "stream" | undefined;
+  activity_period?: 'custom' | 'monthly' | 'stream' | undefined;
   activity_sources?: GoalWidgetActivitySourcePayload[] | undefined;
   background_color?: string | undefined;
   bar_height?: number | null | undefined;
@@ -3309,9 +6168,189 @@ export interface GoalWidgetSettingsPayload {
   border_width?: number | null | undefined;
   canvas_scale?: number | undefined;
   completed_fill_color?: string | undefined;
-  currency?: "AED" | "AFN" | "ALL" | "AMD" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BOV" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHE" | "CHF" | "CHW" | "CLF" | "CLP" | "CNY" | "COP" | "COU" | "CRC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HTG" | "HUF" | "IDR" | "ILS" | "INR" | "IQD" | "IRR" | "ISK" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRU" | "MUR" | "MVR" | "MWK" | "MXN" | "MXV" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLE" | "SOS" | "SRD" | "SSP" | "STN" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "USN" | "UYI" | "UYU" | "UYW" | "UZS" | "VED" | "VES" | "VND" | "VUV" | "WST" | "XAD" | "XAF" | "XAG" | "XAU" | "XBA" | "XBB" | "XBC" | "XBD" | "XCD" | "XCG" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "XSU" | "XTS" | "XUA" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWG" | null | undefined;
+  currency?:
+    | 'AED'
+    | 'AFN'
+    | 'ALL'
+    | 'AMD'
+    | 'AOA'
+    | 'ARS'
+    | 'AUD'
+    | 'AWG'
+    | 'AZN'
+    | 'BAM'
+    | 'BBD'
+    | 'BDT'
+    | 'BHD'
+    | 'BIF'
+    | 'BMD'
+    | 'BND'
+    | 'BOB'
+    | 'BOV'
+    | 'BRL'
+    | 'BSD'
+    | 'BTN'
+    | 'BWP'
+    | 'BYN'
+    | 'BZD'
+    | 'CAD'
+    | 'CDF'
+    | 'CHE'
+    | 'CHF'
+    | 'CHW'
+    | 'CLF'
+    | 'CLP'
+    | 'CNY'
+    | 'COP'
+    | 'COU'
+    | 'CRC'
+    | 'CUP'
+    | 'CVE'
+    | 'CZK'
+    | 'DJF'
+    | 'DKK'
+    | 'DOP'
+    | 'DZD'
+    | 'EGP'
+    | 'ERN'
+    | 'ETB'
+    | 'EUR'
+    | 'FJD'
+    | 'FKP'
+    | 'GBP'
+    | 'GEL'
+    | 'GHS'
+    | 'GIP'
+    | 'GMD'
+    | 'GNF'
+    | 'GTQ'
+    | 'GYD'
+    | 'HKD'
+    | 'HNL'
+    | 'HTG'
+    | 'HUF'
+    | 'IDR'
+    | 'ILS'
+    | 'INR'
+    | 'IQD'
+    | 'IRR'
+    | 'ISK'
+    | 'JMD'
+    | 'JOD'
+    | 'JPY'
+    | 'KES'
+    | 'KGS'
+    | 'KHR'
+    | 'KMF'
+    | 'KPW'
+    | 'KRW'
+    | 'KWD'
+    | 'KYD'
+    | 'KZT'
+    | 'LAK'
+    | 'LBP'
+    | 'LKR'
+    | 'LRD'
+    | 'LSL'
+    | 'LYD'
+    | 'MAD'
+    | 'MDL'
+    | 'MGA'
+    | 'MKD'
+    | 'MMK'
+    | 'MNT'
+    | 'MOP'
+    | 'MRU'
+    | 'MUR'
+    | 'MVR'
+    | 'MWK'
+    | 'MXN'
+    | 'MXV'
+    | 'MYR'
+    | 'MZN'
+    | 'NAD'
+    | 'NGN'
+    | 'NIO'
+    | 'NOK'
+    | 'NPR'
+    | 'NZD'
+    | 'OMR'
+    | 'PAB'
+    | 'PEN'
+    | 'PGK'
+    | 'PHP'
+    | 'PKR'
+    | 'PLN'
+    | 'PYG'
+    | 'QAR'
+    | 'RON'
+    | 'RSD'
+    | 'RUB'
+    | 'RWF'
+    | 'SAR'
+    | 'SBD'
+    | 'SCR'
+    | 'SDG'
+    | 'SEK'
+    | 'SGD'
+    | 'SHP'
+    | 'SLE'
+    | 'SOS'
+    | 'SRD'
+    | 'SSP'
+    | 'STN'
+    | 'SVC'
+    | 'SYP'
+    | 'SZL'
+    | 'THB'
+    | 'TJS'
+    | 'TMT'
+    | 'TND'
+    | 'TOP'
+    | 'TRY'
+    | 'TTD'
+    | 'TWD'
+    | 'TZS'
+    | 'UAH'
+    | 'UGX'
+    | 'USD'
+    | 'USN'
+    | 'UYI'
+    | 'UYU'
+    | 'UYW'
+    | 'UZS'
+    | 'VED'
+    | 'VES'
+    | 'VND'
+    | 'VUV'
+    | 'WST'
+    | 'XAD'
+    | 'XAF'
+    | 'XAG'
+    | 'XAU'
+    | 'XBA'
+    | 'XBB'
+    | 'XBC'
+    | 'XBD'
+    | 'XCD'
+    | 'XCG'
+    | 'XDR'
+    | 'XOF'
+    | 'XPD'
+    | 'XPF'
+    | 'XPT'
+    | 'XSU'
+    | 'XTS'
+    | 'XUA'
+    | 'XXX'
+    | 'YER'
+    | 'ZAR'
+    | 'ZMW'
+    | 'ZWG'
+    | null
+    | undefined;
   custom_css?: string | undefined;
-  display_mode?: "points" | "currency" | undefined;
+  display_mode?: 'points' | 'currency' | undefined;
   enabled?: boolean | undefined;
   end_at?: IsoDateTime | null | undefined;
   font_family_id?: string | null | undefined;
@@ -3387,7 +6426,7 @@ export interface GoalWidgetThemePayload {
 }
 
 export interface GoalWidgetUpdate {
-  type: "goal_widget";
+  type: 'goal_widget';
   name?: string | undefined;
   settings?: GoalWidgetSettingsPayload | undefined;
 }
@@ -3411,7 +6450,7 @@ export interface HttpProxy {
   masked_url: string;
   name: string;
   retry_at: IsoDateTime | null;
-  status: "available" | "cooldown" | "probing" | "disabled";
+  status: 'available' | 'cooldown' | 'probing' | 'disabled';
   /**
    *
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
@@ -3431,7 +6470,7 @@ export interface HttpProxyDomain {
   last_failed_at: IsoDateTime | null;
   last_success_at: IsoDateTime | null;
   retry_at: IsoDateTime | null;
-  status: "available" | "cooldown" | "probing" | "disabled";
+  status: 'available' | 'cooldown' | 'probing' | 'disabled';
 }
 
 export interface HttpProxyTest {
@@ -3533,9 +6572,11 @@ export interface KvIncRequest {
   ttl?: number | undefined;
 }
 
-export type KvJsonValueInput = { [key: string]: KvJsonValueInput } | KvJsonValueInput[] | string | number | boolean | null;
+export type KvJsonValueInput =
+  { [key: string]: KvJsonValueInput } | KvJsonValueInput[] | string | number | boolean | null;
 
-export type KvJsonValueOutput = { [key: string]: KvJsonValueOutput } | KvJsonValueOutput[] | string | number | boolean | null;
+export type KvJsonValueOutput =
+  { [key: string]: KvJsonValueOutput } | KvJsonValueOutput[] | string | number | boolean | null;
 
 export interface KvSetRequest {
   key: string;
@@ -3578,33 +6619,173 @@ export interface LeaderboardWidget {
   updated_at: IsoDateTime;
   last_used_at?: IsoDateTime | null | undefined;
   settings?: LeaderboardWidgetSettings | undefined;
-  type?: "leaderboard_widget" | undefined;
+  type?: 'leaderboard_widget' | undefined;
 }
 
 export interface LeaderboardWidgetActivitySource {
-  activity_type: "sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create";
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  activity_type:
+    | 'sub'
+    | 'resub'
+    | 'sub_gift'
+    | 'community_sub_gift'
+    | 'raid'
+    | 'charity_donation'
+    | 'bits'
+    | 'follow'
+    | 'points'
+    | 'twitch_shoutout'
+    | 'twitch_watch_streak'
+    | 'youtube_subscription'
+    | 'newSponsorEvent'
+    | 'superChatEvent'
+    | 'superStickerEvent'
+    | 'membershipGiftingEvent'
+    | 'memberMilestoneChatEvent'
+    | 'giftEvent'
+    | 'tiktok_gift'
+    | 'tiktok_follow'
+    | 'tiktok_share'
+    | 'tiktok_like'
+    | 'tiktok_superfan'
+    | 'tiktok_superfanbox'
+    | 'rumble_follow'
+    | 'rumble_sub'
+    | 'rumble_gift_subs'
+    | 'rumble_rant'
+    | 'rumble_raid'
+    | 'kick_sub'
+    | 'kick_resub'
+    | 'kick_gift_subs'
+    | 'kick_gift_sub'
+    | 'kick_follow'
+    | 'kick_kicks_gift'
+    | 'kick_reward_redemption'
+    | 'streamelements_tip'
+    | 'streamlabs_donation'
+    | 'kofi_donation'
+    | 'kofi_subscription'
+    | 'kofi_resub'
+    | 'kofi_shop_order'
+    | 'kofi_commission'
+    | 'fourthwall_donation'
+    | 'fourthwall_shop_order'
+    | 'fourthwall_gift_purchase'
+    | 'fourthwall_subscription'
+    | 'patreon_member_create'
+    | 'patreon_member_pledge_create';
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   default_multiplier?: number | undefined;
   enabled?: boolean | undefined;
   sub_type_multipliers?: { [key: string]: number } | undefined;
 }
 
 export interface LeaderboardWidgetActivitySourcePayload {
-  activity_type: "sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create";
+  activity_type:
+    | 'sub'
+    | 'resub'
+    | 'sub_gift'
+    | 'community_sub_gift'
+    | 'raid'
+    | 'charity_donation'
+    | 'bits'
+    | 'follow'
+    | 'points'
+    | 'twitch_shoutout'
+    | 'twitch_watch_streak'
+    | 'youtube_subscription'
+    | 'newSponsorEvent'
+    | 'superChatEvent'
+    | 'superStickerEvent'
+    | 'membershipGiftingEvent'
+    | 'memberMilestoneChatEvent'
+    | 'giftEvent'
+    | 'tiktok_gift'
+    | 'tiktok_follow'
+    | 'tiktok_share'
+    | 'tiktok_like'
+    | 'tiktok_superfan'
+    | 'tiktok_superfanbox'
+    | 'rumble_follow'
+    | 'rumble_sub'
+    | 'rumble_gift_subs'
+    | 'rumble_rant'
+    | 'rumble_raid'
+    | 'kick_sub'
+    | 'kick_resub'
+    | 'kick_gift_subs'
+    | 'kick_gift_sub'
+    | 'kick_follow'
+    | 'kick_kicks_gift'
+    | 'kick_reward_redemption'
+    | 'streamelements_tip'
+    | 'streamlabs_donation'
+    | 'kofi_donation'
+    | 'kofi_subscription'
+    | 'kofi_resub'
+    | 'kofi_shop_order'
+    | 'kofi_commission'
+    | 'fourthwall_donation'
+    | 'fourthwall_shop_order'
+    | 'fourthwall_gift_purchase'
+    | 'fourthwall_subscription'
+    | 'patreon_member_create'
+    | 'patreon_member_pledge_create';
   default_multiplier: number;
   enabled: boolean;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   sub_type_multipliers: { [key: string]: number };
 }
 
 export interface LeaderboardWidgetCreate {
   name: string;
-  type: "leaderboard_widget";
+  type: 'leaderboard_widget';
   settings?: LeaderboardWidgetSettingsPayload | undefined;
 }
 
 export interface LeaderboardWidgetSettings {
-  activity_period?: "custom" | "monthly" | "stream" | undefined;
+  activity_period?: 'custom' | 'monthly' | 'stream' | undefined;
   activity_sources?: LeaderboardWidgetActivitySource[] | undefined;
   background_color?: string | undefined;
   border_color?: string | undefined;
@@ -3613,7 +6794,7 @@ export interface LeaderboardWidgetSettings {
   canvas_scale?: number | undefined;
   currency?: string | null | undefined;
   custom_css?: string | undefined;
-  display_mode?: "points" | "currency" | undefined;
+  display_mode?: 'points' | 'currency' | undefined;
   enabled?: boolean | undefined;
   end_at?: IsoDateTime | null | undefined;
   font_family_id?: string | null | undefined;
@@ -3631,7 +6812,7 @@ export interface LeaderboardWidgetSettings {
   show_rank?: boolean | undefined;
   show_title?: boolean | undefined;
   show_value?: boolean | undefined;
-  sort_direction?: "desc" | "asc" | undefined;
+  sort_direction?: 'desc' | 'asc' | undefined;
   /**
    *
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
@@ -3647,16 +6828,196 @@ export interface LeaderboardWidgetSettings {
 }
 
 export interface LeaderboardWidgetSettingsPayload {
-  activity_period?: "custom" | "monthly" | "stream" | undefined;
+  activity_period?: 'custom' | 'monthly' | 'stream' | undefined;
   activity_sources?: LeaderboardWidgetActivitySourcePayload[] | undefined;
   background_color?: string | undefined;
   border_color?: string | undefined;
   border_radius?: number | null | undefined;
   border_width?: number | null | undefined;
   canvas_scale?: number | undefined;
-  currency?: "AED" | "AFN" | "ALL" | "AMD" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BOV" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHE" | "CHF" | "CHW" | "CLF" | "CLP" | "CNY" | "COP" | "COU" | "CRC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HTG" | "HUF" | "IDR" | "ILS" | "INR" | "IQD" | "IRR" | "ISK" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRU" | "MUR" | "MVR" | "MWK" | "MXN" | "MXV" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLE" | "SOS" | "SRD" | "SSP" | "STN" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "USN" | "UYI" | "UYU" | "UYW" | "UZS" | "VED" | "VES" | "VND" | "VUV" | "WST" | "XAD" | "XAF" | "XAG" | "XAU" | "XBA" | "XBB" | "XBC" | "XBD" | "XCD" | "XCG" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "XSU" | "XTS" | "XUA" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWG" | null | undefined;
+  currency?:
+    | 'AED'
+    | 'AFN'
+    | 'ALL'
+    | 'AMD'
+    | 'AOA'
+    | 'ARS'
+    | 'AUD'
+    | 'AWG'
+    | 'AZN'
+    | 'BAM'
+    | 'BBD'
+    | 'BDT'
+    | 'BHD'
+    | 'BIF'
+    | 'BMD'
+    | 'BND'
+    | 'BOB'
+    | 'BOV'
+    | 'BRL'
+    | 'BSD'
+    | 'BTN'
+    | 'BWP'
+    | 'BYN'
+    | 'BZD'
+    | 'CAD'
+    | 'CDF'
+    | 'CHE'
+    | 'CHF'
+    | 'CHW'
+    | 'CLF'
+    | 'CLP'
+    | 'CNY'
+    | 'COP'
+    | 'COU'
+    | 'CRC'
+    | 'CUP'
+    | 'CVE'
+    | 'CZK'
+    | 'DJF'
+    | 'DKK'
+    | 'DOP'
+    | 'DZD'
+    | 'EGP'
+    | 'ERN'
+    | 'ETB'
+    | 'EUR'
+    | 'FJD'
+    | 'FKP'
+    | 'GBP'
+    | 'GEL'
+    | 'GHS'
+    | 'GIP'
+    | 'GMD'
+    | 'GNF'
+    | 'GTQ'
+    | 'GYD'
+    | 'HKD'
+    | 'HNL'
+    | 'HTG'
+    | 'HUF'
+    | 'IDR'
+    | 'ILS'
+    | 'INR'
+    | 'IQD'
+    | 'IRR'
+    | 'ISK'
+    | 'JMD'
+    | 'JOD'
+    | 'JPY'
+    | 'KES'
+    | 'KGS'
+    | 'KHR'
+    | 'KMF'
+    | 'KPW'
+    | 'KRW'
+    | 'KWD'
+    | 'KYD'
+    | 'KZT'
+    | 'LAK'
+    | 'LBP'
+    | 'LKR'
+    | 'LRD'
+    | 'LSL'
+    | 'LYD'
+    | 'MAD'
+    | 'MDL'
+    | 'MGA'
+    | 'MKD'
+    | 'MMK'
+    | 'MNT'
+    | 'MOP'
+    | 'MRU'
+    | 'MUR'
+    | 'MVR'
+    | 'MWK'
+    | 'MXN'
+    | 'MXV'
+    | 'MYR'
+    | 'MZN'
+    | 'NAD'
+    | 'NGN'
+    | 'NIO'
+    | 'NOK'
+    | 'NPR'
+    | 'NZD'
+    | 'OMR'
+    | 'PAB'
+    | 'PEN'
+    | 'PGK'
+    | 'PHP'
+    | 'PKR'
+    | 'PLN'
+    | 'PYG'
+    | 'QAR'
+    | 'RON'
+    | 'RSD'
+    | 'RUB'
+    | 'RWF'
+    | 'SAR'
+    | 'SBD'
+    | 'SCR'
+    | 'SDG'
+    | 'SEK'
+    | 'SGD'
+    | 'SHP'
+    | 'SLE'
+    | 'SOS'
+    | 'SRD'
+    | 'SSP'
+    | 'STN'
+    | 'SVC'
+    | 'SYP'
+    | 'SZL'
+    | 'THB'
+    | 'TJS'
+    | 'TMT'
+    | 'TND'
+    | 'TOP'
+    | 'TRY'
+    | 'TTD'
+    | 'TWD'
+    | 'TZS'
+    | 'UAH'
+    | 'UGX'
+    | 'USD'
+    | 'USN'
+    | 'UYI'
+    | 'UYU'
+    | 'UYW'
+    | 'UZS'
+    | 'VED'
+    | 'VES'
+    | 'VND'
+    | 'VUV'
+    | 'WST'
+    | 'XAD'
+    | 'XAF'
+    | 'XAG'
+    | 'XAU'
+    | 'XBA'
+    | 'XBB'
+    | 'XBC'
+    | 'XBD'
+    | 'XCD'
+    | 'XCG'
+    | 'XDR'
+    | 'XOF'
+    | 'XPD'
+    | 'XPF'
+    | 'XPT'
+    | 'XSU'
+    | 'XTS'
+    | 'XUA'
+    | 'XXX'
+    | 'YER'
+    | 'ZAR'
+    | 'ZMW'
+    | 'ZWG'
+    | null
+    | undefined;
   custom_css?: string | undefined;
-  display_mode?: "points" | "currency" | undefined;
+  display_mode?: 'points' | 'currency' | undefined;
   enabled?: boolean | undefined;
   end_at?: IsoDateTime | null | undefined;
   font_family_id?: string | null | undefined;
@@ -3674,7 +7035,7 @@ export interface LeaderboardWidgetSettingsPayload {
   show_rank?: boolean | undefined;
   show_title?: boolean | undefined;
   show_value?: boolean | undefined;
-  sort_direction?: "desc" | "asc" | undefined;
+  sort_direction?: 'desc' | 'asc' | undefined;
   /**
    *
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
@@ -3732,7 +7093,7 @@ export interface LeaderboardWidgetThemePayload {
 }
 
 export interface LeaderboardWidgetUpdate {
-  type: "leaderboard_widget";
+  type: 'leaderboard_widget';
   name?: string | undefined;
   settings?: LeaderboardWidgetSettingsPayload | undefined;
 }
@@ -3932,9 +7293,18 @@ export interface ObsRemoteCommand {
   obs_remote_id: string;
 }
 
-export type ObsRemoteCommandData = ObsRemoteNoDataCommandData | ObsRemoteNamedCommandData | ObsRemoteInputMuteCommandData | ObsRemoteInputVolumeCommandData | ObsRemoteSceneItemEnabledCommandData;
+export type ObsRemoteCommandData =
+  | ObsRemoteNoDataCommandData
+  | ObsRemoteNamedCommandData
+  | ObsRemoteInputMuteCommandData
+  | ObsRemoteInputVolumeCommandData
+  | ObsRemoteSceneItemEnabledCommandData;
 
-export type ObsRemoteCommandName = Enums.ObsRemoteNoDataCommandName | Enums.ObsRemoteNamedCommandName | Enums.ObsRemoteInputCommandName | ObsRemoteSceneItemCommandName;
+export type ObsRemoteCommandName =
+  | Enums.ObsRemoteNoDataCommandName
+  | Enums.ObsRemoteNamedCommandName
+  | Enums.ObsRemoteInputCommandName
+  | ObsRemoteSceneItemCommandName;
 
 export interface ObsRemoteInputMuteCommandData {
   input_name: string;
@@ -3950,11 +7320,11 @@ export interface ObsRemoteLastCommand {
   command?: ObsRemoteCommandName | undefined;
   id?: string | undefined;
   message?: string | undefined;
-  status?: "ok" | "error" | undefined;
+  status?: 'ok' | 'error' | undefined;
 }
 
 export interface ObsRemoteNamedCommandCreate {
-  command: "set_current_scene" | "set_current_profile" | "set_current_scene_collection";
+  command: 'set_current_scene' | 'set_current_profile' | 'set_current_scene_collection';
   data: ObsRemoteNamedCommandData;
 }
 
@@ -3963,7 +7333,14 @@ export interface ObsRemoteNamedCommandData {
 }
 
 export interface ObsRemoteNoDataCommandCreate {
-  command: "refresh_state" | "start_streaming" | "stop_streaming" | "start_recording" | "stop_recording" | "pause_recording" | "unpause_recording";
+  command:
+    | 'refresh_state'
+    | 'start_streaming'
+    | 'stop_streaming'
+    | 'start_recording'
+    | 'stop_recording'
+    | 'pause_recording'
+    | 'unpause_recording';
 }
 
 export interface ObsRemoteNoDataCommandData {
@@ -3989,7 +7366,7 @@ export interface ObsRemoteSceneItem {
   source_name?: string | undefined;
 }
 
-export type ObsRemoteSceneItemCommandName = "set_scene_item_enabled";
+export type ObsRemoteSceneItemCommandName = 'set_scene_item_enabled';
 
 export interface ObsRemoteSceneItemEnabledCommandData {
   enabled: boolean;
@@ -3998,17 +7375,17 @@ export interface ObsRemoteSceneItemEnabledCommandData {
 }
 
 export interface ObsRemoteSetInputMuteCommandCreate {
-  command: "set_input_mute";
+  command: 'set_input_mute';
   data: ObsRemoteInputMuteCommandData;
 }
 
 export interface ObsRemoteSetInputVolumeCommandCreate {
-  command: "set_input_volume";
+  command: 'set_input_volume';
   data: ObsRemoteInputVolumeCommandData;
 }
 
 export interface ObsRemoteSetSceneItemEnabledCommandCreate {
-  command: "set_scene_item_enabled";
+  command: 'set_scene_item_enabled';
   data: ObsRemoteSceneItemEnabledCommandData;
 }
 
@@ -4273,7 +7650,28 @@ export interface PollChoice {
 export interface ProviderViewer {
   display_name: string;
   name: string;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   provider_viewer_id: string;
   created_at?: IsoDateTime | null | undefined;
   followed_at?: IsoDateTime | null | undefined;
@@ -4334,13 +7732,55 @@ export interface QueueViewer {
    */
   id: string;
   position: number;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   provider_viewer_id: string;
 }
 
 export interface QueueViewerCreate {
   display_name: string;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   provider_viewer_id: string;
 }
 
@@ -4422,33 +7862,173 @@ export interface StreamathonWidget {
   updated_at: IsoDateTime;
   last_used_at?: IsoDateTime | null | undefined;
   settings?: StreamathonWidgetSettings | undefined;
-  type?: "streamathon_widget" | undefined;
+  type?: 'streamathon_widget' | undefined;
 }
 
 export interface StreamathonWidgetActionPayload {
-  action: "start" | "pause" | "resume" | "restart" | "reset" | "add_time";
+  action: 'start' | 'pause' | 'resume' | 'restart' | 'reset' | 'add_time';
   seconds?: number | undefined;
 }
 
 export interface StreamathonWidgetActivitySource {
-  activity_type: "sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create";
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  activity_type:
+    | 'sub'
+    | 'resub'
+    | 'sub_gift'
+    | 'community_sub_gift'
+    | 'raid'
+    | 'charity_donation'
+    | 'bits'
+    | 'follow'
+    | 'points'
+    | 'twitch_shoutout'
+    | 'twitch_watch_streak'
+    | 'youtube_subscription'
+    | 'newSponsorEvent'
+    | 'superChatEvent'
+    | 'superStickerEvent'
+    | 'membershipGiftingEvent'
+    | 'memberMilestoneChatEvent'
+    | 'giftEvent'
+    | 'tiktok_gift'
+    | 'tiktok_follow'
+    | 'tiktok_share'
+    | 'tiktok_like'
+    | 'tiktok_superfan'
+    | 'tiktok_superfanbox'
+    | 'rumble_follow'
+    | 'rumble_sub'
+    | 'rumble_gift_subs'
+    | 'rumble_rant'
+    | 'rumble_raid'
+    | 'kick_sub'
+    | 'kick_resub'
+    | 'kick_gift_subs'
+    | 'kick_gift_sub'
+    | 'kick_follow'
+    | 'kick_kicks_gift'
+    | 'kick_reward_redemption'
+    | 'streamelements_tip'
+    | 'streamlabs_donation'
+    | 'kofi_donation'
+    | 'kofi_subscription'
+    | 'kofi_resub'
+    | 'kofi_shop_order'
+    | 'kofi_commission'
+    | 'fourthwall_donation'
+    | 'fourthwall_shop_order'
+    | 'fourthwall_gift_purchase'
+    | 'fourthwall_subscription'
+    | 'patreon_member_create'
+    | 'patreon_member_pledge_create';
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   default_multiplier?: number | undefined;
   enabled?: boolean | undefined;
   sub_type_multipliers?: { [key: string]: number } | undefined;
 }
 
 export interface StreamathonWidgetActivitySourcePayload {
-  activity_type: "sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create";
+  activity_type:
+    | 'sub'
+    | 'resub'
+    | 'sub_gift'
+    | 'community_sub_gift'
+    | 'raid'
+    | 'charity_donation'
+    | 'bits'
+    | 'follow'
+    | 'points'
+    | 'twitch_shoutout'
+    | 'twitch_watch_streak'
+    | 'youtube_subscription'
+    | 'newSponsorEvent'
+    | 'superChatEvent'
+    | 'superStickerEvent'
+    | 'membershipGiftingEvent'
+    | 'memberMilestoneChatEvent'
+    | 'giftEvent'
+    | 'tiktok_gift'
+    | 'tiktok_follow'
+    | 'tiktok_share'
+    | 'tiktok_like'
+    | 'tiktok_superfan'
+    | 'tiktok_superfanbox'
+    | 'rumble_follow'
+    | 'rumble_sub'
+    | 'rumble_gift_subs'
+    | 'rumble_rant'
+    | 'rumble_raid'
+    | 'kick_sub'
+    | 'kick_resub'
+    | 'kick_gift_subs'
+    | 'kick_gift_sub'
+    | 'kick_follow'
+    | 'kick_kicks_gift'
+    | 'kick_reward_redemption'
+    | 'streamelements_tip'
+    | 'streamlabs_donation'
+    | 'kofi_donation'
+    | 'kofi_subscription'
+    | 'kofi_resub'
+    | 'kofi_shop_order'
+    | 'kofi_commission'
+    | 'fourthwall_donation'
+    | 'fourthwall_shop_order'
+    | 'fourthwall_gift_purchase'
+    | 'fourthwall_subscription'
+    | 'patreon_member_create'
+    | 'patreon_member_pledge_create';
   default_multiplier: number;
   enabled: boolean;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   sub_type_multipliers: { [key: string]: number };
 }
 
 export interface StreamathonWidgetCreate {
   name: string;
-  type: "streamathon_widget";
+  type: 'streamathon_widget';
   settings?: StreamathonWidgetSettingsPayload | undefined;
 }
 
@@ -4506,7 +8086,7 @@ export interface StreamathonWidgetSettings {
   show_title?: boolean | undefined;
   start_seconds?: number | undefined;
   started_at?: IsoDateTime | null | undefined;
-  status?: "idle" | "running" | "paused" | undefined;
+  status?: 'idle' | 'running' | 'paused' | undefined;
   text_color?: string | undefined;
   theme_id?: string | undefined;
   themes?: StreamathonWidgetTheme[] | undefined;
@@ -4524,7 +8104,187 @@ export interface StreamathonWidgetSettingsPayload {
   border_radius?: number | null | undefined;
   border_width?: number | null | undefined;
   canvas_scale?: number | undefined;
-  currency?: "AED" | "AFN" | "ALL" | "AMD" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BOV" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHE" | "CHF" | "CHW" | "CLF" | "CLP" | "CNY" | "COP" | "COU" | "CRC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HTG" | "HUF" | "IDR" | "ILS" | "INR" | "IQD" | "IRR" | "ISK" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRU" | "MUR" | "MVR" | "MWK" | "MXN" | "MXV" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLE" | "SOS" | "SRD" | "SSP" | "STN" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "USN" | "UYI" | "UYU" | "UYW" | "UZS" | "VED" | "VES" | "VND" | "VUV" | "WST" | "XAD" | "XAF" | "XAG" | "XAU" | "XBA" | "XBB" | "XBC" | "XBD" | "XCD" | "XCG" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "XSU" | "XTS" | "XUA" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWG" | null | undefined;
+  currency?:
+    | 'AED'
+    | 'AFN'
+    | 'ALL'
+    | 'AMD'
+    | 'AOA'
+    | 'ARS'
+    | 'AUD'
+    | 'AWG'
+    | 'AZN'
+    | 'BAM'
+    | 'BBD'
+    | 'BDT'
+    | 'BHD'
+    | 'BIF'
+    | 'BMD'
+    | 'BND'
+    | 'BOB'
+    | 'BOV'
+    | 'BRL'
+    | 'BSD'
+    | 'BTN'
+    | 'BWP'
+    | 'BYN'
+    | 'BZD'
+    | 'CAD'
+    | 'CDF'
+    | 'CHE'
+    | 'CHF'
+    | 'CHW'
+    | 'CLF'
+    | 'CLP'
+    | 'CNY'
+    | 'COP'
+    | 'COU'
+    | 'CRC'
+    | 'CUP'
+    | 'CVE'
+    | 'CZK'
+    | 'DJF'
+    | 'DKK'
+    | 'DOP'
+    | 'DZD'
+    | 'EGP'
+    | 'ERN'
+    | 'ETB'
+    | 'EUR'
+    | 'FJD'
+    | 'FKP'
+    | 'GBP'
+    | 'GEL'
+    | 'GHS'
+    | 'GIP'
+    | 'GMD'
+    | 'GNF'
+    | 'GTQ'
+    | 'GYD'
+    | 'HKD'
+    | 'HNL'
+    | 'HTG'
+    | 'HUF'
+    | 'IDR'
+    | 'ILS'
+    | 'INR'
+    | 'IQD'
+    | 'IRR'
+    | 'ISK'
+    | 'JMD'
+    | 'JOD'
+    | 'JPY'
+    | 'KES'
+    | 'KGS'
+    | 'KHR'
+    | 'KMF'
+    | 'KPW'
+    | 'KRW'
+    | 'KWD'
+    | 'KYD'
+    | 'KZT'
+    | 'LAK'
+    | 'LBP'
+    | 'LKR'
+    | 'LRD'
+    | 'LSL'
+    | 'LYD'
+    | 'MAD'
+    | 'MDL'
+    | 'MGA'
+    | 'MKD'
+    | 'MMK'
+    | 'MNT'
+    | 'MOP'
+    | 'MRU'
+    | 'MUR'
+    | 'MVR'
+    | 'MWK'
+    | 'MXN'
+    | 'MXV'
+    | 'MYR'
+    | 'MZN'
+    | 'NAD'
+    | 'NGN'
+    | 'NIO'
+    | 'NOK'
+    | 'NPR'
+    | 'NZD'
+    | 'OMR'
+    | 'PAB'
+    | 'PEN'
+    | 'PGK'
+    | 'PHP'
+    | 'PKR'
+    | 'PLN'
+    | 'PYG'
+    | 'QAR'
+    | 'RON'
+    | 'RSD'
+    | 'RUB'
+    | 'RWF'
+    | 'SAR'
+    | 'SBD'
+    | 'SCR'
+    | 'SDG'
+    | 'SEK'
+    | 'SGD'
+    | 'SHP'
+    | 'SLE'
+    | 'SOS'
+    | 'SRD'
+    | 'SSP'
+    | 'STN'
+    | 'SVC'
+    | 'SYP'
+    | 'SZL'
+    | 'THB'
+    | 'TJS'
+    | 'TMT'
+    | 'TND'
+    | 'TOP'
+    | 'TRY'
+    | 'TTD'
+    | 'TWD'
+    | 'TZS'
+    | 'UAH'
+    | 'UGX'
+    | 'USD'
+    | 'USN'
+    | 'UYI'
+    | 'UYU'
+    | 'UYW'
+    | 'UZS'
+    | 'VED'
+    | 'VES'
+    | 'VND'
+    | 'VUV'
+    | 'WST'
+    | 'XAD'
+    | 'XAF'
+    | 'XAG'
+    | 'XAU'
+    | 'XBA'
+    | 'XBB'
+    | 'XBC'
+    | 'XBD'
+    | 'XCD'
+    | 'XCG'
+    | 'XDR'
+    | 'XOF'
+    | 'XPD'
+    | 'XPF'
+    | 'XPT'
+    | 'XSU'
+    | 'XTS'
+    | 'XUA'
+    | 'XXX'
+    | 'YER'
+    | 'ZAR'
+    | 'ZMW'
+    | 'ZWG'
+    | null
+    | undefined;
   custom_css?: string | undefined;
   enabled?: boolean | undefined;
   end_at?: IsoDateTime | null | undefined;
@@ -4543,7 +8303,7 @@ export interface StreamathonWidgetSettingsPayload {
   show_title?: boolean | undefined;
   start_seconds?: number | undefined;
   started_at?: IsoDateTime | null | undefined;
-  status?: "idle" | "running" | "paused" | undefined;
+  status?: 'idle' | 'running' | 'paused' | undefined;
   text_color?: string | undefined;
   theme_id?: string | undefined;
   themes?: StreamathonWidgetThemePayload[] | undefined;
@@ -4591,7 +8351,7 @@ export interface StreamathonWidgetThemePayload {
 }
 
 export interface StreamathonWidgetUpdate {
-  type: "streamathon_widget";
+  type: 'streamathon_widget';
   name?: string | undefined;
   settings?: StreamathonWidgetSettingsPayload | undefined;
 }
@@ -4637,7 +8397,7 @@ export interface SubError {
   field: string;
   message: string;
   type: string;
-  input?: unknown | null | undefined;
+  input?: unknown;
 }
 
 export interface SubscriptionCurrency {
@@ -4701,7 +8461,7 @@ export interface SubscriptionPlans {
 
 export interface Timer {
   active_from_date: IsoDateTime | null;
-  active_mode: "always" | "online" | "offline";
+  active_mode: 'always' | 'online' | 'offline';
   active_to_date: IsoDateTime | null;
   /**
    *
@@ -4729,8 +8489,31 @@ export interface Timer {
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
    */
   next_run_at: IsoDateTime;
-  pick_mode: "order" | "random";
-  providers: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[];
+  pick_mode: 'order' | 'random';
+  providers: (
+    | 'all'
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+  )[];
   /**
    *
    * An ISO 8601 timestamp. See {@link IsoDateTime}.
@@ -4747,21 +8530,46 @@ export interface TimerCreate {
   active_categories?: string[] | undefined;
   active_chat_messages?: number | null | undefined;
   active_from_date?: IsoDateTime | null | undefined;
-  active_mode?: "always" | "online" | "offline" | undefined;
+  active_mode?: 'always' | 'online' | 'offline' | undefined;
   active_title_patterns?: string[] | undefined;
   active_to_date?: IsoDateTime | null | undefined;
   enabled?: boolean | undefined;
   /** Minutes */
   interval?: number | undefined;
-  pick_mode?: "order" | "random" | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  pick_mode?: 'order' | 'random' | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
 }
 
 export interface TimerUpdate {
   active_categories?: string[] | undefined;
   active_chat_messages?: number | null | undefined;
   active_from_date?: IsoDateTime | null | undefined;
-  active_mode?: "always" | "online" | "offline" | undefined;
+  active_mode?: 'always' | 'online' | 'offline' | undefined;
   active_title_patterns?: string[] | undefined;
   active_to_date?: IsoDateTime | null | undefined;
   enabled?: boolean | undefined;
@@ -4769,8 +8577,33 @@ export interface TimerUpdate {
   interval?: number | undefined;
   messages?: string[] | undefined;
   name?: string | undefined;
-  pick_mode?: "order" | "random" | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  pick_mode?: 'order' | 'random' | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
 }
 
 export interface User {
@@ -4808,7 +8641,9 @@ export interface UserGlobalAdminStatus {
 
 /** UserProfiles. */
 export interface UserProfileList {
-  records: (DashboardUserProfile | ChatUserProfile | ActivityFeedUserProfile | ControlsUserProfile)[];
+  records: (
+    DashboardUserProfile | ChatUserProfile | ActivityFeedUserProfile | ControlsUserProfile
+  )[];
 }
 
 export interface UserProviderPublic {
@@ -4818,7 +8653,28 @@ export interface UserProviderPublic {
    * Format: `uuid`.
    */
   id: string;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   provider_channel_id: string;
   scope: string | null;
   chat_scope_needed?: boolean | undefined;
@@ -4831,7 +8687,28 @@ export interface UserProviderSummary {
    * Format: `uuid`.
    */
   id: string;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   provider_channel_id: string;
 }
 
@@ -4868,7 +8745,186 @@ export interface UserSettings {
 }
 
 export interface UserSettingsUpdate {
-  currency?: "AED" | "AFN" | "ALL" | "AMD" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BOV" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHE" | "CHF" | "CHW" | "CLF" | "CLP" | "CNY" | "COP" | "COU" | "CRC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HTG" | "HUF" | "IDR" | "ILS" | "INR" | "IQD" | "IRR" | "ISK" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRU" | "MUR" | "MVR" | "MWK" | "MXN" | "MXV" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLE" | "SOS" | "SRD" | "SSP" | "STN" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "USN" | "UYI" | "UYU" | "UYW" | "UZS" | "VED" | "VES" | "VND" | "VUV" | "WST" | "XAD" | "XAF" | "XAG" | "XAU" | "XBA" | "XBB" | "XBC" | "XBD" | "XCD" | "XCG" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "XSU" | "XTS" | "XUA" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWG" | undefined;
+  currency?:
+    | 'AED'
+    | 'AFN'
+    | 'ALL'
+    | 'AMD'
+    | 'AOA'
+    | 'ARS'
+    | 'AUD'
+    | 'AWG'
+    | 'AZN'
+    | 'BAM'
+    | 'BBD'
+    | 'BDT'
+    | 'BHD'
+    | 'BIF'
+    | 'BMD'
+    | 'BND'
+    | 'BOB'
+    | 'BOV'
+    | 'BRL'
+    | 'BSD'
+    | 'BTN'
+    | 'BWP'
+    | 'BYN'
+    | 'BZD'
+    | 'CAD'
+    | 'CDF'
+    | 'CHE'
+    | 'CHF'
+    | 'CHW'
+    | 'CLF'
+    | 'CLP'
+    | 'CNY'
+    | 'COP'
+    | 'COU'
+    | 'CRC'
+    | 'CUP'
+    | 'CVE'
+    | 'CZK'
+    | 'DJF'
+    | 'DKK'
+    | 'DOP'
+    | 'DZD'
+    | 'EGP'
+    | 'ERN'
+    | 'ETB'
+    | 'EUR'
+    | 'FJD'
+    | 'FKP'
+    | 'GBP'
+    | 'GEL'
+    | 'GHS'
+    | 'GIP'
+    | 'GMD'
+    | 'GNF'
+    | 'GTQ'
+    | 'GYD'
+    | 'HKD'
+    | 'HNL'
+    | 'HTG'
+    | 'HUF'
+    | 'IDR'
+    | 'ILS'
+    | 'INR'
+    | 'IQD'
+    | 'IRR'
+    | 'ISK'
+    | 'JMD'
+    | 'JOD'
+    | 'JPY'
+    | 'KES'
+    | 'KGS'
+    | 'KHR'
+    | 'KMF'
+    | 'KPW'
+    | 'KRW'
+    | 'KWD'
+    | 'KYD'
+    | 'KZT'
+    | 'LAK'
+    | 'LBP'
+    | 'LKR'
+    | 'LRD'
+    | 'LSL'
+    | 'LYD'
+    | 'MAD'
+    | 'MDL'
+    | 'MGA'
+    | 'MKD'
+    | 'MMK'
+    | 'MNT'
+    | 'MOP'
+    | 'MRU'
+    | 'MUR'
+    | 'MVR'
+    | 'MWK'
+    | 'MXN'
+    | 'MXV'
+    | 'MYR'
+    | 'MZN'
+    | 'NAD'
+    | 'NGN'
+    | 'NIO'
+    | 'NOK'
+    | 'NPR'
+    | 'NZD'
+    | 'OMR'
+    | 'PAB'
+    | 'PEN'
+    | 'PGK'
+    | 'PHP'
+    | 'PKR'
+    | 'PLN'
+    | 'PYG'
+    | 'QAR'
+    | 'RON'
+    | 'RSD'
+    | 'RUB'
+    | 'RWF'
+    | 'SAR'
+    | 'SBD'
+    | 'SCR'
+    | 'SDG'
+    | 'SEK'
+    | 'SGD'
+    | 'SHP'
+    | 'SLE'
+    | 'SOS'
+    | 'SRD'
+    | 'SSP'
+    | 'STN'
+    | 'SVC'
+    | 'SYP'
+    | 'SZL'
+    | 'THB'
+    | 'TJS'
+    | 'TMT'
+    | 'TND'
+    | 'TOP'
+    | 'TRY'
+    | 'TTD'
+    | 'TWD'
+    | 'TZS'
+    | 'UAH'
+    | 'UGX'
+    | 'USD'
+    | 'USN'
+    | 'UYI'
+    | 'UYU'
+    | 'UYW'
+    | 'UZS'
+    | 'VED'
+    | 'VES'
+    | 'VND'
+    | 'VUV'
+    | 'WST'
+    | 'XAD'
+    | 'XAF'
+    | 'XAG'
+    | 'XAU'
+    | 'XBA'
+    | 'XBB'
+    | 'XBC'
+    | 'XBD'
+    | 'XCD'
+    | 'XCG'
+    | 'XDR'
+    | 'XOF'
+    | 'XPD'
+    | 'XPF'
+    | 'XPT'
+    | 'XSU'
+    | 'XTS'
+    | 'XUA'
+    | 'XXX'
+    | 'YER'
+    | 'ZAR'
+    | 'ZMW'
+    | 'ZWG'
+    | undefined;
   view_count?: boolean | undefined;
 }
 
@@ -4914,12 +8970,12 @@ export interface ValueWidget {
   updated_at: IsoDateTime;
   last_used_at?: IsoDateTime | null | undefined;
   settings?: ValueWidgetSettings | undefined;
-  type?: "value_widget" | undefined;
+  type?: 'value_widget' | undefined;
 }
 
 export interface ValueWidgetCreate {
   name: string;
-  type: "value_widget";
+  type: 'value_widget';
   settings?: ValueWidgetSettingsPayload | undefined;
 }
 
@@ -4990,7 +9046,7 @@ export interface ValueWidgetTheme {
   label_color?: string | undefined;
   label_font_family_id?: string | undefined;
   label_font_size?: number | undefined;
-  layout?: "inline" | "stacked" | undefined;
+  layout?: 'inline' | 'stacked' | undefined;
   max_width?: number | null | undefined;
   min_width?: number | null | undefined;
   name?: string | undefined;
@@ -5011,7 +9067,7 @@ export interface ValueWidgetThemePayload {
   label_color?: string | undefined;
   label_font_family_id?: string | undefined;
   label_font_size?: number | undefined;
-  layout?: "inline" | "stacked" | undefined;
+  layout?: 'inline' | 'stacked' | undefined;
   max_width?: number | null | undefined;
   min_width?: number | null | undefined;
   name?: string | undefined;
@@ -5022,7 +9078,7 @@ export interface ValueWidgetThemePayload {
 }
 
 export interface ValueWidgetUpdate {
-  type: "value_widget";
+  type: 'value_widget';
   name?: string | undefined;
   settings?: ValueWidgetSettingsPayload | undefined;
 }
@@ -5051,28 +9107,168 @@ export interface VersusWidget {
   updated_at: IsoDateTime;
   last_used_at?: IsoDateTime | null | undefined;
   settings?: VersusWidgetSettings | undefined;
-  type?: "versus_widget" | undefined;
+  type?: 'versus_widget' | undefined;
 }
 
 export interface VersusWidgetActivitySource {
-  activity_type: "sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create";
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  activity_type:
+    | 'sub'
+    | 'resub'
+    | 'sub_gift'
+    | 'community_sub_gift'
+    | 'raid'
+    | 'charity_donation'
+    | 'bits'
+    | 'follow'
+    | 'points'
+    | 'twitch_shoutout'
+    | 'twitch_watch_streak'
+    | 'youtube_subscription'
+    | 'newSponsorEvent'
+    | 'superChatEvent'
+    | 'superStickerEvent'
+    | 'membershipGiftingEvent'
+    | 'memberMilestoneChatEvent'
+    | 'giftEvent'
+    | 'tiktok_gift'
+    | 'tiktok_follow'
+    | 'tiktok_share'
+    | 'tiktok_like'
+    | 'tiktok_superfan'
+    | 'tiktok_superfanbox'
+    | 'rumble_follow'
+    | 'rumble_sub'
+    | 'rumble_gift_subs'
+    | 'rumble_rant'
+    | 'rumble_raid'
+    | 'kick_sub'
+    | 'kick_resub'
+    | 'kick_gift_subs'
+    | 'kick_gift_sub'
+    | 'kick_follow'
+    | 'kick_kicks_gift'
+    | 'kick_reward_redemption'
+    | 'streamelements_tip'
+    | 'streamlabs_donation'
+    | 'kofi_donation'
+    | 'kofi_subscription'
+    | 'kofi_resub'
+    | 'kofi_shop_order'
+    | 'kofi_commission'
+    | 'fourthwall_donation'
+    | 'fourthwall_shop_order'
+    | 'fourthwall_gift_purchase'
+    | 'fourthwall_subscription'
+    | 'patreon_member_create'
+    | 'patreon_member_pledge_create';
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   default_multiplier?: number | undefined;
   enabled?: boolean | undefined;
   sub_type_multipliers?: { [key: string]: number } | undefined;
 }
 
 export interface VersusWidgetActivitySourcePayload {
-  activity_type: "sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create";
+  activity_type:
+    | 'sub'
+    | 'resub'
+    | 'sub_gift'
+    | 'community_sub_gift'
+    | 'raid'
+    | 'charity_donation'
+    | 'bits'
+    | 'follow'
+    | 'points'
+    | 'twitch_shoutout'
+    | 'twitch_watch_streak'
+    | 'youtube_subscription'
+    | 'newSponsorEvent'
+    | 'superChatEvent'
+    | 'superStickerEvent'
+    | 'membershipGiftingEvent'
+    | 'memberMilestoneChatEvent'
+    | 'giftEvent'
+    | 'tiktok_gift'
+    | 'tiktok_follow'
+    | 'tiktok_share'
+    | 'tiktok_like'
+    | 'tiktok_superfan'
+    | 'tiktok_superfanbox'
+    | 'rumble_follow'
+    | 'rumble_sub'
+    | 'rumble_gift_subs'
+    | 'rumble_rant'
+    | 'rumble_raid'
+    | 'kick_sub'
+    | 'kick_resub'
+    | 'kick_gift_subs'
+    | 'kick_gift_sub'
+    | 'kick_follow'
+    | 'kick_kicks_gift'
+    | 'kick_reward_redemption'
+    | 'streamelements_tip'
+    | 'streamlabs_donation'
+    | 'kofi_donation'
+    | 'kofi_subscription'
+    | 'kofi_resub'
+    | 'kofi_shop_order'
+    | 'kofi_commission'
+    | 'fourthwall_donation'
+    | 'fourthwall_shop_order'
+    | 'fourthwall_gift_purchase'
+    | 'fourthwall_subscription'
+    | 'patreon_member_create'
+    | 'patreon_member_pledge_create';
   default_multiplier: number;
   enabled: boolean;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   sub_type_multipliers: { [key: string]: number };
 }
 
 export interface VersusWidgetCreate {
   name: string;
-  type: "versus_widget";
+  type: 'versus_widget';
   settings?: VersusWidgetSettingsPayload | undefined;
 }
 
@@ -5097,7 +9293,7 @@ export interface VersusWidgetOptionPayload {
 export interface VersusWidgetSettings {
   activity_checkpoint_at?: IsoDateTime | null | undefined;
   activity_checkpoint_option_values?: { [key: string]: number } | null | undefined;
-  activity_period?: "custom" | "monthly" | "stream" | undefined;
+  activity_period?: 'custom' | 'monthly' | 'stream' | undefined;
   activity_sources?: VersusWidgetActivitySource[] | undefined;
   background_color?: string | undefined;
   bar_height?: number | null | undefined;
@@ -5107,7 +9303,7 @@ export interface VersusWidgetSettings {
   canvas_scale?: number | undefined;
   currency?: string | null | undefined;
   custom_css?: string | undefined;
-  display_mode?: "points" | "currency" | undefined;
+  display_mode?: 'points' | 'currency' | undefined;
   enabled?: boolean | undefined;
   end_at?: IsoDateTime | null | undefined;
   ended_text?: string | undefined;
@@ -5142,7 +9338,7 @@ export interface VersusWidgetSettings {
 export interface VersusWidgetSettingsPayload {
   activity_checkpoint_at?: IsoDateTime | null | undefined;
   activity_checkpoint_option_values?: { [key: string]: number } | null | undefined;
-  activity_period?: "custom" | "monthly" | "stream" | undefined;
+  activity_period?: 'custom' | 'monthly' | 'stream' | undefined;
   activity_sources?: VersusWidgetActivitySourcePayload[] | undefined;
   background_color?: string | undefined;
   bar_height?: number | null | undefined;
@@ -5150,9 +9346,189 @@ export interface VersusWidgetSettingsPayload {
   border_radius?: number | null | undefined;
   border_width?: number | null | undefined;
   canvas_scale?: number | undefined;
-  currency?: "AED" | "AFN" | "ALL" | "AMD" | "AOA" | "ARS" | "AUD" | "AWG" | "AZN" | "BAM" | "BBD" | "BDT" | "BHD" | "BIF" | "BMD" | "BND" | "BOB" | "BOV" | "BRL" | "BSD" | "BTN" | "BWP" | "BYN" | "BZD" | "CAD" | "CDF" | "CHE" | "CHF" | "CHW" | "CLF" | "CLP" | "CNY" | "COP" | "COU" | "CRC" | "CUP" | "CVE" | "CZK" | "DJF" | "DKK" | "DOP" | "DZD" | "EGP" | "ERN" | "ETB" | "EUR" | "FJD" | "FKP" | "GBP" | "GEL" | "GHS" | "GIP" | "GMD" | "GNF" | "GTQ" | "GYD" | "HKD" | "HNL" | "HTG" | "HUF" | "IDR" | "ILS" | "INR" | "IQD" | "IRR" | "ISK" | "JMD" | "JOD" | "JPY" | "KES" | "KGS" | "KHR" | "KMF" | "KPW" | "KRW" | "KWD" | "KYD" | "KZT" | "LAK" | "LBP" | "LKR" | "LRD" | "LSL" | "LYD" | "MAD" | "MDL" | "MGA" | "MKD" | "MMK" | "MNT" | "MOP" | "MRU" | "MUR" | "MVR" | "MWK" | "MXN" | "MXV" | "MYR" | "MZN" | "NAD" | "NGN" | "NIO" | "NOK" | "NPR" | "NZD" | "OMR" | "PAB" | "PEN" | "PGK" | "PHP" | "PKR" | "PLN" | "PYG" | "QAR" | "RON" | "RSD" | "RUB" | "RWF" | "SAR" | "SBD" | "SCR" | "SDG" | "SEK" | "SGD" | "SHP" | "SLE" | "SOS" | "SRD" | "SSP" | "STN" | "SVC" | "SYP" | "SZL" | "THB" | "TJS" | "TMT" | "TND" | "TOP" | "TRY" | "TTD" | "TWD" | "TZS" | "UAH" | "UGX" | "USD" | "USN" | "UYI" | "UYU" | "UYW" | "UZS" | "VED" | "VES" | "VND" | "VUV" | "WST" | "XAD" | "XAF" | "XAG" | "XAU" | "XBA" | "XBB" | "XBC" | "XBD" | "XCD" | "XCG" | "XDR" | "XOF" | "XPD" | "XPF" | "XPT" | "XSU" | "XTS" | "XUA" | "XXX" | "YER" | "ZAR" | "ZMW" | "ZWG" | null | undefined;
+  currency?:
+    | 'AED'
+    | 'AFN'
+    | 'ALL'
+    | 'AMD'
+    | 'AOA'
+    | 'ARS'
+    | 'AUD'
+    | 'AWG'
+    | 'AZN'
+    | 'BAM'
+    | 'BBD'
+    | 'BDT'
+    | 'BHD'
+    | 'BIF'
+    | 'BMD'
+    | 'BND'
+    | 'BOB'
+    | 'BOV'
+    | 'BRL'
+    | 'BSD'
+    | 'BTN'
+    | 'BWP'
+    | 'BYN'
+    | 'BZD'
+    | 'CAD'
+    | 'CDF'
+    | 'CHE'
+    | 'CHF'
+    | 'CHW'
+    | 'CLF'
+    | 'CLP'
+    | 'CNY'
+    | 'COP'
+    | 'COU'
+    | 'CRC'
+    | 'CUP'
+    | 'CVE'
+    | 'CZK'
+    | 'DJF'
+    | 'DKK'
+    | 'DOP'
+    | 'DZD'
+    | 'EGP'
+    | 'ERN'
+    | 'ETB'
+    | 'EUR'
+    | 'FJD'
+    | 'FKP'
+    | 'GBP'
+    | 'GEL'
+    | 'GHS'
+    | 'GIP'
+    | 'GMD'
+    | 'GNF'
+    | 'GTQ'
+    | 'GYD'
+    | 'HKD'
+    | 'HNL'
+    | 'HTG'
+    | 'HUF'
+    | 'IDR'
+    | 'ILS'
+    | 'INR'
+    | 'IQD'
+    | 'IRR'
+    | 'ISK'
+    | 'JMD'
+    | 'JOD'
+    | 'JPY'
+    | 'KES'
+    | 'KGS'
+    | 'KHR'
+    | 'KMF'
+    | 'KPW'
+    | 'KRW'
+    | 'KWD'
+    | 'KYD'
+    | 'KZT'
+    | 'LAK'
+    | 'LBP'
+    | 'LKR'
+    | 'LRD'
+    | 'LSL'
+    | 'LYD'
+    | 'MAD'
+    | 'MDL'
+    | 'MGA'
+    | 'MKD'
+    | 'MMK'
+    | 'MNT'
+    | 'MOP'
+    | 'MRU'
+    | 'MUR'
+    | 'MVR'
+    | 'MWK'
+    | 'MXN'
+    | 'MXV'
+    | 'MYR'
+    | 'MZN'
+    | 'NAD'
+    | 'NGN'
+    | 'NIO'
+    | 'NOK'
+    | 'NPR'
+    | 'NZD'
+    | 'OMR'
+    | 'PAB'
+    | 'PEN'
+    | 'PGK'
+    | 'PHP'
+    | 'PKR'
+    | 'PLN'
+    | 'PYG'
+    | 'QAR'
+    | 'RON'
+    | 'RSD'
+    | 'RUB'
+    | 'RWF'
+    | 'SAR'
+    | 'SBD'
+    | 'SCR'
+    | 'SDG'
+    | 'SEK'
+    | 'SGD'
+    | 'SHP'
+    | 'SLE'
+    | 'SOS'
+    | 'SRD'
+    | 'SSP'
+    | 'STN'
+    | 'SVC'
+    | 'SYP'
+    | 'SZL'
+    | 'THB'
+    | 'TJS'
+    | 'TMT'
+    | 'TND'
+    | 'TOP'
+    | 'TRY'
+    | 'TTD'
+    | 'TWD'
+    | 'TZS'
+    | 'UAH'
+    | 'UGX'
+    | 'USD'
+    | 'USN'
+    | 'UYI'
+    | 'UYU'
+    | 'UYW'
+    | 'UZS'
+    | 'VED'
+    | 'VES'
+    | 'VND'
+    | 'VUV'
+    | 'WST'
+    | 'XAD'
+    | 'XAF'
+    | 'XAG'
+    | 'XAU'
+    | 'XBA'
+    | 'XBB'
+    | 'XBC'
+    | 'XBD'
+    | 'XCD'
+    | 'XCG'
+    | 'XDR'
+    | 'XOF'
+    | 'XPD'
+    | 'XPF'
+    | 'XPT'
+    | 'XSU'
+    | 'XTS'
+    | 'XUA'
+    | 'XXX'
+    | 'YER'
+    | 'ZAR'
+    | 'ZMW'
+    | 'ZWG'
+    | null
+    | undefined;
   custom_css?: string | undefined;
-  display_mode?: "points" | "currency" | undefined;
+  display_mode?: 'points' | 'currency' | undefined;
   enabled?: boolean | undefined;
   end_at?: IsoDateTime | null | undefined;
   ended_text?: string | undefined;
@@ -5227,7 +9603,7 @@ export interface VersusWidgetThemePayload {
 }
 
 export interface VersusWidgetUpdate {
-  type: "versus_widget";
+  type: 'versus_widget';
   name?: string | undefined;
   settings?: VersusWidgetSettingsPayload | undefined;
 }
@@ -5256,12 +9632,12 @@ export interface ViewerCountWidget {
   updated_at: IsoDateTime;
   last_used_at?: IsoDateTime | null | undefined;
   settings?: ViewerCountWidgetSettings | undefined;
-  type?: "viewer_count_widget" | undefined;
+  type?: 'viewer_count_widget' | undefined;
 }
 
 export interface ViewerCountWidgetCreate {
   name: string;
-  type: "viewer_count_widget";
+  type: 'viewer_count_widget';
   settings?: ViewerCountWidgetSettingsPayload | undefined;
 }
 
@@ -5278,7 +9654,32 @@ export interface ViewerCountWidgetSettings {
   max_width?: number | null | undefined;
   min_width?: number | null | undefined;
   padding?: number | null | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   text_color?: string | undefined;
   theme_id?: string | undefined;
   themes?: ViewerCountWidgetTheme[] | undefined;
@@ -5297,7 +9698,32 @@ export interface ViewerCountWidgetSettingsPayload {
   max_width?: number | null | undefined;
   min_width?: number | null | undefined;
   padding?: number | null | undefined;
-  providers?: ("all" | "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast")[] | undefined;
+  providers?:
+    | (
+        | 'all'
+        | 'twitch'
+        | 'discord'
+        | 'youtube'
+        | 'spotify'
+        | 'tiktok'
+        | 'x'
+        | 'rumble'
+        | 'kick'
+        | '7tv'
+        | 'betterttv'
+        | 'frankerfacez'
+        | 'streamelements'
+        | 'streamlabs'
+        | 'ttsmonster'
+        | 'elevenlabs'
+        | 'amazon_polly'
+        | 'obs_remote'
+        | 'kofi'
+        | 'fourthwall'
+        | 'patreon'
+        | 'owncast'
+      )[]
+    | undefined;
   text_color?: string | undefined;
   theme_id?: string | undefined;
   themes?: ViewerCountWidgetThemePayload[] | undefined;
@@ -5336,7 +9762,7 @@ export interface ViewerCountWidgetThemePayload {
 }
 
 export interface ViewerCountWidgetUpdate {
-  type: "viewer_count_widget";
+  type: 'viewer_count_widget';
   name?: string | undefined;
   settings?: ViewerCountWidgetSettingsPayload | undefined;
 }

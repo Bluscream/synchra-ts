@@ -58,14 +58,145 @@ export interface ChannelActivityUpdateActivityParams extends RequestOptions {
  */
 export interface ChannelActivityGetActivitiesParams extends RequestOptions {
   channel_id: string | number;
-  activity_group?: ("subscription" | "subscription_gift" | "donation" | "virtual_currency" | "follow" | "raid" | "redeem" | "like")[] | null | undefined;
-  contribution_group?: ("currency_amount" | "follows" | "kick_subs" | "redeems" | "rumble_subs" | "tiktok_superfans" | "twitch_subs" | "virtual_currency" | "youtube_memberships")[] | null | undefined;
+  activity_group?:
+    | (
+        | 'subscription'
+        | 'subscription_gift'
+        | 'donation'
+        | 'virtual_currency'
+        | 'follow'
+        | 'raid'
+        | 'redeem'
+        | 'like'
+      )[]
+    | null
+    | undefined;
+  contribution_group?:
+    | (
+        | 'currency_amount'
+        | 'follows'
+        | 'kick_subs'
+        | 'redeems'
+        | 'rumble_subs'
+        | 'tiktok_superfans'
+        | 'twitch_subs'
+        | 'virtual_currency'
+        | 'youtube_memberships'
+      )[]
+    | null
+    | undefined;
   cursor?: string | null | undefined;
   /** <type>.<min count>. */
   min_count?: string[] | null | undefined;
-  not_type?: (Models.OpenEnum<"sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create">)[] | null | undefined;
+  not_type?:
+    | Models.OpenEnum<
+        | 'sub'
+        | 'resub'
+        | 'sub_gift'
+        | 'community_sub_gift'
+        | 'raid'
+        | 'charity_donation'
+        | 'bits'
+        | 'follow'
+        | 'points'
+        | 'twitch_shoutout'
+        | 'twitch_watch_streak'
+        | 'youtube_subscription'
+        | 'newSponsorEvent'
+        | 'superChatEvent'
+        | 'superStickerEvent'
+        | 'membershipGiftingEvent'
+        | 'memberMilestoneChatEvent'
+        | 'giftEvent'
+        | 'tiktok_gift'
+        | 'tiktok_follow'
+        | 'tiktok_share'
+        | 'tiktok_like'
+        | 'tiktok_superfan'
+        | 'tiktok_superfanbox'
+        | 'rumble_follow'
+        | 'rumble_sub'
+        | 'rumble_gift_subs'
+        | 'rumble_rant'
+        | 'rumble_raid'
+        | 'kick_sub'
+        | 'kick_resub'
+        | 'kick_gift_subs'
+        | 'kick_gift_sub'
+        | 'kick_follow'
+        | 'kick_kicks_gift'
+        | 'kick_reward_redemption'
+        | 'streamelements_tip'
+        | 'streamlabs_donation'
+        | 'kofi_donation'
+        | 'kofi_subscription'
+        | 'kofi_resub'
+        | 'kofi_shop_order'
+        | 'kofi_commission'
+        | 'fourthwall_donation'
+        | 'fourthwall_shop_order'
+        | 'fourthwall_gift_purchase'
+        | 'fourthwall_subscription'
+        | 'patreon_member_create'
+        | 'patreon_member_pledge_create'
+      >[]
+    | null
+    | undefined;
   per_page?: number | undefined;
-  type?: (Models.OpenEnum<"sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create">)[] | null | undefined;
+  type?:
+    | Models.OpenEnum<
+        | 'sub'
+        | 'resub'
+        | 'sub_gift'
+        | 'community_sub_gift'
+        | 'raid'
+        | 'charity_donation'
+        | 'bits'
+        | 'follow'
+        | 'points'
+        | 'twitch_shoutout'
+        | 'twitch_watch_streak'
+        | 'youtube_subscription'
+        | 'newSponsorEvent'
+        | 'superChatEvent'
+        | 'superStickerEvent'
+        | 'membershipGiftingEvent'
+        | 'memberMilestoneChatEvent'
+        | 'giftEvent'
+        | 'tiktok_gift'
+        | 'tiktok_follow'
+        | 'tiktok_share'
+        | 'tiktok_like'
+        | 'tiktok_superfan'
+        | 'tiktok_superfanbox'
+        | 'rumble_follow'
+        | 'rumble_sub'
+        | 'rumble_gift_subs'
+        | 'rumble_rant'
+        | 'rumble_raid'
+        | 'kick_sub'
+        | 'kick_resub'
+        | 'kick_gift_subs'
+        | 'kick_gift_sub'
+        | 'kick_follow'
+        | 'kick_kicks_gift'
+        | 'kick_reward_redemption'
+        | 'streamelements_tip'
+        | 'streamlabs_donation'
+        | 'kofi_donation'
+        | 'kofi_subscription'
+        | 'kofi_resub'
+        | 'kofi_shop_order'
+        | 'kofi_commission'
+        | 'fourthwall_donation'
+        | 'fourthwall_shop_order'
+        | 'fourthwall_gift_purchase'
+        | 'fourthwall_subscription'
+        | 'patreon_member_create'
+        | 'patreon_member_pledge_create'
+      >[]
+    | null
+    | undefined;
 }
 
 /**
@@ -83,11 +214,13 @@ export class ChannelActivity {
    *
    * Needs no credential; this one answers on an anonymous client.
    */
-  activityTypes(params: ChannelActivityActivityTypesParams = {}): Promise<Models.ActivityTypeName[]> {
+  activityTypes(
+    params: ChannelActivityActivityTypesParams = {},
+  ): Promise<Models.ActivityTypeName[]> {
     return this.client.request<Models.ActivityTypeName[]>({
-      method: "GET",
-      path: "/activity-types",
-      query: { example: params["example"] },
+      method: 'GET',
+      path: '/activity-types',
+      query: { example: params.example },
       options: params,
     });
   }
@@ -100,9 +233,12 @@ export class ChannelActivity {
    * Requires the `channel_activity:read` scope.
    */
   deleteActivity(params: ChannelActivityDeleteActivityParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/activities/{activity_id}", { channel_id: params["channel_id"], activity_id: params["activity_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/activities/{activity_id}', {
+        channel_id: params.channel_id,
+        activity_id: params.activity_id,
+      }),
       options: params,
     });
   }
@@ -116,8 +252,11 @@ export class ChannelActivity {
    */
   getActivity(params: ChannelActivityGetActivityParams): Promise<Models.Activity> {
     return this.client.request<Models.Activity>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/activities/{activity_id}", { channel_id: params["channel_id"], activity_id: params["activity_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/activities/{activity_id}', {
+        channel_id: params.channel_id,
+        activity_id: params.activity_id,
+      }),
       options: params,
     });
   }
@@ -133,8 +272,11 @@ export class ChannelActivity {
    */
   updateActivity(params: ChannelActivityUpdateActivityParams): Promise<Models.Activity> {
     return this.client.request<Models.Activity>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/activities/{activity_id}", { channel_id: params["channel_id"], activity_id: params["activity_id"] }),
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/activities/{activity_id}', {
+        channel_id: params.channel_id,
+        activity_id: params.activity_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -162,9 +304,17 @@ export class ChannelActivity {
    */
   getActivities(params: ChannelActivityGetActivitiesParams): Promise<Models.PageCursorActivity> {
     return this.client.request<Models.PageCursorActivity>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/activities", { channel_id: params["channel_id"] }),
-      query: { type: params["type"], activity_group: params["activity_group"], contribution_group: params["contribution_group"], not_type: params["not_type"], min_count: params["min_count"], cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/activities', { channel_id: params.channel_id }),
+      query: {
+        type: params.type,
+        activity_group: params.activity_group,
+        contribution_group: params.contribution_group,
+        not_type: params.not_type,
+        min_count: params.min_count,
+        cursor: params.cursor,
+        per_page: params.per_page,
+      },
       options: params,
     });
   }

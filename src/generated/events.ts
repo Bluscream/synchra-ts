@@ -15,19 +15,19 @@ import type * as Models from './models.js';
 
 /** Every event type the gateway sends. */
 export const EVENT_TYPES = {
-  activity: "activity",
-  activity_alert_test: "activity_alert_test",
-  channel_giveaway: "channel_giveaway",
-  channel_giveaway_entries: "channel_giveaway_entries",
-  channel_giveaways: "channel_giveaways",
-  channel_provider: "channel_provider",
-  channel_provider_stream: "channel_provider_stream",
-  channel_queue: "channel_queue",
-  chat_event: "chat_event",
-  chat_message: "chat_message",
-  obs_remote_command: "obs_remote_command",
-  widget: "widget",
-  widget_value: "widget_value",
+  activity: 'activity',
+  activity_alert_test: 'activity_alert_test',
+  channel_giveaway: 'channel_giveaway',
+  channel_giveaway_entries: 'channel_giveaway_entries',
+  channel_giveaways: 'channel_giveaways',
+  channel_provider: 'channel_provider',
+  channel_provider_stream: 'channel_provider_stream',
+  channel_queue: 'channel_queue',
+  chat_event: 'chat_event',
+  chat_message: 'chat_message',
+  obs_remote_command: 'obs_remote_command',
+  widget: 'widget',
+  widget_value: 'widget_value',
 } as const;
 
 /** One of the gateway’s event types. */
@@ -121,7 +121,17 @@ export interface EventPayloads {
    *
    * Subscribes with `widget_id`.
    */
-  widget: (Models.ChatWidget | Models.CustomWidget | Models.ActivityAlertWidget | Models.GoalWidget | Models.GiveawayWidget | Models.LeaderboardWidget | Models.StreamathonWidget | Models.VersusWidget | Models.ViewerCountWidget | Models.ValueWidget);
+  widget:
+    | Models.ChatWidget
+    | Models.CustomWidget
+    | Models.ActivityAlertWidget
+    | Models.GoalWidget
+    | Models.GiveawayWidget
+    | Models.LeaderboardWidget
+    | Models.StreamathonWidget
+    | Models.VersusWidget
+    | Models.ViewerCountWidget
+    | Models.ValueWidget;
   /**
    * Widget value events.
    *

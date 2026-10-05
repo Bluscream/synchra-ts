@@ -151,10 +151,13 @@ export class Twitch {
    * Requires the `chat:moderate` scope.
    */
   unbanUser(params: TwitchUnbanUserParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/twitch/{channel_provider_id}/ban", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
-      query: { provider_viewer_id: params["provider_viewer_id"] },
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/twitch/{channel_provider_id}/ban', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
+      query: { provider_viewer_id: params.provider_viewer_id },
       options: params,
     });
   }
@@ -169,9 +172,12 @@ export class Twitch {
    * @param params.body The request body.
    */
   banUser(params: TwitchBanUserParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/twitch/{channel_provider_id}/ban", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+    return this.client.send({
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/twitch/{channel_provider_id}/ban', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -187,9 +193,12 @@ export class Twitch {
    * @param params.body The request body.
    */
   removeModerator(params: TwitchRemoveModeratorParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/twitch/{channel_provider_id}/moderators", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/twitch/{channel_provider_id}/moderators', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -204,8 +213,11 @@ export class Twitch {
    */
   getModerators(params: TwitchGetModeratorsParams): Promise<Models.ProviderViewer[]> {
     return this.client.request<Models.ProviderViewer[]>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/twitch/{channel_provider_id}/moderators", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/twitch/{channel_provider_id}/moderators', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       options: params,
     });
   }
@@ -220,9 +232,12 @@ export class Twitch {
    * @param params.body The request body.
    */
   addModerator(params: TwitchAddModeratorParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/twitch/{channel_provider_id}/moderators", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+    return this.client.send({
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/twitch/{channel_provider_id}/moderators', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -236,9 +251,12 @@ export class Twitch {
    * Requires the `chat:moderate` scope.
    */
   deleteRaid(params: TwitchDeleteRaidParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/twitch/{channel_provider_id}/raid", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/twitch/{channel_provider_id}/raid', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       options: params,
     });
   }
@@ -253,9 +271,12 @@ export class Twitch {
    * @param params.body The request body.
    */
   raidChannel(params: TwitchRaidChannelParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/twitch/{channel_provider_id}/raid", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+    return this.client.send({
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/twitch/{channel_provider_id}/raid', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -271,9 +292,12 @@ export class Twitch {
    * @param params.body The request body.
    */
   shoutoutUser(params: TwitchShoutoutUserParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/twitch/{channel_provider_id}/shoutout", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+    return this.client.send({
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/twitch/{channel_provider_id}/shoutout', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -289,9 +313,12 @@ export class Twitch {
    * @param params.body The request body.
    */
   removeVipUser(params: TwitchRemoveVipUserParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/twitch/{channel_provider_id}/vips", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/twitch/{channel_provider_id}/vips', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -306,8 +333,11 @@ export class Twitch {
    */
   getVipUsers(params: TwitchGetVipUsersParams): Promise<Models.ProviderViewer[]> {
     return this.client.request<Models.ProviderViewer[]>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/twitch/{channel_provider_id}/vips", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/twitch/{channel_provider_id}/vips', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       options: params,
     });
   }
@@ -322,9 +352,12 @@ export class Twitch {
    * @param params.body The request body.
    */
   addVipUser(params: TwitchAddVipUserParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/twitch/{channel_provider_id}/vips", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+    return this.client.send({
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/twitch/{channel_provider_id}/vips', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       body: params.body,
       options: params,
     });

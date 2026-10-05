@@ -48,7 +48,58 @@ export interface ChannelWidgetGetActivityAlertControlStateParams extends Request
 export interface ChannelWidgetTestActivityAlertWidgetParams extends RequestOptions {
   channel_id: string | number;
   widget_id: string | number;
-  activity_type?: "sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create" | null | undefined;
+  activity_type?:
+    | 'sub'
+    | 'resub'
+    | 'sub_gift'
+    | 'community_sub_gift'
+    | 'raid'
+    | 'charity_donation'
+    | 'bits'
+    | 'follow'
+    | 'points'
+    | 'twitch_shoutout'
+    | 'twitch_watch_streak'
+    | 'youtube_subscription'
+    | 'newSponsorEvent'
+    | 'superChatEvent'
+    | 'superStickerEvent'
+    | 'membershipGiftingEvent'
+    | 'memberMilestoneChatEvent'
+    | 'giftEvent'
+    | 'tiktok_gift'
+    | 'tiktok_follow'
+    | 'tiktok_share'
+    | 'tiktok_like'
+    | 'tiktok_superfan'
+    | 'tiktok_superfanbox'
+    | 'rumble_follow'
+    | 'rumble_sub'
+    | 'rumble_gift_subs'
+    | 'rumble_rant'
+    | 'rumble_raid'
+    | 'kick_sub'
+    | 'kick_resub'
+    | 'kick_gift_subs'
+    | 'kick_gift_sub'
+    | 'kick_follow'
+    | 'kick_kicks_gift'
+    | 'kick_reward_redemption'
+    | 'streamelements_tip'
+    | 'streamlabs_donation'
+    | 'kofi_donation'
+    | 'kofi_subscription'
+    | 'kofi_resub'
+    | 'kofi_shop_order'
+    | 'kofi_commission'
+    | 'fourthwall_donation'
+    | 'fourthwall_shop_order'
+    | 'fourthwall_gift_purchase'
+    | 'fourthwall_subscription'
+    | 'patreon_member_create'
+    | 'patreon_member_pledge_create'
+    | null
+    | undefined;
   /** The request body. */
   body?: Models.ActivityAlertWidgetTestAlertCreate | null | undefined;
 }
@@ -70,7 +121,17 @@ export interface ChannelWidgetDeleteWidgetParams extends RequestOptions {
  */
 export interface ChannelWidgetPatchWidgetParams extends RequestOptions {
   /** The request body. */
-  body: Models.ChatWidgetUpdate | Models.CustomWidgetUpdate | Models.ActivityAlertWidgetUpdate | Models.GoalWidgetUpdate | Models.GiveawayWidgetUpdate | Models.LeaderboardWidgetUpdate | Models.StreamathonWidgetUpdate | Models.VersusWidgetUpdate | Models.ViewerCountWidgetUpdate | Models.ValueWidgetUpdate;
+  body:
+    | Models.ChatWidgetUpdate
+    | Models.CustomWidgetUpdate
+    | Models.ActivityAlertWidgetUpdate
+    | Models.GoalWidgetUpdate
+    | Models.GiveawayWidgetUpdate
+    | Models.LeaderboardWidgetUpdate
+    | Models.StreamathonWidgetUpdate
+    | Models.VersusWidgetUpdate
+    | Models.ViewerCountWidgetUpdate
+    | Models.ValueWidgetUpdate;
   channel_id: string | number;
   widget_id: string | number;
 }
@@ -82,7 +143,17 @@ export interface ChannelWidgetPatchWidgetParams extends RequestOptions {
  */
 export interface ChannelWidgetPutWidgetParams extends RequestOptions {
   /** The request body. */
-  body: Models.ChatWidgetUpdate | Models.CustomWidgetUpdate | Models.ActivityAlertWidgetUpdate | Models.GoalWidgetUpdate | Models.GiveawayWidgetUpdate | Models.LeaderboardWidgetUpdate | Models.StreamathonWidgetUpdate | Models.VersusWidgetUpdate | Models.ViewerCountWidgetUpdate | Models.ValueWidgetUpdate;
+  body:
+    | Models.ChatWidgetUpdate
+    | Models.CustomWidgetUpdate
+    | Models.ActivityAlertWidgetUpdate
+    | Models.GoalWidgetUpdate
+    | Models.GiveawayWidgetUpdate
+    | Models.LeaderboardWidgetUpdate
+    | Models.StreamathonWidgetUpdate
+    | Models.VersusWidgetUpdate
+    | Models.ViewerCountWidgetUpdate
+    | Models.ValueWidgetUpdate;
   channel_id: string | number;
   widget_id: string | number;
 }
@@ -105,7 +176,17 @@ export interface ChannelWidgetGetWidgetsParams extends RequestOptions {
  */
 export interface ChannelWidgetCreateWidgetParams extends RequestOptions {
   /** The request body. */
-  body: Models.ChatWidgetCreate | Models.CustomWidgetCreate | Models.ActivityAlertWidgetCreate | Models.GoalWidgetCreate | Models.GiveawayWidgetCreate | Models.LeaderboardWidgetCreate | Models.StreamathonWidgetCreate | Models.VersusWidgetCreate | Models.ViewerCountWidgetCreate | Models.ValueWidgetCreate;
+  body:
+    | Models.ChatWidgetCreate
+    | Models.CustomWidgetCreate
+    | Models.ActivityAlertWidgetCreate
+    | Models.GoalWidgetCreate
+    | Models.GiveawayWidgetCreate
+    | Models.LeaderboardWidgetCreate
+    | Models.StreamathonWidgetCreate
+    | Models.VersusWidgetCreate
+    | Models.ViewerCountWidgetCreate
+    | Models.ValueWidgetCreate;
   channel_id: string | number;
 }
 
@@ -116,11 +197,89 @@ export interface ChannelWidgetCreateWidgetParams extends RequestOptions {
  */
 export interface ChannelWidgetGetCustomWidgetActivitiesParams extends RequestOptions {
   widget_id: string | number;
-  activity_group?: ("subscription" | "subscription_gift" | "donation" | "virtual_currency" | "follow" | "raid" | "redeem" | "like")[] | null | undefined;
-  contribution_group?: ("currency_amount" | "follows" | "kick_subs" | "redeems" | "rumble_subs" | "tiktok_superfans" | "twitch_subs" | "virtual_currency" | "youtube_memberships")[] | null | undefined;
+  activity_group?:
+    | (
+        | 'subscription'
+        | 'subscription_gift'
+        | 'donation'
+        | 'virtual_currency'
+        | 'follow'
+        | 'raid'
+        | 'redeem'
+        | 'like'
+      )[]
+    | null
+    | undefined;
+  contribution_group?:
+    | (
+        | 'currency_amount'
+        | 'follows'
+        | 'kick_subs'
+        | 'redeems'
+        | 'rumble_subs'
+        | 'tiktok_superfans'
+        | 'twitch_subs'
+        | 'virtual_currency'
+        | 'youtube_memberships'
+      )[]
+    | null
+    | undefined;
   cursor?: string | null | undefined;
   per_page?: number | undefined;
-  type?: (Models.OpenEnum<"sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create">)[] | null | undefined;
+  type?:
+    | Models.OpenEnum<
+        | 'sub'
+        | 'resub'
+        | 'sub_gift'
+        | 'community_sub_gift'
+        | 'raid'
+        | 'charity_donation'
+        | 'bits'
+        | 'follow'
+        | 'points'
+        | 'twitch_shoutout'
+        | 'twitch_watch_streak'
+        | 'youtube_subscription'
+        | 'newSponsorEvent'
+        | 'superChatEvent'
+        | 'superStickerEvent'
+        | 'membershipGiftingEvent'
+        | 'memberMilestoneChatEvent'
+        | 'giftEvent'
+        | 'tiktok_gift'
+        | 'tiktok_follow'
+        | 'tiktok_share'
+        | 'tiktok_like'
+        | 'tiktok_superfan'
+        | 'tiktok_superfanbox'
+        | 'rumble_follow'
+        | 'rumble_sub'
+        | 'rumble_gift_subs'
+        | 'rumble_rant'
+        | 'rumble_raid'
+        | 'kick_sub'
+        | 'kick_resub'
+        | 'kick_gift_subs'
+        | 'kick_gift_sub'
+        | 'kick_follow'
+        | 'kick_kicks_gift'
+        | 'kick_reward_redemption'
+        | 'streamelements_tip'
+        | 'streamlabs_donation'
+        | 'kofi_donation'
+        | 'kofi_subscription'
+        | 'kofi_resub'
+        | 'kofi_shop_order'
+        | 'kofi_commission'
+        | 'fourthwall_donation'
+        | 'fourthwall_shop_order'
+        | 'fourthwall_gift_purchase'
+        | 'fourthwall_subscription'
+        | 'patreon_member_create'
+        | 'patreon_member_pledge_create'
+      >[]
+    | null
+    | undefined;
 }
 
 /**
@@ -142,7 +301,7 @@ export interface ChannelWidgetActivityAlertProviderTtsParams extends RequestOpti
   text: string;
   voice_id: string;
   widget_id: string | number;
-  format?: "wav" | "pcm" | undefined;
+  format?: 'wav' | 'pcm' | undefined;
   settings?: string | null | undefined;
 }
 
@@ -153,7 +312,10 @@ export interface ChannelWidgetActivityAlertProviderTtsParams extends RequestOpti
  */
 export interface ChannelWidgetSaveWidgetActivityCheckpointParams extends RequestOptions {
   /** The request body. */
-  body: Models.ActivityCheckpointRemainingSecondsPayload | Models.ActivityCheckpointValuePayload | Models.ActivityCheckpointOptionValuesPayload;
+  body:
+    | Models.ActivityCheckpointRemainingSecondsPayload
+    | Models.ActivityCheckpointValuePayload
+    | Models.ActivityCheckpointOptionValuesPayload;
   widget_id: string | number;
 }
 
@@ -163,7 +325,57 @@ export interface ChannelWidgetSaveWidgetActivityCheckpointParams extends Request
  * Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.
  */
 export interface ChannelWidgetGetWidgetChannelActivitiesParams extends RequestOptions {
-  type: (Models.OpenEnum<"sub" | "resub" | "sub_gift" | "community_sub_gift" | "raid" | "charity_donation" | "bits" | "follow" | "points" | "twitch_shoutout" | "twitch_watch_streak" | "youtube_subscription" | "newSponsorEvent" | "superChatEvent" | "superStickerEvent" | "membershipGiftingEvent" | "memberMilestoneChatEvent" | "giftEvent" | "tiktok_gift" | "tiktok_follow" | "tiktok_share" | "tiktok_like" | "tiktok_superfan" | "tiktok_superfanbox" | "rumble_follow" | "rumble_sub" | "rumble_gift_subs" | "rumble_rant" | "rumble_raid" | "kick_sub" | "kick_resub" | "kick_gift_subs" | "kick_gift_sub" | "kick_follow" | "kick_kicks_gift" | "kick_reward_redemption" | "streamelements_tip" | "streamlabs_donation" | "kofi_donation" | "kofi_subscription" | "kofi_resub" | "kofi_shop_order" | "kofi_commission" | "fourthwall_donation" | "fourthwall_shop_order" | "fourthwall_gift_purchase" | "fourthwall_subscription" | "patreon_member_create" | "patreon_member_pledge_create">)[];
+  type: Models.OpenEnum<
+    | 'sub'
+    | 'resub'
+    | 'sub_gift'
+    | 'community_sub_gift'
+    | 'raid'
+    | 'charity_donation'
+    | 'bits'
+    | 'follow'
+    | 'points'
+    | 'twitch_shoutout'
+    | 'twitch_watch_streak'
+    | 'youtube_subscription'
+    | 'newSponsorEvent'
+    | 'superChatEvent'
+    | 'superStickerEvent'
+    | 'membershipGiftingEvent'
+    | 'memberMilestoneChatEvent'
+    | 'giftEvent'
+    | 'tiktok_gift'
+    | 'tiktok_follow'
+    | 'tiktok_share'
+    | 'tiktok_like'
+    | 'tiktok_superfan'
+    | 'tiktok_superfanbox'
+    | 'rumble_follow'
+    | 'rumble_sub'
+    | 'rumble_gift_subs'
+    | 'rumble_rant'
+    | 'rumble_raid'
+    | 'kick_sub'
+    | 'kick_resub'
+    | 'kick_gift_subs'
+    | 'kick_gift_sub'
+    | 'kick_follow'
+    | 'kick_kicks_gift'
+    | 'kick_reward_redemption'
+    | 'streamelements_tip'
+    | 'streamlabs_donation'
+    | 'kofi_donation'
+    | 'kofi_subscription'
+    | 'kofi_resub'
+    | 'kofi_shop_order'
+    | 'kofi_commission'
+    | 'fourthwall_donation'
+    | 'fourthwall_shop_order'
+    | 'fourthwall_gift_purchase'
+    | 'fourthwall_subscription'
+    | 'patreon_member_create'
+    | 'patreon_member_pledge_create'
+  >[];
   widget_id: string | number;
   cursor?: string | null | undefined;
   gt_created_at?: Models.IsoDateTime | null | undefined;
@@ -182,7 +394,7 @@ export interface ChannelWidgetGetCustomWidgetChatMessagesParams extends RequestO
   widget_id: string | number;
   cursor?: string | null | undefined;
   per_page?: number | undefined;
-  type?: ("message" | "notice" | "status" | "automod")[] | null | undefined;
+  type?: ('message' | 'notice' | 'status' | 'automod')[] | null | undefined;
 }
 
 /**
@@ -303,10 +515,14 @@ export class ChannelWidget {
    *
    * @param params.body The request body.
    */
-  activityAlertControlAction(params: ChannelWidgetActivityAlertControlActionParams): Promise<Models.ActivityAlertControlState> {
+  activityAlertControlAction(
+    params: ChannelWidgetActivityAlertControlActionParams,
+  ): Promise<Models.ActivityAlertControlState> {
     return this.client.request<Models.ActivityAlertControlState>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/activity-alerts/action", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/activity-alerts/action', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -320,9 +536,12 @@ export class ChannelWidget {
    * Requires the `widget:write` scope.
    */
   replayActivityAlert(params: ChannelWidgetReplayActivityAlertParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/activity-alerts/replay/{activity_id}", { channel_id: params["channel_id"], activity_id: params["activity_id"] }),
+    return this.client.send({
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/activity-alerts/replay/{activity_id}', {
+        channel_id: params.channel_id,
+        activity_id: params.activity_id,
+      }),
       options: params,
     });
   }
@@ -334,10 +553,14 @@ export class ChannelWidget {
    *
    * Requires the `widget:read` scope.
    */
-  getActivityAlertControlState(params: ChannelWidgetGetActivityAlertControlStateParams): Promise<Models.ActivityAlertControlState> {
+  getActivityAlertControlState(
+    params: ChannelWidgetGetActivityAlertControlStateParams,
+  ): Promise<Models.ActivityAlertControlState> {
     return this.client.request<Models.ActivityAlertControlState>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/activity-alerts/state", { channel_id: params["channel_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/activity-alerts/state', {
+        channel_id: params.channel_id,
+      }),
       options: params,
     });
   }
@@ -352,10 +575,13 @@ export class ChannelWidget {
    * @param params.body The request body.
    */
   testActivityAlertWidget(params: ChannelWidgetTestActivityAlertWidgetParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/widgets/{widget_id}/test-alert", { channel_id: params["channel_id"], widget_id: params["widget_id"] }),
-      query: { activity_type: params["activity_type"] },
+    return this.client.send({
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/widgets/{widget_id}/test-alert', {
+        channel_id: params.channel_id,
+        widget_id: params.widget_id,
+      }),
+      query: { activity_type: params.activity_type },
       body: params.body,
       options: params,
     });
@@ -369,9 +595,12 @@ export class ChannelWidget {
    * Requires the `widget:write` scope.
    */
   deleteWidget(params: ChannelWidgetDeleteWidgetParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/widgets/{widget_id}", { channel_id: params["channel_id"], widget_id: params["widget_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/widgets/{widget_id}', {
+        channel_id: params.channel_id,
+        widget_id: params.widget_id,
+      }),
       options: params,
     });
   }
@@ -385,10 +614,37 @@ export class ChannelWidget {
    *
    * @param params.body The request body.
    */
-  patchWidget(params: ChannelWidgetPatchWidgetParams): Promise<Models.ChatWidget | Models.CustomWidget | Models.ActivityAlertWidget | Models.GoalWidget | Models.GiveawayWidget | Models.LeaderboardWidget | Models.StreamathonWidget | Models.VersusWidget | Models.ViewerCountWidget | Models.ValueWidget> {
-    return this.client.request<Models.ChatWidget | Models.CustomWidget | Models.ActivityAlertWidget | Models.GoalWidget | Models.GiveawayWidget | Models.LeaderboardWidget | Models.StreamathonWidget | Models.VersusWidget | Models.ViewerCountWidget | Models.ValueWidget>({
-      method: "PATCH",
-      path: expandPath("/channels/{channel_id}/widgets/{widget_id}", { channel_id: params["channel_id"], widget_id: params["widget_id"] }),
+  patchWidget(
+    params: ChannelWidgetPatchWidgetParams,
+  ): Promise<
+    | Models.ChatWidget
+    | Models.CustomWidget
+    | Models.ActivityAlertWidget
+    | Models.GoalWidget
+    | Models.GiveawayWidget
+    | Models.LeaderboardWidget
+    | Models.StreamathonWidget
+    | Models.VersusWidget
+    | Models.ViewerCountWidget
+    | Models.ValueWidget
+  > {
+    return this.client.request<
+      | Models.ChatWidget
+      | Models.CustomWidget
+      | Models.ActivityAlertWidget
+      | Models.GoalWidget
+      | Models.GiveawayWidget
+      | Models.LeaderboardWidget
+      | Models.StreamathonWidget
+      | Models.VersusWidget
+      | Models.ViewerCountWidget
+      | Models.ValueWidget
+    >({
+      method: 'PATCH',
+      path: expandPath('/channels/{channel_id}/widgets/{widget_id}', {
+        channel_id: params.channel_id,
+        widget_id: params.widget_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -403,10 +659,37 @@ export class ChannelWidget {
    *
    * @param params.body The request body.
    */
-  putWidget(params: ChannelWidgetPutWidgetParams): Promise<Models.ChatWidget | Models.CustomWidget | Models.ActivityAlertWidget | Models.GoalWidget | Models.GiveawayWidget | Models.LeaderboardWidget | Models.StreamathonWidget | Models.VersusWidget | Models.ViewerCountWidget | Models.ValueWidget> {
-    return this.client.request<Models.ChatWidget | Models.CustomWidget | Models.ActivityAlertWidget | Models.GoalWidget | Models.GiveawayWidget | Models.LeaderboardWidget | Models.StreamathonWidget | Models.VersusWidget | Models.ViewerCountWidget | Models.ValueWidget>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/widgets/{widget_id}", { channel_id: params["channel_id"], widget_id: params["widget_id"] }),
+  putWidget(
+    params: ChannelWidgetPutWidgetParams,
+  ): Promise<
+    | Models.ChatWidget
+    | Models.CustomWidget
+    | Models.ActivityAlertWidget
+    | Models.GoalWidget
+    | Models.GiveawayWidget
+    | Models.LeaderboardWidget
+    | Models.StreamathonWidget
+    | Models.VersusWidget
+    | Models.ViewerCountWidget
+    | Models.ValueWidget
+  > {
+    return this.client.request<
+      | Models.ChatWidget
+      | Models.CustomWidget
+      | Models.ActivityAlertWidget
+      | Models.GoalWidget
+      | Models.GiveawayWidget
+      | Models.LeaderboardWidget
+      | Models.StreamathonWidget
+      | Models.VersusWidget
+      | Models.ViewerCountWidget
+      | Models.ValueWidget
+    >({
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/widgets/{widget_id}', {
+        channel_id: params.channel_id,
+        widget_id: params.widget_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -421,9 +704,9 @@ export class ChannelWidget {
    */
   getWidgets(params: ChannelWidgetGetWidgetsParams): Promise<Models.PageCursorWidgetBase> {
     return this.client.request<Models.PageCursorWidgetBase>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/widgets", { channel_id: params["channel_id"] }),
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/widgets', { channel_id: params.channel_id }),
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -437,10 +720,34 @@ export class ChannelWidget {
    *
    * @param params.body The request body.
    */
-  createWidget(params: ChannelWidgetCreateWidgetParams): Promise<Models.ChatWidget | Models.CustomWidget | Models.ActivityAlertWidget | Models.GoalWidget | Models.GiveawayWidget | Models.LeaderboardWidget | Models.StreamathonWidget | Models.VersusWidget | Models.ViewerCountWidget | Models.ValueWidget> {
-    return this.client.request<Models.ChatWidget | Models.CustomWidget | Models.ActivityAlertWidget | Models.GoalWidget | Models.GiveawayWidget | Models.LeaderboardWidget | Models.StreamathonWidget | Models.VersusWidget | Models.ViewerCountWidget | Models.ValueWidget>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/widgets", { channel_id: params["channel_id"] }),
+  createWidget(
+    params: ChannelWidgetCreateWidgetParams,
+  ): Promise<
+    | Models.ChatWidget
+    | Models.CustomWidget
+    | Models.ActivityAlertWidget
+    | Models.GoalWidget
+    | Models.GiveawayWidget
+    | Models.LeaderboardWidget
+    | Models.StreamathonWidget
+    | Models.VersusWidget
+    | Models.ViewerCountWidget
+    | Models.ValueWidget
+  > {
+    return this.client.request<
+      | Models.ChatWidget
+      | Models.CustomWidget
+      | Models.ActivityAlertWidget
+      | Models.GoalWidget
+      | Models.GiveawayWidget
+      | Models.LeaderboardWidget
+      | Models.StreamathonWidget
+      | Models.VersusWidget
+      | Models.ViewerCountWidget
+      | Models.ValueWidget
+    >({
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/widgets', { channel_id: params.channel_id }),
       body: params.body,
       options: params,
     });
@@ -451,11 +758,19 @@ export class ChannelWidget {
    *
    * `GET /api/2/widgets/{widget_id}/activities`
    */
-  getCustomWidgetActivities(params: ChannelWidgetGetCustomWidgetActivitiesParams): Promise<Models.PageCursorActivity> {
+  getCustomWidgetActivities(
+    params: ChannelWidgetGetCustomWidgetActivitiesParams,
+  ): Promise<Models.PageCursorActivity> {
     return this.client.request<Models.PageCursorActivity>({
-      method: "GET",
-      path: expandPath("/widgets/{widget_id}/activities", { widget_id: params["widget_id"] }),
-      query: { type: params["type"], activity_group: params["activity_group"], contribution_group: params["contribution_group"], cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/widgets/{widget_id}/activities', { widget_id: params.widget_id }),
+      query: {
+        type: params.type,
+        activity_group: params.activity_group,
+        contribution_group: params.contribution_group,
+        cursor: params.cursor,
+        per_page: params.per_page,
+      },
       options: params,
     });
   }
@@ -465,10 +780,14 @@ export class ChannelWidget {
    *
    * `GET /api/2/widgets/{widget_id}/activity-alert-control-state`
    */
-  getWidgetActivityAlertControlState(params: ChannelWidgetGetWidgetActivityAlertControlStateParams): Promise<Models.ActivityAlertControlState> {
+  getWidgetActivityAlertControlState(
+    params: ChannelWidgetGetWidgetActivityAlertControlStateParams,
+  ): Promise<Models.ActivityAlertControlState> {
     return this.client.request<Models.ActivityAlertControlState>({
-      method: "GET",
-      path: expandPath("/widgets/{widget_id}/activity-alert-control-state", { widget_id: params["widget_id"] }),
+      method: 'GET',
+      path: expandPath('/widgets/{widget_id}/activity-alert-control-state', {
+        widget_id: params.widget_id,
+      }),
       options: params,
     });
   }
@@ -480,9 +799,17 @@ export class ChannelWidget {
    */
   activityAlertProviderTts(params: ChannelWidgetActivityAlertProviderTtsParams): Promise<unknown> {
     return this.client.request<unknown>({
-      method: "GET",
-      path: expandPath("/widgets/{widget_id}/activity-alert-provider-tts", { widget_id: params["widget_id"] }),
-      query: { channel_provider_id: params["channel_provider_id"], text: params["text"], voice_id: params["voice_id"], settings: params["settings"], format: params["format"] },
+      method: 'GET',
+      path: expandPath('/widgets/{widget_id}/activity-alert-provider-tts', {
+        widget_id: params.widget_id,
+      }),
+      query: {
+        channel_provider_id: params.channel_provider_id,
+        text: params.text,
+        voice_id: params.voice_id,
+        settings: params.settings,
+        format: params.format,
+      },
       options: params,
     });
   }
@@ -494,10 +821,12 @@ export class ChannelWidget {
    *
    * @param params.body The request body.
    */
-  saveWidgetActivityCheckpoint(params: ChannelWidgetSaveWidgetActivityCheckpointParams): Promise<void> {
-    return this.client.request<void>({
-      method: "PUT",
-      path: expandPath("/widgets/{widget_id}/activity-checkpoint", { widget_id: params["widget_id"] }),
+  saveWidgetActivityCheckpoint(
+    params: ChannelWidgetSaveWidgetActivityCheckpointParams,
+  ): Promise<void> {
+    return this.client.send({
+      method: 'PUT',
+      path: expandPath('/widgets/{widget_id}/activity-checkpoint', { widget_id: params.widget_id }),
       body: params.body,
       options: params,
     });
@@ -508,11 +837,21 @@ export class ChannelWidget {
    *
    * `GET /api/2/widgets/{widget_id}/channel-activities`
    */
-  getWidgetChannelActivities(params: ChannelWidgetGetWidgetChannelActivitiesParams): Promise<Models.PageCursorActivity> {
+  getWidgetChannelActivities(
+    params: ChannelWidgetGetWidgetChannelActivitiesParams,
+  ): Promise<Models.PageCursorActivity> {
     return this.client.request<Models.PageCursorActivity>({
-      method: "GET",
-      path: expandPath("/widgets/{widget_id}/channel-activities", { widget_id: params["widget_id"] }),
-      query: { type: params["type"], gt_created_at: params["gt_created_at"], gte_created_at: params["gte_created_at"], lt_created_at: params["lt_created_at"], lte_created_at: params["lte_created_at"], cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/widgets/{widget_id}/channel-activities', { widget_id: params.widget_id }),
+      query: {
+        type: params.type,
+        gt_created_at: params.gt_created_at,
+        gte_created_at: params.gte_created_at,
+        lt_created_at: params.lt_created_at,
+        lte_created_at: params.lte_created_at,
+        cursor: params.cursor,
+        per_page: params.per_page,
+      },
       options: params,
     });
   }
@@ -522,11 +861,13 @@ export class ChannelWidget {
    *
    * `GET /api/2/widgets/{widget_id}/chat-messages`
    */
-  getCustomWidgetChatMessages(params: ChannelWidgetGetCustomWidgetChatMessagesParams): Promise<Models.PageCursorChatMessage> {
+  getCustomWidgetChatMessages(
+    params: ChannelWidgetGetCustomWidgetChatMessagesParams,
+  ): Promise<Models.PageCursorChatMessage> {
     return this.client.request<Models.PageCursorChatMessage>({
-      method: "GET",
-      path: expandPath("/widgets/{widget_id}/chat-messages", { widget_id: params["widget_id"] }),
-      query: { type: params["type"], cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/widgets/{widget_id}/chat-messages', { widget_id: params.widget_id }),
+      query: { type: params.type, cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -536,10 +877,14 @@ export class ChannelWidget {
    *
    * `GET /api/2/widgets/{widget_id}/current-channel-stream`
    */
-  getWidgetCurrentChannelStream(params: ChannelWidgetGetWidgetCurrentChannelStreamParams): Promise<Models.WidgetActivityPeriodStream | null> {
+  getWidgetCurrentChannelStream(
+    params: ChannelWidgetGetWidgetCurrentChannelStreamParams,
+  ): Promise<Models.WidgetActivityPeriodStream | null> {
     return this.client.request<Models.WidgetActivityPeriodStream | null>({
-      method: "GET",
-      path: expandPath("/widgets/{widget_id}/current-channel-stream", { widget_id: params["widget_id"] }),
+      method: 'GET',
+      path: expandPath('/widgets/{widget_id}/current-channel-stream', {
+        widget_id: params.widget_id,
+      }),
       options: params,
     });
   }
@@ -549,11 +894,13 @@ export class ChannelWidget {
    *
    * `GET /api/2/widgets/{widget_id}/giveaway`
    */
-  getWidgetGiveaway(params: ChannelWidgetGetWidgetGiveawayParams): Promise<Models.GiveawayWidgetSnapshot> {
+  getWidgetGiveaway(
+    params: ChannelWidgetGetWidgetGiveawayParams,
+  ): Promise<Models.GiveawayWidgetSnapshot> {
     return this.client.request<Models.GiveawayWidgetSnapshot>({
-      method: "GET",
-      path: expandPath("/widgets/{widget_id}/giveaway", { widget_id: params["widget_id"] }),
-      query: { giveaway_id: params["giveaway_id"] },
+      method: 'GET',
+      path: expandPath('/widgets/{widget_id}/giveaway', { widget_id: params.widget_id }),
+      query: { giveaway_id: params.giveaway_id },
       options: params,
     });
   }
@@ -565,10 +912,12 @@ export class ChannelWidget {
    *
    * @param params.body The request body.
    */
-  deleteCustomWidgetKvValue(params: ChannelWidgetDeleteCustomWidgetKvValueParams): Promise<{ [key: string]: unknown }> {
+  deleteCustomWidgetKvValue(
+    params: ChannelWidgetDeleteCustomWidgetKvValueParams,
+  ): Promise<{ [key: string]: unknown }> {
     return this.client.request<{ [key: string]: unknown }>({
-      method: "POST",
-      path: expandPath("/widgets/{widget_id}/kv/delete", { widget_id: params["widget_id"] }),
+      method: 'POST',
+      path: expandPath('/widgets/{widget_id}/kv/delete', { widget_id: params.widget_id }),
       body: params.body,
       options: params,
     });
@@ -581,10 +930,12 @@ export class ChannelWidget {
    *
    * @param params.body The request body.
    */
-  getCustomWidgetKvValue(params: ChannelWidgetGetCustomWidgetKvValueParams): Promise<Models.KvValueState> {
+  getCustomWidgetKvValue(
+    params: ChannelWidgetGetCustomWidgetKvValueParams,
+  ): Promise<Models.KvValueState> {
     return this.client.request<Models.KvValueState>({
-      method: "POST",
-      path: expandPath("/widgets/{widget_id}/kv/get", { widget_id: params["widget_id"] }),
+      method: 'POST',
+      path: expandPath('/widgets/{widget_id}/kv/get', { widget_id: params.widget_id }),
       body: params.body,
       options: params,
     });
@@ -597,10 +948,12 @@ export class ChannelWidget {
    *
    * @param params.body The request body.
    */
-  incrementCustomWidgetKvValue(params: ChannelWidgetIncrementCustomWidgetKvValueParams): Promise<{ [key: string]: unknown }> {
+  incrementCustomWidgetKvValue(
+    params: ChannelWidgetIncrementCustomWidgetKvValueParams,
+  ): Promise<{ [key: string]: unknown }> {
     return this.client.request<{ [key: string]: unknown }>({
-      method: "POST",
-      path: expandPath("/widgets/{widget_id}/kv/inc", { widget_id: params["widget_id"] }),
+      method: 'POST',
+      path: expandPath('/widgets/{widget_id}/kv/inc', { widget_id: params.widget_id }),
       body: params.body,
       options: params,
     });
@@ -613,10 +966,12 @@ export class ChannelWidget {
    *
    * @param params.body The request body.
    */
-  setCustomWidgetKvValue(params: ChannelWidgetSetCustomWidgetKvValueParams): Promise<{ [key: string]: unknown }> {
+  setCustomWidgetKvValue(
+    params: ChannelWidgetSetCustomWidgetKvValueParams,
+  ): Promise<{ [key: string]: unknown }> {
     return this.client.request<{ [key: string]: unknown }>({
-      method: "POST",
-      path: expandPath("/widgets/{widget_id}/kv/set", { widget_id: params["widget_id"] }),
+      method: 'POST',
+      path: expandPath('/widgets/{widget_id}/kv/set', { widget_id: params.widget_id }),
       body: params.body,
       options: params,
     });
@@ -628,9 +983,9 @@ export class ChannelWidget {
    * `POST /api/2/widgets/{widget_id}/last-used`
    */
   markWidgetUsed(params: ChannelWidgetMarkWidgetUsedParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: expandPath("/widgets/{widget_id}/last-used", { widget_id: params["widget_id"] }),
+    return this.client.send({
+      method: 'POST',
+      path: expandPath('/widgets/{widget_id}/last-used', { widget_id: params.widget_id }),
       options: params,
     });
   }
@@ -644,10 +999,12 @@ export class ChannelWidget {
    *
    * @param params.body The request body.
    */
-  streamathonWidgetAction(params: ChannelWidgetStreamathonWidgetActionParams): Promise<Models.StreamathonWidget> {
+  streamathonWidgetAction(
+    params: ChannelWidgetStreamathonWidgetActionParams,
+  ): Promise<Models.StreamathonWidget> {
     return this.client.request<Models.StreamathonWidget>({
-      method: "POST",
-      path: expandPath("/widgets/{widget_id}/streamathon/action", { widget_id: params["widget_id"] }),
+      method: 'POST',
+      path: expandPath('/widgets/{widget_id}/streamathon/action', { widget_id: params.widget_id }),
       body: params.body,
       options: params,
     });
@@ -660,8 +1017,8 @@ export class ChannelWidget {
    */
   getWidgetValue(params: ChannelWidgetGetWidgetValueParams): Promise<Models.KvValueState> {
     return this.client.request<Models.KvValueState>({
-      method: "GET",
-      path: expandPath("/widgets/{widget_id}/value", { widget_id: params["widget_id"] }),
+      method: 'GET',
+      path: expandPath('/widgets/{widget_id}/value', { widget_id: params.widget_id }),
       options: params,
     });
   }
@@ -677,10 +1034,34 @@ export class ChannelWidget {
    * widget: anyone holding the id can read it. Treat one like a secret — do not put it in a page
    * that is served to viewers if the widget's contents are not meant for them.
    */
-  getWidget(params: ChannelWidgetGetWidgetParams): Promise<Models.ChatWidget | Models.CustomWidget | Models.ActivityAlertWidget | Models.GoalWidget | Models.GiveawayWidget | Models.LeaderboardWidget | Models.StreamathonWidget | Models.VersusWidget | Models.ViewerCountWidget | Models.ValueWidget> {
-    return this.client.request<Models.ChatWidget | Models.CustomWidget | Models.ActivityAlertWidget | Models.GoalWidget | Models.GiveawayWidget | Models.LeaderboardWidget | Models.StreamathonWidget | Models.VersusWidget | Models.ViewerCountWidget | Models.ValueWidget>({
-      method: "GET",
-      path: expandPath("/widgets/{widget_id}", { widget_id: params["widget_id"] }),
+  getWidget(
+    params: ChannelWidgetGetWidgetParams,
+  ): Promise<
+    | Models.ChatWidget
+    | Models.CustomWidget
+    | Models.ActivityAlertWidget
+    | Models.GoalWidget
+    | Models.GiveawayWidget
+    | Models.LeaderboardWidget
+    | Models.StreamathonWidget
+    | Models.VersusWidget
+    | Models.ViewerCountWidget
+    | Models.ValueWidget
+  > {
+    return this.client.request<
+      | Models.ChatWidget
+      | Models.CustomWidget
+      | Models.ActivityAlertWidget
+      | Models.GoalWidget
+      | Models.GiveawayWidget
+      | Models.LeaderboardWidget
+      | Models.StreamathonWidget
+      | Models.VersusWidget
+      | Models.ViewerCountWidget
+      | Models.ValueWidget
+    >({
+      method: 'GET',
+      path: expandPath('/widgets/{widget_id}', { widget_id: params.widget_id }),
       options: params,
     });
   }

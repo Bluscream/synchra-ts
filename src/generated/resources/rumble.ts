@@ -38,10 +38,14 @@ export class Rumble {
    *
    * @param params.body The request body.
    */
-  registerRumbleChannelProvider(params: RumbleRegisterRumbleChannelProviderParams): Promise<Models.ChannelProviderPublic> {
+  registerRumbleChannelProvider(
+    params: RumbleRegisterRumbleChannelProviderParams,
+  ): Promise<Models.ChannelProviderPublic> {
     return this.client.request<Models.ChannelProviderPublic>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/register-provider/rumble", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/register-provider/rumble', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });

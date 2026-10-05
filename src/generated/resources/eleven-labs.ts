@@ -38,10 +38,14 @@ export class ElevenLabs {
    *
    * @param params.body The request body.
    */
-  registerElevenlabsChannelProvider(params: ElevenLabsRegisterElevenlabsChannelProviderParams): Promise<Models.ChannelProviderPublic> {
+  registerElevenlabsChannelProvider(
+    params: ElevenLabsRegisterElevenlabsChannelProviderParams,
+  ): Promise<Models.ChannelProviderPublic> {
     return this.client.request<Models.ChannelProviderPublic>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/register-provider/elevenlabs", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/register-provider/elevenlabs', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });

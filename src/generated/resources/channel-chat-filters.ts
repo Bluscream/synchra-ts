@@ -49,7 +49,14 @@ export interface ChannelChatFiltersGetChannelFilterParams extends RequestOptions
  */
 export interface ChannelChatFiltersUpdateChannelFilterParams extends RequestOptions {
   /** The request body. */
-  body: Models.ChatFilterBannedTermsUpdate | Models.ChatFilterCapsUpdate | Models.ChatFilterEmoteUpdate | Models.ChatFilterLinkUpdate | Models.ChatFilterNonLatinUpdate | Models.ChatFilterParagraphUpdate | Models.ChatFilterSymbolUpdate;
+  body:
+    | Models.ChatFilterBannedTermsUpdate
+    | Models.ChatFilterCapsUpdate
+    | Models.ChatFilterEmoteUpdate
+    | Models.ChatFilterLinkUpdate
+    | Models.ChatFilterNonLatinUpdate
+    | Models.ChatFilterParagraphUpdate
+    | Models.ChatFilterSymbolUpdate;
   channel_id: string | number;
   filter_id: string | number;
 }
@@ -72,7 +79,14 @@ export interface ChannelChatFiltersGetChannelFiltersParams extends RequestOption
  */
 export interface ChannelChatFiltersCreateChannelFilterParams extends RequestOptions {
   /** The request body. */
-  body: Models.ChatFilterBannedTermsCreate | Models.ChatFilterCapsCreate | Models.ChatFilterEmoteCreate | Models.ChatFilterLinkCreate | Models.ChatFilterNonLatinCreate | Models.ChatFilterParagraphCreate | Models.ChatFilterSymbolCreate;
+  body:
+    | Models.ChatFilterBannedTermsCreate
+    | Models.ChatFilterCapsCreate
+    | Models.ChatFilterEmoteCreate
+    | Models.ChatFilterLinkCreate
+    | Models.ChatFilterNonLatinCreate
+    | Models.ChatFilterParagraphCreate
+    | Models.ChatFilterSymbolCreate;
   channel_id: string | number;
 }
 
@@ -93,10 +107,15 @@ export class ChannelChatFilters {
    *
    * @param params.body The request body.
    */
-  testBannedTerms(params: ChannelChatFiltersTestBannedTermsParams): Promise<Models.FilterMatchResult> {
+  testBannedTerms(
+    params: ChannelChatFiltersTestBannedTermsParams,
+  ): Promise<Models.FilterMatchResult> {
     return this.client.request<Models.FilterMatchResult>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/chat-filters/{filter_id}/banned-terms/test", { channel_id: params["channel_id"], filter_id: params["filter_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/chat-filters/{filter_id}/banned-terms/test', {
+        channel_id: params.channel_id,
+        filter_id: params.filter_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -110,9 +129,12 @@ export class ChannelChatFilters {
    * Requires the `chat_filter:write` scope.
    */
   deleteChannelFilter(params: ChannelChatFiltersDeleteChannelFilterParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/chat-filters/{filter_id}", { channel_id: params["channel_id"], filter_id: params["filter_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/chat-filters/{filter_id}', {
+        channel_id: params.channel_id,
+        filter_id: params.filter_id,
+      }),
       options: params,
     });
   }
@@ -124,10 +146,31 @@ export class ChannelChatFilters {
    *
    * Requires the `chat_filter:read` scope.
    */
-  getChannelFilter(params: ChannelChatFiltersGetChannelFilterParams): Promise<Models.ChatFilterBannedTerms | Models.ChatFilterCaps | Models.ChatFilterEmote | Models.ChatFilterLink | Models.ChatFilterNonLatin | Models.ChatFilterParagraph | Models.ChatFilterSymbol> {
-    return this.client.request<Models.ChatFilterBannedTerms | Models.ChatFilterCaps | Models.ChatFilterEmote | Models.ChatFilterLink | Models.ChatFilterNonLatin | Models.ChatFilterParagraph | Models.ChatFilterSymbol>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/chat-filters/{filter_id}", { channel_id: params["channel_id"], filter_id: params["filter_id"] }),
+  getChannelFilter(
+    params: ChannelChatFiltersGetChannelFilterParams,
+  ): Promise<
+    | Models.ChatFilterBannedTerms
+    | Models.ChatFilterCaps
+    | Models.ChatFilterEmote
+    | Models.ChatFilterLink
+    | Models.ChatFilterNonLatin
+    | Models.ChatFilterParagraph
+    | Models.ChatFilterSymbol
+  > {
+    return this.client.request<
+      | Models.ChatFilterBannedTerms
+      | Models.ChatFilterCaps
+      | Models.ChatFilterEmote
+      | Models.ChatFilterLink
+      | Models.ChatFilterNonLatin
+      | Models.ChatFilterParagraph
+      | Models.ChatFilterSymbol
+    >({
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/chat-filters/{filter_id}', {
+        channel_id: params.channel_id,
+        filter_id: params.filter_id,
+      }),
       options: params,
     });
   }
@@ -141,10 +184,31 @@ export class ChannelChatFilters {
    *
    * @param params.body The request body.
    */
-  updateChannelFilter(params: ChannelChatFiltersUpdateChannelFilterParams): Promise<Models.ChatFilterBannedTerms | Models.ChatFilterCaps | Models.ChatFilterEmote | Models.ChatFilterLink | Models.ChatFilterNonLatin | Models.ChatFilterParagraph | Models.ChatFilterSymbol> {
-    return this.client.request<Models.ChatFilterBannedTerms | Models.ChatFilterCaps | Models.ChatFilterEmote | Models.ChatFilterLink | Models.ChatFilterNonLatin | Models.ChatFilterParagraph | Models.ChatFilterSymbol>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/chat-filters/{filter_id}", { channel_id: params["channel_id"], filter_id: params["filter_id"] }),
+  updateChannelFilter(
+    params: ChannelChatFiltersUpdateChannelFilterParams,
+  ): Promise<
+    | Models.ChatFilterBannedTerms
+    | Models.ChatFilterCaps
+    | Models.ChatFilterEmote
+    | Models.ChatFilterLink
+    | Models.ChatFilterNonLatin
+    | Models.ChatFilterParagraph
+    | Models.ChatFilterSymbol
+  > {
+    return this.client.request<
+      | Models.ChatFilterBannedTerms
+      | Models.ChatFilterCaps
+      | Models.ChatFilterEmote
+      | Models.ChatFilterLink
+      | Models.ChatFilterNonLatin
+      | Models.ChatFilterParagraph
+      | Models.ChatFilterSymbol
+    >({
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/chat-filters/{filter_id}', {
+        channel_id: params.channel_id,
+        filter_id: params.filter_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -157,11 +221,13 @@ export class ChannelChatFilters {
    *
    * Requires the `chat_filter:read` scope.
    */
-  getChannelFilters(params: ChannelChatFiltersGetChannelFiltersParams): Promise<Models.PageCursorChatFilterBase> {
+  getChannelFilters(
+    params: ChannelChatFiltersGetChannelFiltersParams,
+  ): Promise<Models.PageCursorChatFilterBase> {
     return this.client.request<Models.PageCursorChatFilterBase>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/chat-filters", { channel_id: params["channel_id"] }),
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/chat-filters', { channel_id: params.channel_id }),
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -175,10 +241,28 @@ export class ChannelChatFilters {
    *
    * @param params.body The request body.
    */
-  createChannelFilter(params: ChannelChatFiltersCreateChannelFilterParams): Promise<Models.ChatFilterBannedTerms | Models.ChatFilterCaps | Models.ChatFilterEmote | Models.ChatFilterLink | Models.ChatFilterNonLatin | Models.ChatFilterParagraph | Models.ChatFilterSymbol> {
-    return this.client.request<Models.ChatFilterBannedTerms | Models.ChatFilterCaps | Models.ChatFilterEmote | Models.ChatFilterLink | Models.ChatFilterNonLatin | Models.ChatFilterParagraph | Models.ChatFilterSymbol>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/chat-filters", { channel_id: params["channel_id"] }),
+  createChannelFilter(
+    params: ChannelChatFiltersCreateChannelFilterParams,
+  ): Promise<
+    | Models.ChatFilterBannedTerms
+    | Models.ChatFilterCaps
+    | Models.ChatFilterEmote
+    | Models.ChatFilterLink
+    | Models.ChatFilterNonLatin
+    | Models.ChatFilterParagraph
+    | Models.ChatFilterSymbol
+  > {
+    return this.client.request<
+      | Models.ChatFilterBannedTerms
+      | Models.ChatFilterCaps
+      | Models.ChatFilterEmote
+      | Models.ChatFilterLink
+      | Models.ChatFilterNonLatin
+      | Models.ChatFilterParagraph
+      | Models.ChatFilterSymbol
+    >({
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/chat-filters', { channel_id: params.channel_id }),
       body: params.body,
       options: params,
     });

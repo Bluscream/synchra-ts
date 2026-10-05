@@ -70,7 +70,7 @@ export interface CustomScriptsGetCustomScriptKvEntriesParams extends RequestOpti
 export interface CustomScriptsDeleteCustomScriptKvValueParams extends RequestOptions {
   /** The request body. */
   body: Models.KvDeleteRequest;
-  "x-kv-token"?: string | null | undefined;
+  'x-kv-token'?: string | null | undefined;
 }
 
 /**
@@ -81,7 +81,7 @@ export interface CustomScriptsDeleteCustomScriptKvValueParams extends RequestOpt
 export interface CustomScriptsGetCustomScriptKvValueParams extends RequestOptions {
   /** The request body. */
   body: Models.KvGetRequest;
-  "x-kv-token"?: string | null | undefined;
+  'x-kv-token'?: string | null | undefined;
 }
 
 /**
@@ -92,7 +92,7 @@ export interface CustomScriptsGetCustomScriptKvValueParams extends RequestOption
 export interface CustomScriptsIncrementCustomScriptKvValueParams extends RequestOptions {
   /** The request body. */
   body: Models.KvIncRequest;
-  "x-kv-token"?: string | null | undefined;
+  'x-kv-token'?: string | null | undefined;
 }
 
 /**
@@ -103,7 +103,7 @@ export interface CustomScriptsIncrementCustomScriptKvValueParams extends Request
 export interface CustomScriptsSetCustomScriptKvValueParams extends RequestOptions {
   /** The request body. */
   body: Models.KvSetRequest;
-  "x-kv-token"?: string | null | undefined;
+  'x-kv-token'?: string | null | undefined;
 }
 
 /**
@@ -119,10 +119,16 @@ export class CustomScripts {
    *
    * `GET /api/2/channels/{channel_id}/custom-scripts/{owner_module}/{owner_uuid}/logs`
    */
-  getCustomScriptLogs(params: CustomScriptsGetCustomScriptLogsParams): Promise<Models.CustomScriptLogRecord[]> {
+  getCustomScriptLogs(
+    params: CustomScriptsGetCustomScriptLogsParams,
+  ): Promise<Models.CustomScriptLogRecord[]> {
     return this.client.request<Models.CustomScriptLogRecord[]>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/custom-scripts/{owner_module}/{owner_uuid}/logs", { channel_id: params["channel_id"], owner_module: params["owner_module"], owner_uuid: params["owner_uuid"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/custom-scripts/{owner_module}/{owner_uuid}/logs', {
+        channel_id: params.channel_id,
+        owner_module: params.owner_module,
+        owner_uuid: params.owner_uuid,
+      }),
       options: params,
     });
   }
@@ -132,10 +138,14 @@ export class CustomScripts {
    *
    * `GET /api/2/channels/{channel_id}/custom-scripts/kv/state`
    */
-  getCustomScriptKvStorageState(params: CustomScriptsGetCustomScriptKvStorageStateParams): Promise<Models.KvStorageState> {
+  getCustomScriptKvStorageState(
+    params: CustomScriptsGetCustomScriptKvStorageStateParams,
+  ): Promise<Models.KvStorageState> {
     return this.client.request<Models.KvStorageState>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/custom-scripts/kv/state", { channel_id: params["channel_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/custom-scripts/kv/state', {
+        channel_id: params.channel_id,
+      }),
       options: params,
     });
   }
@@ -145,11 +155,15 @@ export class CustomScripts {
    *
    * `GET /api/2/channels/{channel_id}/custom-scripts/kv/value`
    */
-  getCustomScriptKvValueForChannel(params: CustomScriptsGetCustomScriptKvValueForChannelParams): Promise<Models.KvValueState> {
+  getCustomScriptKvValueForChannel(
+    params: CustomScriptsGetCustomScriptKvValueForChannelParams,
+  ): Promise<Models.KvValueState> {
     return this.client.request<Models.KvValueState>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/custom-scripts/kv/value", { channel_id: params["channel_id"] }),
-      query: { key: params["key"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/custom-scripts/kv/value', {
+        channel_id: params.channel_id,
+      }),
+      query: { key: params.key },
       options: params,
     });
   }
@@ -161,10 +175,14 @@ export class CustomScripts {
    *
    * @param params.body The request body.
    */
-  deleteCustomScriptKvEntries(params: CustomScriptsDeleteCustomScriptKvEntriesParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/custom-scripts/kv", { channel_id: params["channel_id"] }),
+  deleteCustomScriptKvEntries(
+    params: CustomScriptsDeleteCustomScriptKvEntriesParams,
+  ): Promise<void> {
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/custom-scripts/kv', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -175,11 +193,15 @@ export class CustomScripts {
    *
    * `GET /api/2/channels/{channel_id}/custom-scripts/kv`
    */
-  getCustomScriptKvEntries(params: CustomScriptsGetCustomScriptKvEntriesParams): Promise<Models.PageCursorKvEntry> {
+  getCustomScriptKvEntries(
+    params: CustomScriptsGetCustomScriptKvEntriesParams,
+  ): Promise<Models.PageCursorKvEntry> {
     return this.client.request<Models.PageCursorKvEntry>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/custom-scripts/kv", { channel_id: params["channel_id"] }),
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/custom-scripts/kv', {
+        channel_id: params.channel_id,
+      }),
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -191,11 +213,13 @@ export class CustomScripts {
    *
    * @param params.body The request body.
    */
-  deleteCustomScriptKvValue(params: CustomScriptsDeleteCustomScriptKvValueParams): Promise<{ [key: string]: unknown }> {
+  deleteCustomScriptKvValue(
+    params: CustomScriptsDeleteCustomScriptKvValueParams,
+  ): Promise<{ [key: string]: unknown }> {
     return this.client.request<{ [key: string]: unknown }>({
-      method: "POST",
-      path: "/custom-scripts/kv/delete",
-      headers: { "x-kv-token": params["x-kv-token"] },
+      method: 'POST',
+      path: '/custom-scripts/kv/delete',
+      headers: { 'x-kv-token': params['x-kv-token'] },
       body: params.body,
       options: params,
     });
@@ -208,11 +232,13 @@ export class CustomScripts {
    *
    * @param params.body The request body.
    */
-  getCustomScriptKvValue(params: CustomScriptsGetCustomScriptKvValueParams): Promise<{ [key: string]: unknown }> {
+  getCustomScriptKvValue(
+    params: CustomScriptsGetCustomScriptKvValueParams,
+  ): Promise<{ [key: string]: unknown }> {
     return this.client.request<{ [key: string]: unknown }>({
-      method: "POST",
-      path: "/custom-scripts/kv/get",
-      headers: { "x-kv-token": params["x-kv-token"] },
+      method: 'POST',
+      path: '/custom-scripts/kv/get',
+      headers: { 'x-kv-token': params['x-kv-token'] },
       body: params.body,
       options: params,
     });
@@ -225,11 +251,13 @@ export class CustomScripts {
    *
    * @param params.body The request body.
    */
-  incrementCustomScriptKvValue(params: CustomScriptsIncrementCustomScriptKvValueParams): Promise<{ [key: string]: unknown }> {
+  incrementCustomScriptKvValue(
+    params: CustomScriptsIncrementCustomScriptKvValueParams,
+  ): Promise<{ [key: string]: unknown }> {
     return this.client.request<{ [key: string]: unknown }>({
-      method: "POST",
-      path: "/custom-scripts/kv/inc",
-      headers: { "x-kv-token": params["x-kv-token"] },
+      method: 'POST',
+      path: '/custom-scripts/kv/inc',
+      headers: { 'x-kv-token': params['x-kv-token'] },
       body: params.body,
       options: params,
     });
@@ -242,11 +270,13 @@ export class CustomScripts {
    *
    * @param params.body The request body.
    */
-  setCustomScriptKvValue(params: CustomScriptsSetCustomScriptKvValueParams): Promise<{ [key: string]: unknown }> {
+  setCustomScriptKvValue(
+    params: CustomScriptsSetCustomScriptKvValueParams,
+  ): Promise<{ [key: string]: unknown }> {
     return this.client.request<{ [key: string]: unknown }>({
-      method: "POST",
-      path: "/custom-scripts/kv/set",
-      headers: { "x-kv-token": params["x-kv-token"] },
+      method: 'POST',
+      path: '/custom-scripts/kv/set',
+      headers: { 'x-kv-token': params['x-kv-token'] },
       body: params.body,
       options: params,
     });

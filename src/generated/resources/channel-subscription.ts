@@ -48,8 +48,7 @@ export interface ChannelSubscriptionGetSubscriptionEventsParams extends RequestO
  *
  * Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.
  */
-export interface ChannelSubscriptionGetAdminSubscriptionCountParams extends RequestOptions {
-}
+export type ChannelSubscriptionGetAdminSubscriptionCountParams = RequestOptions;
 
 /**
  * Options for `POST /api/2/channels/{channel_id}/subscription/change-session`.
@@ -97,7 +96,7 @@ export interface ChannelSubscriptionCreateChannelSubscriptionPortalSessionParams
  * Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.
  */
 export interface ChannelSubscriptionStripeSubscriptionEventParams extends RequestOptions {
-  "Stripe-Signature": string;
+  'Stripe-Signature': string;
 }
 
 /**
@@ -105,8 +104,7 @@ export interface ChannelSubscriptionStripeSubscriptionEventParams extends Reques
  *
  * Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.
  */
-export interface ChannelSubscriptionGetSubscriptionPlansParams extends RequestOptions {
-}
+export type ChannelSubscriptionGetSubscriptionPlansParams = RequestOptions;
 
 /**
  * The `Channel Subscription` endpoints.
@@ -121,10 +119,12 @@ export class ChannelSubscription {
    *
    * `GET /api/2/admin/channels/{channel_id}/plan`
    */
-  getAdminChannelPlan(params: ChannelSubscriptionGetAdminChannelPlanParams): Promise<Models.ChannelPlanSettings> {
+  getAdminChannelPlan(
+    params: ChannelSubscriptionGetAdminChannelPlanParams,
+  ): Promise<Models.ChannelPlanSettings> {
     return this.client.request<Models.ChannelPlanSettings>({
-      method: "GET",
-      path: expandPath("/admin/channels/{channel_id}/plan", { channel_id: params["channel_id"] }),
+      method: 'GET',
+      path: expandPath('/admin/channels/{channel_id}/plan', { channel_id: params.channel_id }),
       options: params,
     });
   }
@@ -136,10 +136,12 @@ export class ChannelSubscription {
    *
    * @param params.body The request body.
    */
-  setAdminChannelPlan(params: ChannelSubscriptionSetAdminChannelPlanParams): Promise<Models.ChannelPlanSettings> {
+  setAdminChannelPlan(
+    params: ChannelSubscriptionSetAdminChannelPlanParams,
+  ): Promise<Models.ChannelPlanSettings> {
     return this.client.request<Models.ChannelPlanSettings>({
-      method: "PUT",
-      path: expandPath("/admin/channels/{channel_id}/plan", { channel_id: params["channel_id"] }),
+      method: 'PUT',
+      path: expandPath('/admin/channels/{channel_id}/plan', { channel_id: params.channel_id }),
       body: params.body,
       options: params,
     });
@@ -150,11 +152,19 @@ export class ChannelSubscription {
    *
    * `GET /api/2/admin/subscription-events`
    */
-  getSubscriptionEvents(params: ChannelSubscriptionGetSubscriptionEventsParams = {}): Promise<Models.PageCursorSubscriptionEvent> {
+  getSubscriptionEvents(
+    params: ChannelSubscriptionGetSubscriptionEventsParams = {},
+  ): Promise<Models.PageCursorSubscriptionEvent> {
     return this.client.request<Models.PageCursorSubscriptionEvent>({
-      method: "GET",
-      path: "/admin/subscription-events",
-      query: { status: params["status"], provider: params["provider"], event_type: params["event_type"], cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: '/admin/subscription-events',
+      query: {
+        status: params.status,
+        provider: params.provider,
+        event_type: params.event_type,
+        cursor: params.cursor,
+        per_page: params.per_page,
+      },
       options: params,
     });
   }
@@ -164,10 +174,12 @@ export class ChannelSubscription {
    *
    * `GET /api/2/admin/subscriptions/count`
    */
-  getAdminSubscriptionCount(params: ChannelSubscriptionGetAdminSubscriptionCountParams = {}): Promise<number> {
+  getAdminSubscriptionCount(
+    params: ChannelSubscriptionGetAdminSubscriptionCountParams = {},
+  ): Promise<number> {
     return this.client.request<number>({
-      method: "GET",
-      path: "/admin/subscriptions/count",
+      method: 'GET',
+      path: '/admin/subscriptions/count',
       options: params,
     });
   }
@@ -181,10 +193,14 @@ export class ChannelSubscription {
    *
    * @param params.body The request body.
    */
-  createChannelSubscriptionChangeSession(params: ChannelSubscriptionCreateChannelSubscriptionChangeSessionParams): Promise<Models.ChannelSubscriptionSession> {
+  createChannelSubscriptionChangeSession(
+    params: ChannelSubscriptionCreateChannelSubscriptionChangeSessionParams,
+  ): Promise<Models.ChannelSubscriptionSession> {
     return this.client.request<Models.ChannelSubscriptionSession>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/subscription/change-session", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/subscription/change-session', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -199,10 +215,14 @@ export class ChannelSubscription {
    *
    * @param params.body The request body.
    */
-  createChannelSubscriptionCheckoutSession(params: ChannelSubscriptionCreateChannelSubscriptionCheckoutSessionParams): Promise<Models.ChannelSubscriptionSession> {
+  createChannelSubscriptionCheckoutSession(
+    params: ChannelSubscriptionCreateChannelSubscriptionCheckoutSessionParams,
+  ): Promise<Models.ChannelSubscriptionSession> {
     return this.client.request<Models.ChannelSubscriptionSession>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/subscription/checkout-session", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/subscription/checkout-session', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -215,10 +235,14 @@ export class ChannelSubscription {
    *
    * Requires the `channel:read` scope.
    */
-  getChannelSubscriptionPlans(params: ChannelSubscriptionGetChannelSubscriptionPlansParams): Promise<Models.ChannelSubscriptionPlans> {
+  getChannelSubscriptionPlans(
+    params: ChannelSubscriptionGetChannelSubscriptionPlansParams,
+  ): Promise<Models.ChannelSubscriptionPlans> {
     return this.client.request<Models.ChannelSubscriptionPlans>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/subscription/plans", { channel_id: params["channel_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/subscription/plans', {
+        channel_id: params.channel_id,
+      }),
       options: params,
     });
   }
@@ -230,10 +254,14 @@ export class ChannelSubscription {
    *
    * Requires the `channel:write` scope.
    */
-  createChannelSubscriptionPortalSession(params: ChannelSubscriptionCreateChannelSubscriptionPortalSessionParams): Promise<Models.ChannelSubscriptionSession> {
+  createChannelSubscriptionPortalSession(
+    params: ChannelSubscriptionCreateChannelSubscriptionPortalSessionParams,
+  ): Promise<Models.ChannelSubscriptionSession> {
     return this.client.request<Models.ChannelSubscriptionSession>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/subscription/portal-session", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/subscription/portal-session', {
+        channel_id: params.channel_id,
+      }),
       options: params,
     });
   }
@@ -244,10 +272,10 @@ export class ChannelSubscription {
    * `POST /api/2/stripe/events`
    */
   stripeSubscriptionEvent(params: ChannelSubscriptionStripeSubscriptionEventParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: "/stripe/events",
-      headers: { "Stripe-Signature": params["Stripe-Signature"] },
+    return this.client.send({
+      method: 'POST',
+      path: '/stripe/events',
+      headers: { 'Stripe-Signature': params['Stripe-Signature'] },
       options: params,
     });
   }
@@ -259,10 +287,12 @@ export class ChannelSubscription {
    *
    * Needs no credential; this one answers on an anonymous client.
    */
-  getSubscriptionPlans(params: ChannelSubscriptionGetSubscriptionPlansParams = {}): Promise<Models.SubscriptionPlans> {
+  getSubscriptionPlans(
+    params: ChannelSubscriptionGetSubscriptionPlansParams = {},
+  ): Promise<Models.SubscriptionPlans> {
     return this.client.request<Models.SubscriptionPlans>({
-      method: "GET",
-      path: "/subscription/plans",
+      method: 'GET',
+      path: '/subscription/plans',
       options: params,
     });
   }

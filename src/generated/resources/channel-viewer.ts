@@ -53,7 +53,30 @@ export interface ChannelViewerViewerInfoParams extends RequestOptions {
 export interface ChannelViewerViewerSearchParams extends RequestOptions {
   query: string;
   exact?: boolean | undefined;
-  provider?: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast" | null | undefined;
+  provider?:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+    | null
+    | undefined;
 }
 
 /**
@@ -84,10 +107,16 @@ export class ChannelViewer {
    *
    * Needs a token that can read this channel's viewers; without that it answers 403.
    */
-  providerViewerInfo(params: ChannelViewerProviderViewerInfoParams): Promise<Models.ProviderViewer> {
+  providerViewerInfo(
+    params: ChannelViewerProviderViewerInfoParams,
+  ): Promise<Models.ProviderViewer> {
     return this.client.request<Models.ProviderViewer>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/viewers/{provider}/{provider_viewer_id}/info", { channel_id: params["channel_id"], provider: params["provider"], provider_viewer_id: params["provider_viewer_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/viewers/{provider}/{provider_viewer_id}/info', {
+        channel_id: params.channel_id,
+        provider: params.provider,
+        provider_viewer_id: params.provider_viewer_id,
+      }),
       options: params,
     });
   }
@@ -99,11 +128,17 @@ export class ChannelViewer {
    *
    * Requires the `channel_viewer:read` scope.
    */
-  viewerWatchedStreams(params: ChannelViewerViewerWatchedStreamsParams): Promise<Models.PageCursorViewerStream> {
+  viewerWatchedStreams(
+    params: ChannelViewerViewerWatchedStreamsParams,
+  ): Promise<Models.PageCursorViewerStream> {
     return this.client.request<Models.PageCursorViewerStream>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/viewers/{provider}/{provider_viewer_id}/streams", { channel_id: params["channel_id"], provider: params["provider"], provider_viewer_id: params["provider_viewer_id"] }),
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/viewers/{provider}/{provider_viewer_id}/streams', {
+        channel_id: params.channel_id,
+        provider: params.provider,
+        provider_viewer_id: params.provider_viewer_id,
+      }),
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -117,8 +152,12 @@ export class ChannelViewer {
    */
   viewerInfo(params: ChannelViewerViewerInfoParams): Promise<Models.ChannelViewer> {
     return this.client.request<Models.ChannelViewer>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/viewers/{provider}/{provider_viewer_id}", { channel_id: params["channel_id"], provider: params["provider"], provider_viewer_id: params["provider_viewer_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/viewers/{provider}/{provider_viewer_id}', {
+        channel_id: params.channel_id,
+        provider: params.provider,
+        provider_viewer_id: params.provider_viewer_id,
+      }),
       options: params,
     });
   }
@@ -132,9 +171,9 @@ export class ChannelViewer {
    */
   viewerSearch(params: ChannelViewerViewerSearchParams): Promise<Models.ProviderViewer[]> {
     return this.client.request<Models.ProviderViewer[]>({
-      method: "GET",
-      path: "/viewer-search",
-      query: { query: params["query"], exact: params["exact"], provider: params["provider"] },
+      method: 'GET',
+      path: '/viewer-search',
+      query: { query: params.query, exact: params.exact, provider: params.provider },
       options: params,
     });
   }

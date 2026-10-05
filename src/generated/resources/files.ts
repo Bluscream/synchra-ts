@@ -26,7 +26,7 @@ export interface FilesDeleteFileParams extends RequestOptions {
  */
 export interface FilesGetFileStorageUsageParams extends RequestOptions {
   owner_id: string;
-  owner_module: "channel";
+  owner_module: 'channel';
 }
 
 /**
@@ -36,12 +36,12 @@ export interface FilesGetFileStorageUsageParams extends RequestOptions {
  */
 export interface FilesGetFilesParams extends RequestOptions {
   owner_id: string;
-  owner_module: "channel";
+  owner_module: 'channel';
   cursor?: string | null | undefined;
-  kind?: "image" | "video" | "audio" | "other" | null | undefined;
+  kind?: 'image' | 'video' | 'audio' | 'other' | null | undefined;
   per_page?: number | undefined;
   search?: string | null | undefined;
-  sort?: "newest" | "oldest" | "name" | "largest" | undefined;
+  sort?: 'newest' | 'oldest' | 'name' | 'largest' | undefined;
 }
 
 /**
@@ -54,7 +54,7 @@ export interface FilesUploadFileParams extends RequestOptions {
   body: BodyInit;
   filename: string;
   owner_id: string;
-  owner_module: "channel";
+  owner_module: 'channel';
   file_content_type?: string | null | undefined;
 }
 
@@ -74,9 +74,9 @@ export class Files {
    * Requires the `file.delete` scope.
    */
   deleteFile(params: FilesDeleteFileParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/files/{file_id}", { file_id: params["file_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/files/{file_id}', { file_id: params.file_id }),
       options: params,
     });
   }
@@ -90,9 +90,9 @@ export class Files {
    */
   getFileStorageUsage(params: FilesGetFileStorageUsageParams): Promise<Models.FileStorageUsage> {
     return this.client.request<Models.FileStorageUsage>({
-      method: "GET",
-      path: "/files/usage",
-      query: { owner_module: params["owner_module"], owner_id: params["owner_id"] },
+      method: 'GET',
+      path: '/files/usage',
+      query: { owner_module: params.owner_module, owner_id: params.owner_id },
       options: params,
     });
   }
@@ -106,9 +106,17 @@ export class Files {
    */
   getFiles(params: FilesGetFilesParams): Promise<Models.PageCursorFile> {
     return this.client.request<Models.PageCursorFile>({
-      method: "GET",
-      path: "/files",
-      query: { owner_module: params["owner_module"], owner_id: params["owner_id"], cursor: params["cursor"], per_page: params["per_page"], search: params["search"], kind: params["kind"], sort: params["sort"] },
+      method: 'GET',
+      path: '/files',
+      query: {
+        owner_module: params.owner_module,
+        owner_id: params.owner_id,
+        cursor: params.cursor,
+        per_page: params.per_page,
+        search: params.search,
+        kind: params.kind,
+        sort: params.sort,
+      },
       options: params,
     });
   }
@@ -124,11 +132,16 @@ export class Files {
    */
   uploadFile(params: FilesUploadFileParams): Promise<Models.File> {
     return this.client.request<Models.File>({
-      method: "POST",
-      path: "/files",
-      query: { owner_module: params["owner_module"], owner_id: params["owner_id"], filename: params["filename"], file_content_type: params["file_content_type"] },
+      method: 'POST',
+      path: '/files',
+      query: {
+        owner_module: params.owner_module,
+        owner_id: params.owner_id,
+        filename: params.filename,
+        file_content_type: params.file_content_type,
+      },
       rawBody: params.body,
-      contentType: "application/octet-stream",
+      contentType: 'application/octet-stream',
       options: params,
     });
   }

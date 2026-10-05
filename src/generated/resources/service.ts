@@ -14,8 +14,7 @@ import type { RequestOptions } from '../../wire.js';
  *
  * Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.
  */
-export interface ServiceHealthParams extends RequestOptions {
-}
+export type ServiceHealthParams = RequestOptions;
 
 /**
  * The `Service` endpoints.
@@ -39,9 +38,9 @@ export class Service {
    * It *was* in the description as of 2026-04-02 and has since been removed from it — but not from the service, which still answers 200. Verified live.
    */
   health(params: ServiceHealthParams = {}): Promise<void> {
-    return this.client.request<void>({
-      method: "GET",
-      path: "/health",
+    return this.client.send({
+      method: 'GET',
+      path: '/health',
       options: params,
     });
   }

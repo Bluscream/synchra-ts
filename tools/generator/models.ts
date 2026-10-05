@@ -66,11 +66,11 @@ export async function emitModels(
 
     // A named closed value set gets an `as const` object as well as a type, so its values are
     // reachable at runtime. enums.ts emits both; emitting the type here too would collide.
-    if (isArray(schema['enum'])) {
+    if (isArray(schema.enum)) {
       continue;
     }
 
-    if (isObject(schema['properties'])) {
+    if (isObject(schema.properties)) {
       declarations.push(renderInterface(emitted, schema, types));
       interfaces += 1;
 
@@ -112,7 +112,7 @@ export async function emitModels(
 }
 
 function renderInterface(name: string, schema: JsonObject, types: TypeMapper): string {
-  const properties = isObject(schema['properties']) ? schema['properties'] : {};
+  const properties = isObject(schema.properties) ? schema.properties : {};
   const required = requiredSet(schema);
 
   const ordered = Object.keys(properties).sort((a, b) => {
@@ -127,8 +127,9 @@ function renderInterface(name: string, schema: JsonObject, types: TypeMapper): s
     const mapped = types.map(property);
 
     // `| undefined` is spelled out because `exactOptionalPropertyTypes` is on: without it, code
-    // that builds a payload by assigning `undefined` to an unset field would not compile.
-    const type = isRequired ? mapped : `${mapped} | undefined`;
+    // that builds a payload by assigning `undefined` to an unset field would not compile. Except on
+    // `unknown`, which already includes it and absorbs anything added to it.
+    const type = isRequired || mapped === 'unknown' ? mapped : `${mapped} | undefined`;
     const doc = docComment(propertyDoc(property, wire), '  ');
 
     return `${doc}  ${propertyKey(wire)}${isRequired ? '' : '?'}: ${type};`;
@@ -142,12 +143,21 @@ function renderInterface(name: string, schema: JsonObject, types: TypeMapper): s
 
 function renderAlias(name: string, schema: JsonObject, types: TypeMapper): string {
   const doc = docComment(schemaDoc(schema, name));
+  const mapped = types.map(schema);
+  const map = /^\{ \[key: string\]: (.+) \}$/.exec(mapped);
 
-  return `${doc}export type ${name} = ${types.map(schema)};\n`;
+  // A schema that is nothing but a map becomes an interface rather than an alias. Both defer their
+  // own resolution, which is what the recursive JSON-value schemas need, and an interface is what
+  // an editor shows by name instead of expanding inline.
+  if (map !== null) {
+    return `${doc}export interface ${name} {\n  [key: string]: ${map[1] ?? 'unknown'};\n}\n`;
+  }
+
+  return `${doc}export type ${name} = ${mapped};\n`;
 }
 
 export function requiredSet(schema: JsonObject): Set<string> {
-  const required = schema['required'];
+  const required = schema.required;
 
   return new Set(
     isArray(required) ? required.filter((item): item is string => typeof item === 'string') : [],
@@ -161,8 +171,8 @@ export function requiredSet(schema: JsonObject): Set<string> {
  * written in synchra-api ends up in a caller's editor.
  */
 export function schemaDoc(schema: JsonObject, name: string): string[] {
-  const description = schema['description'];
-  const title = schema['title'];
+  const description = schema.description;
+  const title = schema.title;
 
   if (typeof description === 'string' && description.trim() !== '') {
     return description
@@ -192,7 +202,7 @@ function propertyDoc(property: unknown, wire: string): string[] {
   }
 
   const lines = schemaDoc(property, wire);
-  const format = property['format'];
+  const format = property.format;
 
   if (format === 'date-time') {
     lines.push('', `An ISO 8601 timestamp. See {@link ${DATE_TIME_TYPE}}.`);

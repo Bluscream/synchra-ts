@@ -51,9 +51,12 @@ export class StreamElements {
    * @param params.body The request body.
    */
   seAlertsAction(params: StreamElementsSeAlertsActionParams): Promise<void> {
-    return this.client.request<void>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/providers/{channel_provider_id}/streamelements/alerts-action", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+    return this.client.send({
+      method: 'PUT',
+      path: expandPath(
+        '/channels/{channel_id}/providers/{channel_provider_id}/streamelements/alerts-action',
+        { channel_id: params.channel_id, channel_provider_id: params.channel_provider_id },
+      ),
       body: params.body,
       options: params,
     });
@@ -67,9 +70,16 @@ export class StreamElements {
    * Requires the `channel_providers:write` scope.
    */
   replayStreamelementsAlert(params: StreamElementsReplayStreamelementsAlertParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/providers/{channel_provider_id}/streamelements/alerts-replay/{activity_id}", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"], activity_id: params["activity_id"] }),
+    return this.client.send({
+      method: 'POST',
+      path: expandPath(
+        '/channels/{channel_id}/providers/{channel_provider_id}/streamelements/alerts-replay/{activity_id}',
+        {
+          channel_id: params.channel_id,
+          channel_provider_id: params.channel_provider_id,
+          activity_id: params.activity_id,
+        },
+      ),
       options: params,
     });
   }

@@ -44,8 +44,7 @@ const METHOD_OVERRIDES: Readonly<Record<string, string>> = {
   'POST /api/2/channels/{channel_id}/twitch/{channel_provider_id}/moderators': 'addModerator',
   'DELETE /api/2/channels/{channel_id}/twitch/{channel_provider_id}/moderators': 'removeModerator',
   'POST /api/2/channels/{channel_id}/youtube/{channel_provider_id}/moderators': 'addModerator',
-  'DELETE /api/2/channels/{channel_id}/youtube/{channel_provider_id}/moderators':
-    'removeModerator',
+  'DELETE /api/2/channels/{channel_id}/youtube/{channel_provider_id}/moderators': 'removeModerator',
   'PUT /api/2/channels/{channel_id}/providers/{channel_provider_id}/stream': 'updateStream',
 };
 
@@ -153,4 +152,11 @@ export function operationMethod(httpMethod: string, path: string, summary: strin
  */
 export function propertyKey(wire: string): string {
   return /^[A-Za-z_$][A-Za-z0-9_$]*$/.test(wire) ? wire : JSON.stringify(wire);
+}
+
+/** How to read a property off an object: `params.channel_id`, or `params["x-kv-token"]`. */
+export function propertyAccess(object: string, wire: string): string {
+  return /^[A-Za-z_$][A-Za-z0-9_$]*$/.test(wire)
+    ? `${object}.${wire}`
+    : `${object}[${JSON.stringify(wire)}]`;
 }

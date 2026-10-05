@@ -109,8 +109,7 @@ export interface ChannelLinksCreateChannelLinkParams extends RequestOptions {
  *
  * Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.
  */
-export interface ChannelLinksGetLinkTrackingConfigParams extends RequestOptions {
-}
+export type ChannelLinksGetLinkTrackingConfigParams = RequestOptions;
 
 /**
  * The `Channel Links` endpoints.
@@ -127,11 +126,21 @@ export class ChannelLinks {
    *
    * Requires the `channel_link:read` scope.
    */
-  getChannelLinkMetrics(params: ChannelLinksGetChannelLinkMetricsParams): Promise<Models.ChannelLinkStatsMetricItem[]> {
+  getChannelLinkMetrics(
+    params: ChannelLinksGetChannelLinkMetricsParams,
+  ): Promise<Models.ChannelLinkStatsMetricItem[]> {
     return this.client.request<Models.ChannelLinkStatsMetricItem[]>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/links/{link_id}/metrics", { channel_id: params["channel_id"], link_id: params["link_id"] }),
-      query: { type: params["type"], from_date: params["from_date"], to_date: params["to_date"], limit: params["limit"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/links/{link_id}/metrics', {
+        channel_id: params.channel_id,
+        link_id: params.link_id,
+      }),
+      query: {
+        type: params.type,
+        from_date: params.from_date,
+        to_date: params.to_date,
+        limit: params.limit,
+      },
       options: params,
     });
   }
@@ -143,11 +152,16 @@ export class ChannelLinks {
    *
    * Requires the `channel_link:read` scope.
    */
-  getChannelLinkStats(params: ChannelLinksGetChannelLinkStatsParams): Promise<Models.ChannelLinkStats> {
+  getChannelLinkStats(
+    params: ChannelLinksGetChannelLinkStatsParams,
+  ): Promise<Models.ChannelLinkStats> {
     return this.client.request<Models.ChannelLinkStats>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/links/{link_id}/stats", { channel_id: params["channel_id"], link_id: params["link_id"] }),
-      query: { from_date: params["from_date"], to_date: params["to_date"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/links/{link_id}/stats', {
+        channel_id: params.channel_id,
+        link_id: params.link_id,
+      }),
+      query: { from_date: params.from_date, to_date: params.to_date },
       options: params,
     });
   }
@@ -159,11 +173,16 @@ export class ChannelLinks {
    *
    * Requires the `channel_link:read` scope.
    */
-  getChannelLinkViews(params: ChannelLinksGetChannelLinkViewsParams): Promise<Models.ChannelLinkViews> {
+  getChannelLinkViews(
+    params: ChannelLinksGetChannelLinkViewsParams,
+  ): Promise<Models.ChannelLinkViews> {
     return this.client.request<Models.ChannelLinkViews>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/links/{link_id}/views", { channel_id: params["channel_id"], link_id: params["link_id"] }),
-      query: { from_date: params["from_date"], to_date: params["to_date"], group_by: params["group_by"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/links/{link_id}/views', {
+        channel_id: params.channel_id,
+        link_id: params.link_id,
+      }),
+      query: { from_date: params.from_date, to_date: params.to_date, group_by: params.group_by },
       options: params,
     });
   }
@@ -176,9 +195,12 @@ export class ChannelLinks {
    * Requires the `channel_link:write` scope.
    */
   deleteChannelLink(params: ChannelLinksDeleteChannelLinkParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/links/{link_id}", { channel_id: params["channel_id"], link_id: params["link_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/links/{link_id}', {
+        channel_id: params.channel_id,
+        link_id: params.link_id,
+      }),
       options: params,
     });
   }
@@ -192,8 +214,11 @@ export class ChannelLinks {
    */
   getChannelLink(params: ChannelLinksGetChannelLinkParams): Promise<Models.ChannelLink> {
     return this.client.request<Models.ChannelLink>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/links/{link_id}", { channel_id: params["channel_id"], link_id: params["link_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/links/{link_id}', {
+        channel_id: params.channel_id,
+        link_id: params.link_id,
+      }),
       options: params,
     });
   }
@@ -209,8 +234,11 @@ export class ChannelLinks {
    */
   updateChannelLink(params: ChannelLinksUpdateChannelLinkParams): Promise<Models.ChannelLink> {
     return this.client.request<Models.ChannelLink>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/links/{link_id}", { channel_id: params["channel_id"], link_id: params["link_id"] }),
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/links/{link_id}', {
+        channel_id: params.channel_id,
+        link_id: params.link_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -223,11 +251,13 @@ export class ChannelLinks {
    *
    * Requires the `channel_link:read` scope.
    */
-  getChannelLinks(params: ChannelLinksGetChannelLinksParams): Promise<Models.PageCursorChannelLink> {
+  getChannelLinks(
+    params: ChannelLinksGetChannelLinksParams,
+  ): Promise<Models.PageCursorChannelLink> {
     return this.client.request<Models.PageCursorChannelLink>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/links", { channel_id: params["channel_id"] }),
-      query: { search: params["search"], cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/links', { channel_id: params.channel_id }),
+      query: { search: params.search, cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -243,8 +273,8 @@ export class ChannelLinks {
    */
   createChannelLink(params: ChannelLinksCreateChannelLinkParams): Promise<Models.ChannelLink> {
     return this.client.request<Models.ChannelLink>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/links", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/links', { channel_id: params.channel_id }),
       body: params.body,
       options: params,
     });
@@ -257,10 +287,12 @@ export class ChannelLinks {
    *
    * Needs no credential; this one answers on an anonymous client.
    */
-  getLinkTrackingConfig(params: ChannelLinksGetLinkTrackingConfigParams = {}): Promise<Models.ChannelLinkTrackingConfig> {
+  getLinkTrackingConfig(
+    params: ChannelLinksGetLinkTrackingConfigParams = {},
+  ): Promise<Models.ChannelLinkTrackingConfig> {
     return this.client.request<Models.ChannelLinkTrackingConfig>({
-      method: "GET",
-      path: "/link-tracking/config",
+      method: 'GET',
+      path: '/link-tracking/config',
       options: params,
     });
   }

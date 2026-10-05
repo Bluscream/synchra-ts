@@ -80,9 +80,12 @@ export class ChannelTimer {
    * Requires the `channel_timer:write` scope.
    */
   deleteChannelTimer(params: ChannelTimerDeleteChannelTimerParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/timers/{timer_id}", { channel_id: params["channel_id"], timer_id: params["timer_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/timers/{timer_id}', {
+        channel_id: params.channel_id,
+        timer_id: params.timer_id,
+      }),
       options: params,
     });
   }
@@ -96,8 +99,11 @@ export class ChannelTimer {
    */
   getChannelTimer(params: ChannelTimerGetChannelTimerParams): Promise<Models.Timer> {
     return this.client.request<Models.Timer>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/timers/{timer_id}", { channel_id: params["channel_id"], timer_id: params["timer_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/timers/{timer_id}', {
+        channel_id: params.channel_id,
+        timer_id: params.timer_id,
+      }),
       options: params,
     });
   }
@@ -113,8 +119,11 @@ export class ChannelTimer {
    */
   updateChannelTimer(params: ChannelTimerUpdateChannelTimerParams): Promise<Models.Timer> {
     return this.client.request<Models.Timer>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/timers/{timer_id}", { channel_id: params["channel_id"], timer_id: params["timer_id"] }),
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/timers/{timer_id}', {
+        channel_id: params.channel_id,
+        timer_id: params.timer_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -129,9 +138,9 @@ export class ChannelTimer {
    */
   getChannelTimers(params: ChannelTimerGetChannelTimersParams): Promise<Models.PageCursorTimer> {
     return this.client.request<Models.PageCursorTimer>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/timers", { channel_id: params["channel_id"] }),
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/timers', { channel_id: params.channel_id }),
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -147,8 +156,8 @@ export class ChannelTimer {
    */
   createChannelTimer(params: ChannelTimerCreateChannelTimerParams): Promise<Models.Timer> {
     return this.client.request<Models.Timer>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/timers", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/timers', { channel_id: params.channel_id }),
       body: params.body,
       options: params,
     });

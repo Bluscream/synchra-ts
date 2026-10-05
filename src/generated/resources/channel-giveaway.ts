@@ -115,9 +115,12 @@ export class ChannelGiveaway {
    * Requires the `channel_giveaway:write` scope.
    */
   deleteGiveawayEntry(params: ChannelGiveawayDeleteGiveawayEntryParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/giveaway-entries/{giveaway_entry_id}", { channel_id: params["channel_id"], giveaway_entry_id: params["giveaway_entry_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/giveaway-entries/{giveaway_entry_id}', {
+        channel_id: params.channel_id,
+        giveaway_entry_id: params.giveaway_entry_id,
+      }),
       options: params,
     });
   }
@@ -129,11 +132,16 @@ export class ChannelGiveaway {
    *
    * Requires the `channel_giveaway:read` scope.
    */
-  getGiveawayEntries(params: ChannelGiveawayGetGiveawayEntriesParams): Promise<Models.PageCursorGiveawayEntry> {
+  getGiveawayEntries(
+    params: ChannelGiveawayGetGiveawayEntriesParams,
+  ): Promise<Models.PageCursorGiveawayEntry> {
     return this.client.request<Models.PageCursorGiveawayEntry>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/giveaways/{giveaway_id}/entries", { channel_id: params["channel_id"], giveaway_id: params["giveaway_id"] }),
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/giveaways/{giveaway_id}/entries', {
+        channel_id: params.channel_id,
+        giveaway_id: params.giveaway_id,
+      }),
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -149,8 +157,11 @@ export class ChannelGiveaway {
    */
   pickGiveawayWinner(params: ChannelGiveawayPickGiveawayWinnerParams): Promise<Models.Giveaway> {
     return this.client.request<Models.Giveaway>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/giveaways/{giveaway_id}/pick-winner", { channel_id: params["channel_id"], giveaway_id: params["giveaway_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/giveaways/{giveaway_id}/pick-winner', {
+        channel_id: params.channel_id,
+        giveaway_id: params.giveaway_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -164,9 +175,12 @@ export class ChannelGiveaway {
    * Requires the `channel_giveaway:write` scope.
    */
   deleteGiveaway(params: ChannelGiveawayDeleteGiveawayParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/giveaways/{giveaway_id}", { channel_id: params["channel_id"], giveaway_id: params["giveaway_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/giveaways/{giveaway_id}', {
+        channel_id: params.channel_id,
+        giveaway_id: params.giveaway_id,
+      }),
       options: params,
     });
   }
@@ -180,8 +194,11 @@ export class ChannelGiveaway {
    */
   getGiveaway(params: ChannelGiveawayGetGiveawayParams): Promise<Models.Giveaway> {
     return this.client.request<Models.Giveaway>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/giveaways/{giveaway_id}", { channel_id: params["channel_id"], giveaway_id: params["giveaway_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/giveaways/{giveaway_id}', {
+        channel_id: params.channel_id,
+        giveaway_id: params.giveaway_id,
+      }),
       options: params,
     });
   }
@@ -197,8 +214,11 @@ export class ChannelGiveaway {
    */
   updateGiveaway(params: ChannelGiveawayUpdateGiveawayParams): Promise<Models.Giveaway> {
     return this.client.request<Models.Giveaway>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/giveaways/{giveaway_id}", { channel_id: params["channel_id"], giveaway_id: params["giveaway_id"] }),
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/giveaways/{giveaway_id}', {
+        channel_id: params.channel_id,
+        giveaway_id: params.giveaway_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -213,9 +233,9 @@ export class ChannelGiveaway {
    */
   getGiveaways(params: ChannelGiveawayGetGiveawaysParams): Promise<Models.PageCursorGiveaway> {
     return this.client.request<Models.PageCursorGiveaway>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/giveaways", { channel_id: params["channel_id"] }),
-      query: { active: params["active"], cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/giveaways', { channel_id: params.channel_id }),
+      query: { active: params.active, cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -231,8 +251,8 @@ export class ChannelGiveaway {
    */
   createGiveaway(params: ChannelGiveawayCreateGiveawayParams): Promise<Models.Giveaway> {
     return this.client.request<Models.Giveaway>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/giveaways", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/giveaways', { channel_id: params.channel_id }),
       body: params.body,
       options: params,
     });

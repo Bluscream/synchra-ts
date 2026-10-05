@@ -15,8 +15,7 @@ import type * as Models from '../models.js';
  *
  * Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.
  */
-export interface CurrenciesGetCurrencyRatesParams extends RequestOptions {
-}
+export type CurrenciesGetCurrencyRatesParams = RequestOptions;
 
 /**
  * The `Currencies` endpoints.
@@ -35,8 +34,8 @@ export class Currencies {
    */
   getCurrencyRates(params: CurrenciesGetCurrencyRatesParams = {}): Promise<Models.CurrencyRates> {
     return this.client.request<Models.CurrencyRates>({
-      method: "GET",
-      path: "/currencies.json",
+      method: 'GET',
+      path: '/currencies.json',
       options: params,
     });
   }

@@ -68,9 +68,11 @@ export class Patreon {
    */
   getPatreonWebhookUrl(params: PatreonGetPatreonWebhookUrlParams): Promise<Models.ConnectUrl> {
     return this.client.request<Models.ConnectUrl>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/patreon/webhook-url", { channel_id: params["channel_id"] }),
-      query: { provider_channel_id: params["provider_channel_id"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/patreon/webhook-url', {
+        channel_id: params.channel_id,
+      }),
+      query: { provider_channel_id: params.provider_channel_id },
       options: params,
     });
   }
@@ -84,10 +86,14 @@ export class Patreon {
    *
    * @param params.body The request body.
    */
-  registerPatreonChannelProvider(params: PatreonRegisterPatreonChannelProviderParams): Promise<Models.ChannelProviderPublic> {
+  registerPatreonChannelProvider(
+    params: PatreonRegisterPatreonChannelProviderParams,
+  ): Promise<Models.ChannelProviderPublic> {
     return this.client.request<Models.ChannelProviderPublic>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/register-provider/patreon", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/register-provider/patreon', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -100,8 +106,11 @@ export class Patreon {
    */
   patreonProviderEvent(params: PatreonPatreonProviderEventParams): Promise<unknown> {
     return this.client.request<unknown>({
-      method: "POST",
-      path: expandPath("/patreon/events/{channel_id}/{provider_channel_id}", { channel_id: params["channel_id"], provider_channel_id: params["provider_channel_id"] }),
+      method: 'POST',
+      path: expandPath('/patreon/events/{channel_id}/{provider_channel_id}', {
+        channel_id: params.channel_id,
+        provider_channel_id: params.provider_channel_id,
+      }),
       options: params,
     });
   }
@@ -113,9 +122,9 @@ export class Patreon {
    */
   patreonEvent(params: PatreonPatreonEventParams): Promise<unknown> {
     return this.client.request<unknown>({
-      method: "POST",
-      path: expandPath("/patreon/events/{channel_id}", { channel_id: params["channel_id"] }),
-      query: { provider_channel_id: params["provider_channel_id"] },
+      method: 'POST',
+      path: expandPath('/patreon/events/{channel_id}', { channel_id: params.channel_id }),
+      query: { provider_channel_id: params.provider_channel_id },
       options: params,
     });
   }

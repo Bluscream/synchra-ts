@@ -30,20 +30,39 @@ export class TransportError extends SynchraError {}
 /** A response arrived but its body was not the JSON the status implied. */
 export class SerializationError extends SynchraError {}
 
+/** Everything an {@link ApiError} carries besides its message. */
+export interface ApiErrorDetails {
+  readonly status: number;
+
+  /** The parsed error envelope, when the body was one. A proxy error page is not. */
+  readonly error?: ErrorBody | undefined;
+
+  /** The body as it arrived, for the cases the envelope does not cover. */
+  readonly body: string;
+
+  readonly method: string;
+  readonly url: string;
+  readonly headers?: Readonly<Record<string, string>> | undefined;
+}
+
 /** A 4xx or 5xx response. */
 export class ApiError extends SynchraError {
-  constructor(
-    readonly status: number,
-    message: string,
-    /** The parsed error envelope, when the body was one. A proxy error page is not. */
-    readonly error: ErrorBody | undefined,
-    /** The body as it arrived, for the cases the envelope does not cover. */
-    readonly body: string,
-    readonly method: string,
-    readonly url: string,
-    readonly headers: Readonly<Record<string, string>> = {},
-  ) {
+  readonly status: number;
+  readonly error: ErrorBody | undefined;
+  readonly body: string;
+  readonly method: string;
+  readonly url: string;
+  readonly headers: Readonly<Record<string, string>>;
+
+  constructor(message: string, details: ApiErrorDetails) {
     super(message);
+
+    this.status = details.status;
+    this.error = details.error;
+    this.body = details.body;
+    this.method = details.method;
+    this.url = details.url;
+    this.headers = details.headers ?? {};
   }
 
   /** The per-field problems a 422 carries, or an empty list for any other status. */
@@ -117,32 +136,19 @@ const BY_STATUS: Readonly<Record<number, typeof ApiError>> = {
 };
 
 /** The right error class for a status, with the message built from the body where there is one. */
-export function errorForStatus(
-  status: number,
-  error: ErrorBody | undefined,
-  body: string,
-  method: string,
-  url: string,
-  headers: Readonly<Record<string, string>>,
-): ApiError {
-  const Constructor = BY_STATUS[status] ?? (status >= 500 ? ServerError : ApiError);
+export function errorForStatus(details: ApiErrorDetails): ApiError {
+  const Constructor = BY_STATUS[details.status] ?? (details.status >= 500 ? ServerError : ApiError);
 
-  return new Constructor(status, describe(status, error, body, method, url), error, body, method, url, headers);
+  return new Constructor(describe(details), details);
 }
 
-function describe(
-  status: number,
-  error: ErrorBody | undefined,
-  body: string,
-  method: string,
-  url: string,
-): string {
-  const detail = error?.message ?? firstLine(body);
-  const where = `${method} ${url}`;
+function describe(details: ApiErrorDetails): string {
+  const detail = details.error?.message ?? firstLine(details.body);
+  const where = `${details.method} ${details.url}`;
 
   return detail === undefined || detail === ''
-    ? `${where} answered ${String(status)}.`
-    : `${where} answered ${String(status)}: ${detail}`;
+    ? `${where} answered ${String(details.status)}.`
+    : `${where} answered ${String(details.status)}: ${detail}`;
 }
 
 function firstLine(body: string): string | undefined {

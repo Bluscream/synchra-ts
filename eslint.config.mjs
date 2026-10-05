@@ -57,6 +57,12 @@ export default tseslint.config(
     rules: {
       'max-lines': 'off',
       'max-lines-per-function': 'off',
+
+      // The generator writes `{ [key: string]: T }` where this rule wants `Record<string, T>`, and
+      // it has to: four schemas describe "any JSON value" by referring to themselves through their
+      // own map branch, and `Record<string, T>` inside a union makes TypeScript reject the alias as
+      // circular where an index signature is resolved lazily and does not.
+      '@typescript-eslint/consistent-indexed-object-style': 'off',
     },
   },
 

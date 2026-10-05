@@ -49,10 +49,13 @@ export class Kick {
    * Requires the `chat:moderate` scope.
    */
   unbanUser(params: KickUnbanUserParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/kick/{channel_provider_id}/ban", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
-      query: { provider_viewer_id: params["provider_viewer_id"] },
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/kick/{channel_provider_id}/ban', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
+      query: { provider_viewer_id: params.provider_viewer_id },
       options: params,
     });
   }
@@ -67,9 +70,12 @@ export class Kick {
    * @param params.body The request body.
    */
   banUser(params: KickBanUserParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/kick/{channel_provider_id}/ban", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+    return this.client.send({
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/kick/{channel_provider_id}/ban', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       body: params.body,
       options: params,
     });

@@ -38,10 +38,14 @@ export class AmazonPolly {
    *
    * @param params.body The request body.
    */
-  registerAmazonPollyChannelProvider(params: AmazonPollyRegisterAmazonPollyChannelProviderParams): Promise<Models.ChannelProviderPublic> {
+  registerAmazonPollyChannelProvider(
+    params: AmazonPollyRegisterAmazonPollyChannelProviderParams,
+  ): Promise<Models.ChannelProviderPublic> {
     return this.client.request<Models.ChannelProviderPublic>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/register-provider/amazon_polly", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/register-provider/amazon_polly', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });

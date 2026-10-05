@@ -48,11 +48,13 @@ export class ChannelStream {
    *
    * Requires the `channel_stream:read` scope.
    */
-  getChannelStreamsStats(params: ChannelStreamGetChannelStreamsStatsParams): Promise<Models.StreamStatsPeriod[]> {
+  getChannelStreamsStats(
+    params: ChannelStreamGetChannelStreamsStatsParams,
+  ): Promise<Models.StreamStatsPeriod[]> {
     return this.client.request<Models.StreamStatsPeriod[]>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/streams-stats", { channel_id: params["channel_id"] }),
-      query: { from_date: params["from_date"], to_date: params["to_date"], group_by: params["group_by"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/streams-stats', { channel_id: params.channel_id }),
+      query: { from_date: params.from_date, to_date: params.to_date, group_by: params.group_by },
       options: params,
     });
   }
@@ -64,11 +66,13 @@ export class ChannelStream {
    *
    * Requires the `channel_stream:read` scope.
    */
-  getChannelStreams(params: ChannelStreamGetChannelStreamsParams): Promise<Models.PageCursorChannelStream> {
+  getChannelStreams(
+    params: ChannelStreamGetChannelStreamsParams,
+  ): Promise<Models.PageCursorChannelStream> {
     return this.client.request<Models.PageCursorChannelStream>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/streams", { channel_id: params["channel_id"] }),
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/streams', { channel_id: params.channel_id }),
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }

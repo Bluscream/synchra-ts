@@ -96,10 +96,15 @@ export class YouTube {
    *
    * @param params.body The request body.
    */
-  youtubeCreateBroadcast(params: YouTubeYoutubeCreateBroadcastParams): Promise<Models.ChannelProviderPublic> {
+  youtubeCreateBroadcast(
+    params: YouTubeYoutubeCreateBroadcastParams,
+  ): Promise<Models.ChannelProviderPublic> {
     return this.client.request<Models.ChannelProviderPublic>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/providers/{channel_provider_id}/youtube/broadcast", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/providers/{channel_provider_id}/youtube/broadcast', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -113,10 +118,13 @@ export class YouTube {
    * Requires the `chat:moderate` scope.
    */
   unbanUser(params: YouTubeUnbanUserParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/youtube/{channel_provider_id}/ban", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
-      query: { provider_viewer_id: params["provider_viewer_id"] },
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/youtube/{channel_provider_id}/ban', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
+      query: { provider_viewer_id: params.provider_viewer_id },
       options: params,
     });
   }
@@ -131,9 +139,12 @@ export class YouTube {
    * @param params.body The request body.
    */
   banUser(params: YouTubeBanUserParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/youtube/{channel_provider_id}/ban", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+    return this.client.send({
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/youtube/{channel_provider_id}/ban', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -149,9 +160,12 @@ export class YouTube {
    * @param params.body The request body.
    */
   removeModerator(params: YouTubeRemoveModeratorParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/youtube/{channel_provider_id}/moderators", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/youtube/{channel_provider_id}/moderators', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -166,8 +180,11 @@ export class YouTube {
    */
   getModerators(params: YouTubeGetModeratorsParams): Promise<Models.ProviderViewer[]> {
     return this.client.request<Models.ProviderViewer[]>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/youtube/{channel_provider_id}/moderators", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/youtube/{channel_provider_id}/moderators', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       options: params,
     });
   }
@@ -182,9 +199,12 @@ export class YouTube {
    * @param params.body The request body.
    */
   addModerator(params: YouTubeAddModeratorParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/youtube/{channel_provider_id}/moderators", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+    return this.client.send({
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/youtube/{channel_provider_id}/moderators', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       body: params.body,
       options: params,
     });

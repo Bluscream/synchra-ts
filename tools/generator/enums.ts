@@ -31,7 +31,7 @@ export async function emitEnums(emitter: Emitter, spec: Spec): Promise<EnumsResu
 
   for (const [name, emitted] of names) {
     const schema = spec.schema(name);
-    const values = schema['enum'];
+    const values = schema.enum;
 
     if (!isArray(values)) {
       continue;
@@ -97,7 +97,7 @@ export function memberName(value: unknown, taken: ReadonlySet<string>): string {
   }
 
   for (let suffix = 2; ; suffix += 1) {
-    const next = `${safe}${suffix}`;
+    const next = `${safe}${String(suffix)}`;
 
     if (!taken.has(next)) {
       return next;
@@ -107,7 +107,7 @@ export function memberName(value: unknown, taken: ReadonlySet<string>): string {
 
 function baseMemberName(value: unknown): string {
   if (typeof value === 'number') {
-    return value < 0 ? `neg${Math.abs(value)}` : `n${value}`;
+    return value < 0 ? `neg${String(Math.abs(value))}` : `n${String(value)}`;
   }
 
   if (typeof value !== 'string') {

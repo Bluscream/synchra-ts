@@ -80,9 +80,12 @@ export class ChannelIngest {
    * Requires the `ingest_api_key:write` scope.
    */
   deleteIngestApiKey(params: ChannelIngestDeleteIngestApiKeyParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/ingest-api-keys/{ingest_api_key_id}", { channel_id: params["channel_id"], ingest_api_key_id: params["ingest_api_key_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/ingest-api-keys/{ingest_api_key_id}', {
+        channel_id: params.channel_id,
+        ingest_api_key_id: params.ingest_api_key_id,
+      }),
       options: params,
     });
   }
@@ -96,8 +99,11 @@ export class ChannelIngest {
    */
   getIngestApiKey(params: ChannelIngestGetIngestApiKeyParams): Promise<Models.IngestApiKey> {
     return this.client.request<Models.IngestApiKey>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/ingest-api-keys/{ingest_api_key_id}", { channel_id: params["channel_id"], ingest_api_key_id: params["ingest_api_key_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/ingest-api-keys/{ingest_api_key_id}', {
+        channel_id: params.channel_id,
+        ingest_api_key_id: params.ingest_api_key_id,
+      }),
       options: params,
     });
   }
@@ -113,8 +119,11 @@ export class ChannelIngest {
    */
   updateIngestApiKey(params: ChannelIngestUpdateIngestApiKeyParams): Promise<Models.IngestApiKey> {
     return this.client.request<Models.IngestApiKey>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/ingest-api-keys/{ingest_api_key_id}", { channel_id: params["channel_id"], ingest_api_key_id: params["ingest_api_key_id"] }),
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/ingest-api-keys/{ingest_api_key_id}', {
+        channel_id: params.channel_id,
+        ingest_api_key_id: params.ingest_api_key_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -127,11 +136,13 @@ export class ChannelIngest {
    *
    * Requires the `ingest_api_key:read` scope.
    */
-  getIngestApiKeys(params: ChannelIngestGetIngestApiKeysParams): Promise<Models.PageCursorIngestApiKey> {
+  getIngestApiKeys(
+    params: ChannelIngestGetIngestApiKeysParams,
+  ): Promise<Models.PageCursorIngestApiKey> {
     return this.client.request<Models.PageCursorIngestApiKey>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/ingest-api-keys", { channel_id: params["channel_id"] }),
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/ingest-api-keys', { channel_id: params.channel_id }),
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -147,8 +158,8 @@ export class ChannelIngest {
    */
   createIngestApiKey(params: ChannelIngestCreateIngestApiKeyParams): Promise<Models.IngestApiKey> {
     return this.client.request<Models.IngestApiKey>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/ingest-api-keys", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/ingest-api-keys', { channel_id: params.channel_id }),
       body: params.body,
       options: params,
     });

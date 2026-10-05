@@ -44,7 +44,7 @@
     "LICENSE"
   ],
   "scripts": {
-    "generate": "tsx tools/generate.ts",
+    "generate": "tsx tools/generate.ts && prettier --write src/generated --log-level warn",
     "build": "tsup",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",

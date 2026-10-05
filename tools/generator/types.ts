@@ -50,29 +50,29 @@ export class TypeMapper {
       return 'unknown';
     }
 
-    const ref = schema['$ref'];
+    const ref = schema.$ref;
 
     if (typeof ref === 'string') {
       return this.qualify(schemaType(refName(ref)));
     }
 
-    const branches = schema['anyOf'] ?? schema['oneOf'];
+    const branches = schema.anyOf ?? schema.oneOf;
 
     if (isArray(branches)) {
       return this.union(branches);
     }
 
-    if (isArray(schema['enum'])) {
-      return literalUnion(schema['enum']);
+    if (isArray(schema.enum)) {
+      return literalUnion(schema.enum);
     }
 
-    if (schema['const'] !== undefined) {
-      return literal(schema['const']);
+    if (schema.const !== undefined) {
+      return literal(schema.const);
     }
 
-    switch (schema['type']) {
+    switch (schema.type) {
       case 'string':
-        return schema['format'] === 'date-time' ? this.qualify(DATE_TIME_TYPE) : 'string';
+        return schema.format === 'date-time' ? this.qualify(DATE_TIME_TYPE) : 'string';
       case 'integer':
       case 'number':
         return 'number';
@@ -90,14 +90,14 @@ export class TypeMapper {
   }
 
   private array(schema: JsonObject): string {
-    const items = this.map(schema['items']);
+    const items = this.map(schema.items);
 
     // `(A | B)[]` rather than `A | B[]`, which would mean something else entirely.
     return needsParentheses(items) ? `(${items})[]` : `${items}[]`;
   }
 
   private record(schema: JsonObject): string {
-    const values = schema['additionalProperties'];
+    const values = schema.additionalProperties;
 
     // `additionalProperties: false`, or a missing one, means a free-form object the description
     // does not characterise. `unknown` values are right there: a caller has to check before using
@@ -131,11 +131,24 @@ export class TypeMapper {
    * known values would be lost from the type despite being right there in the description.
    */
   private joinUnion(parts: readonly string[]): string {
-    const literals = parts.filter((part) => part.startsWith('"'));
-    const rest = parts.filter((part) => !part.startsWith('"'));
+    // `unknown` absorbs everything it is unioned with, so `unknown | null` says exactly `unknown`
+    // with more words. Two schemas describe a rejected value as "any JSON type, or null".
+    if (parts.includes('unknown')) {
+      return 'unknown';
+    }
+
+    // `IsoDateTime` *is* `string`, so a union of both says `string` twice. The description does
+    // write that — a few fields accept either a timestamp or a free-form string — and the plain
+    // string is the honest one to keep.
+    const deduped = parts.includes('string')
+      ? parts.filter((part) => !part.endsWith(DATE_TIME_TYPE))
+      : parts;
+
+    const literals = deduped.filter((part) => part.startsWith('"'));
+    const rest = deduped.filter((part) => !part.startsWith('"'));
 
     if (literals.length === 0 || !rest.includes('string')) {
-      return parts.join(' | ');
+      return deduped.join(' | ');
     }
 
     const others = rest.filter((part) => part !== 'string');

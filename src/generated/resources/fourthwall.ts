@@ -66,11 +66,15 @@ export class Fourthwall {
    *
    * Requires the `channel_providers:write` scope.
    */
-  getFourthwallWebhookUrl(params: FourthwallGetFourthwallWebhookUrlParams): Promise<Models.ConnectUrl> {
+  getFourthwallWebhookUrl(
+    params: FourthwallGetFourthwallWebhookUrlParams,
+  ): Promise<Models.ConnectUrl> {
     return this.client.request<Models.ConnectUrl>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/fourthwall/webhook-url", { channel_id: params["channel_id"] }),
-      query: { provider_channel_id: params["provider_channel_id"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/fourthwall/webhook-url', {
+        channel_id: params.channel_id,
+      }),
+      query: { provider_channel_id: params.provider_channel_id },
       options: params,
     });
   }
@@ -84,10 +88,14 @@ export class Fourthwall {
    *
    * @param params.body The request body.
    */
-  registerFourthwallChannelProvider(params: FourthwallRegisterFourthwallChannelProviderParams): Promise<Models.ChannelProviderPublic> {
+  registerFourthwallChannelProvider(
+    params: FourthwallRegisterFourthwallChannelProviderParams,
+  ): Promise<Models.ChannelProviderPublic> {
     return this.client.request<Models.ChannelProviderPublic>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/register-provider/fourthwall", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/register-provider/fourthwall', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -100,8 +108,11 @@ export class Fourthwall {
    */
   fourthwallProviderEvent(params: FourthwallFourthwallProviderEventParams): Promise<unknown> {
     return this.client.request<unknown>({
-      method: "POST",
-      path: expandPath("/fourthwall/events/{channel_id}/{provider_channel_id}", { channel_id: params["channel_id"], provider_channel_id: params["provider_channel_id"] }),
+      method: 'POST',
+      path: expandPath('/fourthwall/events/{channel_id}/{provider_channel_id}', {
+        channel_id: params.channel_id,
+        provider_channel_id: params.provider_channel_id,
+      }),
       options: params,
     });
   }
@@ -113,9 +124,9 @@ export class Fourthwall {
    */
   fourthwallEvent(params: FourthwallFourthwallEventParams): Promise<unknown> {
     return this.client.request<unknown>({
-      method: "POST",
-      path: expandPath("/fourthwall/events/{channel_id}", { channel_id: params["channel_id"] }),
-      query: { provider_channel_id: params["provider_channel_id"] },
+      method: 'POST',
+      path: expandPath('/fourthwall/events/{channel_id}', { channel_id: params.channel_id }),
+      query: { provider_channel_id: params.provider_channel_id },
       options: params,
     });
   }

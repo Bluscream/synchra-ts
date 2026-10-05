@@ -131,10 +131,14 @@ export class ChannelUserInvite {
    *
    * @param params.body The request body.
    */
-  addAdminChannelUserAccess(params: ChannelUserInviteAddAdminChannelUserAccessParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: expandPath("/admin/channels/{channel_id}/users-access", { channel_id: params["channel_id"] }),
+  addAdminChannelUserAccess(
+    params: ChannelUserInviteAddAdminChannelUserAccessParams,
+  ): Promise<void> {
+    return this.client.send({
+      method: 'POST',
+      path: expandPath('/admin/channels/{channel_id}/users-access', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -145,10 +149,14 @@ export class ChannelUserInvite {
    *
    * `POST /api/2/channel-user-invites/{channel_user_invite_id}/accept`
    */
-  channelUserInviteAccept(params: ChannelUserInviteChannelUserInviteAcceptParams): Promise<Models.Channel> {
+  channelUserInviteAccept(
+    params: ChannelUserInviteChannelUserInviteAcceptParams,
+  ): Promise<Models.Channel> {
     return this.client.request<Models.Channel>({
-      method: "POST",
-      path: expandPath("/channel-user-invites/{channel_user_invite_id}/accept", { channel_user_invite_id: params["channel_user_invite_id"] }),
+      method: 'POST',
+      path: expandPath('/channel-user-invites/{channel_user_invite_id}/accept', {
+        channel_user_invite_id: params.channel_user_invite_id,
+      }),
       options: params,
     });
   }
@@ -158,10 +166,12 @@ export class ChannelUserInvite {
    *
    * `GET /api/2/channels/{channel_id}/access-level`
    */
-  getChannelAccessLevel(params: ChannelUserInviteGetChannelAccessLevelParams): Promise<Models.ChannelUserAccessLevel | null> {
+  getChannelAccessLevel(
+    params: ChannelUserInviteGetChannelAccessLevelParams,
+  ): Promise<Models.ChannelUserAccessLevel | null> {
     return this.client.request<Models.ChannelUserAccessLevel | null>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/access-level", { channel_id: params["channel_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/access-level', { channel_id: params.channel_id }),
       options: params,
     });
   }
@@ -174,9 +184,12 @@ export class ChannelUserInvite {
    * Requires the `channel_user_access:write` scope.
    */
   channelUserInviteDelete(params: ChannelUserInviteChannelUserInviteDeleteParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/user-invites/{channel_user_invite_id}", { channel_id: params["channel_id"], channel_user_invite_id: params["channel_user_invite_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/user-invites/{channel_user_invite_id}', {
+        channel_id: params.channel_id,
+        channel_user_invite_id: params.channel_user_invite_id,
+      }),
       options: params,
     });
   }
@@ -190,10 +203,15 @@ export class ChannelUserInvite {
    *
    * @param params.body The request body.
    */
-  channelUserInviteUpdate(params: ChannelUserInviteChannelUserInviteUpdateParams): Promise<Models.ChannelUserInvite> {
+  channelUserInviteUpdate(
+    params: ChannelUserInviteChannelUserInviteUpdateParams,
+  ): Promise<Models.ChannelUserInvite> {
     return this.client.request<Models.ChannelUserInvite>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/user-invites/{channel_user_invite_id}", { channel_id: params["channel_id"], channel_user_invite_id: params["channel_user_invite_id"] }),
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/user-invites/{channel_user_invite_id}', {
+        channel_id: params.channel_id,
+        channel_user_invite_id: params.channel_user_invite_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -206,11 +224,13 @@ export class ChannelUserInvite {
    *
    * Requires the `channel_user_access:write` scope.
    */
-  channelUserInvites(params: ChannelUserInviteChannelUserInvitesParams): Promise<Models.PageCursorChannelUserInvite> {
+  channelUserInvites(
+    params: ChannelUserInviteChannelUserInvitesParams,
+  ): Promise<Models.PageCursorChannelUserInvite> {
     return this.client.request<Models.PageCursorChannelUserInvite>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/user-invites", { channel_id: params["channel_id"] }),
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/user-invites', { channel_id: params.channel_id }),
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -224,10 +244,12 @@ export class ChannelUserInvite {
    *
    * @param params.body The request body.
    */
-  channelUserInvite(params: ChannelUserInviteChannelUserInviteParams): Promise<Models.ChannelUserInvite> {
+  channelUserInvite(
+    params: ChannelUserInviteChannelUserInviteParams,
+  ): Promise<Models.ChannelUserInvite> {
     return this.client.request<Models.ChannelUserInvite>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/user-invites", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/user-invites', { channel_id: params.channel_id }),
       body: params.body,
       options: params,
     });
@@ -241,9 +263,12 @@ export class ChannelUserInvite {
    * Requires the `channel_user_access:write` scope.
    */
   deleteChannelUserAccess(params: ChannelUserInviteDeleteChannelUserAccessParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/users-access/{channel_user_access_id}", { channel_id: params["channel_id"], channel_user_access_id: params["channel_user_access_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/users-access/{channel_user_access_id}', {
+        channel_id: params.channel_id,
+        channel_user_access_id: params.channel_user_access_id,
+      }),
       options: params,
     });
   }
@@ -257,10 +282,15 @@ export class ChannelUserInvite {
    *
    * @param params.body The request body.
    */
-  updateChannelUserAccessLevel(params: ChannelUserInviteUpdateChannelUserAccessLevelParams): Promise<unknown> {
+  updateChannelUserAccessLevel(
+    params: ChannelUserInviteUpdateChannelUserAccessLevelParams,
+  ): Promise<unknown> {
     return this.client.request<unknown>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/users-access/{channel_user_access_id}", { channel_id: params["channel_id"], channel_user_access_id: params["channel_user_access_id"] }),
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/users-access/{channel_user_access_id}', {
+        channel_id: params.channel_id,
+        channel_user_access_id: params.channel_user_access_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -273,11 +303,13 @@ export class ChannelUserInvite {
    *
    * Requires the `channel_user_access:read` scope.
    */
-  getChannelUsersAccess(params: ChannelUserInviteGetChannelUsersAccessParams): Promise<Models.PageCursorChannelUserAccessLevelWithUser> {
+  getChannelUsersAccess(
+    params: ChannelUserInviteGetChannelUsersAccessParams,
+  ): Promise<Models.PageCursorChannelUserAccessLevelWithUser> {
     return this.client.request<Models.PageCursorChannelUserAccessLevelWithUser>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/users-access", { channel_id: params["channel_id"] }),
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/users-access', { channel_id: params.channel_id }),
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }

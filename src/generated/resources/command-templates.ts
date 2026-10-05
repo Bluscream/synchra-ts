@@ -44,10 +44,14 @@ export class CommandTemplates {
    *
    * Requires the `command:read` scope.
    */
-  getCommandTemplate(params: CommandTemplatesGetCommandTemplateParams): Promise<Models.CommandTemplate> {
+  getCommandTemplate(
+    params: CommandTemplatesGetCommandTemplateParams,
+  ): Promise<Models.CommandTemplate> {
     return this.client.request<Models.CommandTemplate>({
-      method: "GET",
-      path: expandPath("/command-templates/{command_template_id}", { command_template_id: params["command_template_id"] }),
+      method: 'GET',
+      path: expandPath('/command-templates/{command_template_id}', {
+        command_template_id: params.command_template_id,
+      }),
       options: params,
     });
   }
@@ -59,11 +63,13 @@ export class CommandTemplates {
    *
    * Requires the `command:read` scope.
    */
-  getCommandTemplates(params: CommandTemplatesGetCommandTemplatesParams = {}): Promise<Models.PageCursorCommandTemplate> {
+  getCommandTemplates(
+    params: CommandTemplatesGetCommandTemplatesParams = {},
+  ): Promise<Models.PageCursorCommandTemplate> {
     return this.client.request<Models.PageCursorCommandTemplate>({
-      method: "GET",
-      path: "/command-templates",
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: '/command-templates',
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }

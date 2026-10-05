@@ -15,16 +15,14 @@ import type * as Models from '../models.js';
  *
  * Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.
  */
-export interface GatewayGetAdminWebsocketMetricsParams extends RequestOptions {
-}
+export type GatewayGetAdminWebsocketMetricsParams = RequestOptions;
 
 /**
  * Options for `GET /api/2/ws-docs`.
  *
  * Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.
  */
-export interface GatewayWebsocketDocumentationParams extends RequestOptions {
-}
+export type GatewayWebsocketDocumentationParams = RequestOptions;
 
 /**
  * The `WebSocket` endpoints.
@@ -41,10 +39,12 @@ export class Gateway {
    *
    * Requires the `channel:read` scope.
    */
-  getAdminWebsocketMetrics(params: GatewayGetAdminWebsocketMetricsParams = {}): Promise<Models.WebSocketMetricsOverview> {
+  getAdminWebsocketMetrics(
+    params: GatewayGetAdminWebsocketMetricsParams = {},
+  ): Promise<Models.WebSocketMetricsOverview> {
     return this.client.request<Models.WebSocketMetricsOverview>({
-      method: "GET",
-      path: "/admin/websockets/overview",
+      method: 'GET',
+      path: '/admin/websockets/overview',
       options: params,
     });
   }
@@ -59,8 +59,8 @@ export class Gateway {
    */
   websocketDocumentation(params: GatewayWebsocketDocumentationParams = {}): Promise<unknown> {
     return this.client.request<unknown>({
-      method: "GET",
-      path: "/ws-docs",
+      method: 'GET',
+      path: '/ws-docs',
       options: params,
     });
   }

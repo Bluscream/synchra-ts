@@ -45,10 +45,12 @@ export class ChannelPointSettings {
    *
    * Requires the `channel_point_settings:read` scope.
    */
-  getChannelPointSettings(params: ChannelPointSettingsGetChannelPointSettingsParams): Promise<Models.ChannelPointSettings> {
+  getChannelPointSettings(
+    params: ChannelPointSettingsGetChannelPointSettingsParams,
+  ): Promise<Models.ChannelPointSettings> {
     return this.client.request<Models.ChannelPointSettings>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/point-settings", { channel_id: params["channel_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/point-settings', { channel_id: params.channel_id }),
       options: params,
     });
   }
@@ -62,10 +64,12 @@ export class ChannelPointSettings {
    *
    * @param params.body The request body.
    */
-  updateChannelPointSettings(params: ChannelPointSettingsUpdateChannelPointSettingsParams): Promise<Models.ChannelPointSettings> {
+  updateChannelPointSettings(
+    params: ChannelPointSettingsUpdateChannelPointSettingsParams,
+  ): Promise<Models.ChannelPointSettings> {
     return this.client.request<Models.ChannelPointSettings>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}/point-settings", { channel_id: params["channel_id"] }),
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}/point-settings', { channel_id: params.channel_id }),
       body: params.body,
       options: params,
     });

@@ -59,9 +59,11 @@ export class Owncast {
    */
   getOwncastWebhookUrl(params: OwncastGetOwncastWebhookUrlParams): Promise<Models.ConnectUrl> {
     return this.client.request<Models.ConnectUrl>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/owncast/webhook-url", { channel_id: params["channel_id"] }),
-      query: { host: params["host"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/owncast/webhook-url', {
+        channel_id: params.channel_id,
+      }),
+      query: { host: params.host },
       options: params,
     });
   }
@@ -75,10 +77,14 @@ export class Owncast {
    *
    * @param params.body The request body.
    */
-  registerOwncastChannelProvider(params: OwncastRegisterOwncastChannelProviderParams): Promise<Models.ChannelProviderPublic> {
+  registerOwncastChannelProvider(
+    params: OwncastRegisterOwncastChannelProviderParams,
+  ): Promise<Models.ChannelProviderPublic> {
     return this.client.request<Models.ChannelProviderPublic>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/register-provider/owncast", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/register-provider/owncast', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -91,8 +97,12 @@ export class Owncast {
    */
   owncastEvent(params: OwncastOwncastEventParams): Promise<unknown> {
     return this.client.request<unknown>({
-      method: "POST",
-      path: expandPath("/owncast/events/{channel_id}/{provider_channel_id}/{webhook_token}", { channel_id: params["channel_id"], provider_channel_id: params["provider_channel_id"], webhook_token: params["webhook_token"] }),
+      method: 'POST',
+      path: expandPath('/owncast/events/{channel_id}/{provider_channel_id}/{webhook_token}', {
+        channel_id: params.channel_id,
+        provider_channel_id: params.provider_channel_id,
+        webhook_token: params.webhook_token,
+      }),
       options: params,
     });
   }

@@ -68,9 +68,11 @@ export class KoFi {
    */
   getKoFiWebhookUrl(params: KoFiGetKoFiWebhookUrlParams): Promise<Models.ConnectUrl> {
     return this.client.request<Models.ConnectUrl>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/kofi/webhook-url", { channel_id: params["channel_id"] }),
-      query: { provider_channel_id: params["provider_channel_id"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/kofi/webhook-url', {
+        channel_id: params.channel_id,
+      }),
+      query: { provider_channel_id: params.provider_channel_id },
       options: params,
     });
   }
@@ -84,10 +86,14 @@ export class KoFi {
    *
    * @param params.body The request body.
    */
-  registerKoFiChannelProvider(params: KoFiRegisterKoFiChannelProviderParams): Promise<Models.ChannelProviderPublic> {
+  registerKoFiChannelProvider(
+    params: KoFiRegisterKoFiChannelProviderParams,
+  ): Promise<Models.ChannelProviderPublic> {
     return this.client.request<Models.ChannelProviderPublic>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/register-provider/kofi", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/register-provider/kofi', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -100,8 +106,11 @@ export class KoFi {
    */
   koFiProviderEvent(params: KoFiKoFiProviderEventParams): Promise<unknown> {
     return this.client.request<unknown>({
-      method: "POST",
-      path: expandPath("/kofi/events/{channel_id}/{provider_channel_id}", { channel_id: params["channel_id"], provider_channel_id: params["provider_channel_id"] }),
+      method: 'POST',
+      path: expandPath('/kofi/events/{channel_id}/{provider_channel_id}', {
+        channel_id: params.channel_id,
+        provider_channel_id: params.provider_channel_id,
+      }),
       options: params,
     });
   }
@@ -113,9 +122,9 @@ export class KoFi {
    */
   koFiEvent(params: KoFiKoFiEventParams): Promise<unknown> {
     return this.client.request<unknown>({
-      method: "POST",
-      path: expandPath("/kofi/events/{channel_id}", { channel_id: params["channel_id"] }),
-      query: { provider_channel_id: params["provider_channel_id"] },
+      method: 'POST',
+      path: expandPath('/kofi/events/{channel_id}', { channel_id: params.channel_id }),
+      query: { provider_channel_id: params.provider_channel_id },
       options: params,
     });
   }

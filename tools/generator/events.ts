@@ -193,7 +193,9 @@ function payloadType(section: string, spec: Spec): string {
     .map((match) => match[1] ?? '')
     .filter((name) => !['any', 'null', 'string', 'object'].includes(name));
 
-  const resolved = names.filter((name) => spec.has(name)).map((name) => `Models.${schemaType(name)}`);
+  const resolved = names
+    .filter((name) => spec.has(name))
+    .map((name) => `Models.${schemaType(name)}`);
 
   if (resolved.length === 0) {
     return 'unknown';

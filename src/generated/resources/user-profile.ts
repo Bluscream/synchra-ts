@@ -26,7 +26,11 @@ export interface UserProfileDeleteUserProfileParams extends RequestOptions {
  */
 export interface UserProfilePatchUserProfileParams extends RequestOptions {
   /** The request body. */
-  body: Models.DashboardUserProfileUpdate | Models.ChatUserProfileUpdate | Models.ActivityFeedUserProfileUpdate | Models.ControlsUserProfileUpdate;
+  body:
+    | Models.DashboardUserProfileUpdate
+    | Models.ChatUserProfileUpdate
+    | Models.ActivityFeedUserProfileUpdate
+    | Models.ControlsUserProfileUpdate;
   profile_id: string | number;
 }
 
@@ -37,7 +41,11 @@ export interface UserProfilePatchUserProfileParams extends RequestOptions {
  */
 export interface UserProfilePutUserProfileParams extends RequestOptions {
   /** The request body. */
-  body: Models.DashboardUserProfileUpdate | Models.ChatUserProfileUpdate | Models.ActivityFeedUserProfileUpdate | Models.ControlsUserProfileUpdate;
+  body:
+    | Models.DashboardUserProfileUpdate
+    | Models.ChatUserProfileUpdate
+    | Models.ActivityFeedUserProfileUpdate
+    | Models.ControlsUserProfileUpdate;
   profile_id: string | number;
 }
 
@@ -48,7 +56,11 @@ export interface UserProfilePutUserProfileParams extends RequestOptions {
  */
 export interface UserProfilePatchUserProfileDeprecatedParams extends RequestOptions {
   /** The request body. */
-  body: Models.DashboardUserProfileUpdate | Models.ChatUserProfileUpdate | Models.ActivityFeedUserProfileUpdate | Models.ControlsUserProfileUpdate;
+  body:
+    | Models.DashboardUserProfileUpdate
+    | Models.ChatUserProfileUpdate
+    | Models.ActivityFeedUserProfileUpdate
+    | Models.ControlsUserProfileUpdate;
   profile_id: string | number;
   profile_type: string | number;
 }
@@ -60,7 +72,11 @@ export interface UserProfilePatchUserProfileDeprecatedParams extends RequestOpti
  */
 export interface UserProfilePutUserProfileDeprecatedParams extends RequestOptions {
   /** The request body. */
-  body: Models.DashboardUserProfileUpdate | Models.ChatUserProfileUpdate | Models.ActivityFeedUserProfileUpdate | Models.ControlsUserProfileUpdate;
+  body:
+    | Models.DashboardUserProfileUpdate
+    | Models.ChatUserProfileUpdate
+    | Models.ActivityFeedUserProfileUpdate
+    | Models.ControlsUserProfileUpdate;
   profile_id: string | number;
   profile_type: string | number;
 }
@@ -81,7 +97,11 @@ export interface UserProfileGetUserProfilesDeprecatedParams extends RequestOptio
  */
 export interface UserProfileCreateUserProfileDeprecatedParams extends RequestOptions {
   /** The request body. */
-  body: Models.DashboardUserProfileCreate | Models.ChatUserProfileCreate | Models.ActivityFeedUserProfileCreate | Models.ControlsUserProfileCreate;
+  body:
+    | Models.DashboardUserProfileCreate
+    | Models.ChatUserProfileCreate
+    | Models.ActivityFeedUserProfileCreate
+    | Models.ControlsUserProfileCreate;
   profile_type: string | number;
 }
 
@@ -101,7 +121,11 @@ export interface UserProfileGetUserProfilesParams extends RequestOptions {
  */
 export interface UserProfileCreateUserProfileParams extends RequestOptions {
   /** The request body. */
-  body: Models.DashboardUserProfileCreate | Models.ChatUserProfileCreate | Models.ActivityFeedUserProfileCreate | Models.ControlsUserProfileCreate;
+  body:
+    | Models.DashboardUserProfileCreate
+    | Models.ChatUserProfileCreate
+    | Models.ActivityFeedUserProfileCreate
+    | Models.ControlsUserProfileCreate;
 }
 
 /**
@@ -120,9 +144,9 @@ export class UserProfile {
    * Requires the `user_profile:write` scope.
    */
   deleteUserProfile(params: UserProfileDeleteUserProfileParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/user/profiles/{profile_id}", { profile_id: params["profile_id"] }),
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/user/profiles/{profile_id}', { profile_id: params.profile_id }),
       options: params,
     });
   }
@@ -136,10 +160,22 @@ export class UserProfile {
    *
    * @param params.body The request body.
    */
-  patchUserProfile(params: UserProfilePatchUserProfileParams): Promise<Models.DashboardUserProfile | Models.ChatUserProfile | Models.ActivityFeedUserProfile | Models.ControlsUserProfile> {
-    return this.client.request<Models.DashboardUserProfile | Models.ChatUserProfile | Models.ActivityFeedUserProfile | Models.ControlsUserProfile>({
-      method: "PATCH",
-      path: expandPath("/user/profiles/{profile_id}", { profile_id: params["profile_id"] }),
+  patchUserProfile(
+    params: UserProfilePatchUserProfileParams,
+  ): Promise<
+    | Models.DashboardUserProfile
+    | Models.ChatUserProfile
+    | Models.ActivityFeedUserProfile
+    | Models.ControlsUserProfile
+  > {
+    return this.client.request<
+      | Models.DashboardUserProfile
+      | Models.ChatUserProfile
+      | Models.ActivityFeedUserProfile
+      | Models.ControlsUserProfile
+    >({
+      method: 'PATCH',
+      path: expandPath('/user/profiles/{profile_id}', { profile_id: params.profile_id }),
       body: params.body,
       options: params,
     });
@@ -154,10 +190,22 @@ export class UserProfile {
    *
    * @param params.body The request body.
    */
-  putUserProfile(params: UserProfilePutUserProfileParams): Promise<Models.DashboardUserProfile | Models.ChatUserProfile | Models.ActivityFeedUserProfile | Models.ControlsUserProfile> {
-    return this.client.request<Models.DashboardUserProfile | Models.ChatUserProfile | Models.ActivityFeedUserProfile | Models.ControlsUserProfile>({
-      method: "PUT",
-      path: expandPath("/user/profiles/{profile_id}", { profile_id: params["profile_id"] }),
+  putUserProfile(
+    params: UserProfilePutUserProfileParams,
+  ): Promise<
+    | Models.DashboardUserProfile
+    | Models.ChatUserProfile
+    | Models.ActivityFeedUserProfile
+    | Models.ControlsUserProfile
+  > {
+    return this.client.request<
+      | Models.DashboardUserProfile
+      | Models.ChatUserProfile
+      | Models.ActivityFeedUserProfile
+      | Models.ControlsUserProfile
+    >({
+      method: 'PUT',
+      path: expandPath('/user/profiles/{profile_id}', { profile_id: params.profile_id }),
       body: params.body,
       options: params,
     });
@@ -172,10 +220,25 @@ export class UserProfile {
    *
    * @param params.body The request body.
    */
-  patchUserProfileDeprecated(params: UserProfilePatchUserProfileDeprecatedParams): Promise<Models.DashboardUserProfile | Models.ChatUserProfile | Models.ActivityFeedUserProfile | Models.ControlsUserProfile> {
-    return this.client.request<Models.DashboardUserProfile | Models.ChatUserProfile | Models.ActivityFeedUserProfile | Models.ControlsUserProfile>({
-      method: "PATCH",
-      path: expandPath("/user/profiles/{profile_type}/{profile_id}", { profile_type: params["profile_type"], profile_id: params["profile_id"] }),
+  patchUserProfileDeprecated(
+    params: UserProfilePatchUserProfileDeprecatedParams,
+  ): Promise<
+    | Models.DashboardUserProfile
+    | Models.ChatUserProfile
+    | Models.ActivityFeedUserProfile
+    | Models.ControlsUserProfile
+  > {
+    return this.client.request<
+      | Models.DashboardUserProfile
+      | Models.ChatUserProfile
+      | Models.ActivityFeedUserProfile
+      | Models.ControlsUserProfile
+    >({
+      method: 'PATCH',
+      path: expandPath('/user/profiles/{profile_type}/{profile_id}', {
+        profile_type: params.profile_type,
+        profile_id: params.profile_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -190,10 +253,25 @@ export class UserProfile {
    *
    * @param params.body The request body.
    */
-  putUserProfileDeprecated(params: UserProfilePutUserProfileDeprecatedParams): Promise<Models.DashboardUserProfile | Models.ChatUserProfile | Models.ActivityFeedUserProfile | Models.ControlsUserProfile> {
-    return this.client.request<Models.DashboardUserProfile | Models.ChatUserProfile | Models.ActivityFeedUserProfile | Models.ControlsUserProfile>({
-      method: "PUT",
-      path: expandPath("/user/profiles/{profile_type}/{profile_id}", { profile_type: params["profile_type"], profile_id: params["profile_id"] }),
+  putUserProfileDeprecated(
+    params: UserProfilePutUserProfileDeprecatedParams,
+  ): Promise<
+    | Models.DashboardUserProfile
+    | Models.ChatUserProfile
+    | Models.ActivityFeedUserProfile
+    | Models.ControlsUserProfile
+  > {
+    return this.client.request<
+      | Models.DashboardUserProfile
+      | Models.ChatUserProfile
+      | Models.ActivityFeedUserProfile
+      | Models.ControlsUserProfile
+    >({
+      method: 'PUT',
+      path: expandPath('/user/profiles/{profile_type}/{profile_id}', {
+        profile_type: params.profile_type,
+        profile_id: params.profile_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -206,10 +284,12 @@ export class UserProfile {
    *
    * Requires the `user_profile:read` scope.
    */
-  getUserProfilesDeprecated(params: UserProfileGetUserProfilesDeprecatedParams): Promise<Models.UserProfileList> {
+  getUserProfilesDeprecated(
+    params: UserProfileGetUserProfilesDeprecatedParams,
+  ): Promise<Models.UserProfileList> {
     return this.client.request<Models.UserProfileList>({
-      method: "GET",
-      path: expandPath("/user/profiles/{profile_type}", { profile_type: params["profile_type"] }),
+      method: 'GET',
+      path: expandPath('/user/profiles/{profile_type}', { profile_type: params.profile_type }),
       options: params,
     });
   }
@@ -223,10 +303,22 @@ export class UserProfile {
    *
    * @param params.body The request body.
    */
-  createUserProfileDeprecated(params: UserProfileCreateUserProfileDeprecatedParams): Promise<Models.DashboardUserProfile | Models.ChatUserProfile | Models.ActivityFeedUserProfile | Models.ControlsUserProfile> {
-    return this.client.request<Models.DashboardUserProfile | Models.ChatUserProfile | Models.ActivityFeedUserProfile | Models.ControlsUserProfile>({
-      method: "POST",
-      path: expandPath("/user/profiles/{profile_type}", { profile_type: params["profile_type"] }),
+  createUserProfileDeprecated(
+    params: UserProfileCreateUserProfileDeprecatedParams,
+  ): Promise<
+    | Models.DashboardUserProfile
+    | Models.ChatUserProfile
+    | Models.ActivityFeedUserProfile
+    | Models.ControlsUserProfile
+  > {
+    return this.client.request<
+      | Models.DashboardUserProfile
+      | Models.ChatUserProfile
+      | Models.ActivityFeedUserProfile
+      | Models.ControlsUserProfile
+    >({
+      method: 'POST',
+      path: expandPath('/user/profiles/{profile_type}', { profile_type: params.profile_type }),
       body: params.body,
       options: params,
     });
@@ -241,9 +333,9 @@ export class UserProfile {
    */
   getUserProfiles(params: UserProfileGetUserProfilesParams): Promise<Models.UserProfileList> {
     return this.client.request<Models.UserProfileList>({
-      method: "GET",
-      path: "/user/profiles",
-      query: { profile_type: params["profile_type"] },
+      method: 'GET',
+      path: '/user/profiles',
+      query: { profile_type: params.profile_type },
       options: params,
     });
   }
@@ -257,10 +349,22 @@ export class UserProfile {
    *
    * @param params.body The request body.
    */
-  createUserProfile(params: UserProfileCreateUserProfileParams): Promise<Models.DashboardUserProfile | Models.ChatUserProfile | Models.ActivityFeedUserProfile | Models.ControlsUserProfile> {
-    return this.client.request<Models.DashboardUserProfile | Models.ChatUserProfile | Models.ActivityFeedUserProfile | Models.ControlsUserProfile>({
-      method: "POST",
-      path: "/user/profiles",
+  createUserProfile(
+    params: UserProfileCreateUserProfileParams,
+  ): Promise<
+    | Models.DashboardUserProfile
+    | Models.ChatUserProfile
+    | Models.ActivityFeedUserProfile
+    | Models.ControlsUserProfile
+  > {
+    return this.client.request<
+      | Models.DashboardUserProfile
+      | Models.ChatUserProfile
+      | Models.ActivityFeedUserProfile
+      | Models.ControlsUserProfile
+    >({
+      method: 'POST',
+      path: '/user/profiles',
       body: params.body,
       options: params,
     });

@@ -11,10 +11,11 @@
  * call: `channels.getChannel({ channel_id: channel.id })`.
  */
 import { docComment, type Emitter } from './emitter.js';
-import { camel, operationMethod, pascal, propertyKey, tagClass } from './names.js';
+import { camel, operationMethod, pascal, propertyAccess, propertyKey, tagClass } from './names.js';
 import {
   isObject,
   relativePath,
+  stringAt,
   requestBodyRequired,
   requestBodySchema,
   successSchema,
@@ -35,9 +36,15 @@ const RAW_BODY_CONTENT_TYPE = 'application/octet-stream';
  */
 const MAX_DESCRIPTION = 4096;
 
+interface Group {
+  readonly className: string;
+  readonly module: string;
+  /** The names of the per-operation options interfaces this module exports. */
+  readonly params: readonly string[];
+}
+
 export interface ResourcesResult {
-  /** Tag to emitted class name and module path. */
-  readonly groups: ReadonlyMap<string, { readonly className: string; readonly module: string }>;
+  readonly groups: ReadonlyMap<string, Group>;
   readonly operations: number;
 }
 
@@ -58,23 +65,22 @@ export async function emitResources(
     }
   }
 
-  const groups = new Map<string, { className: string; module: string }>();
+  const groups = new Map<string, Group>();
   const tags = [...byTag.keys()].sort((a, b) => a.localeCompare(b));
 
   for (const tag of tags) {
     const className = tagClass(tag);
     const module = kebab(className);
     const operations = byTag.get(tag) ?? [];
+    const rendered = renderResource(tag, className, operations, types);
 
-    groups.set(tag, { className, module });
+    groups.set(tag, { className, module, params: rendered.params });
 
-    await emitter.write(
-      `src/generated/resources/${module}.ts`,
-      renderResource(tag, className, operations, types),
-    );
+    await emitter.write(`src/generated/resources/${module}.ts`, rendered.source);
   }
 
   await emitter.write('src/generated/resources/index.ts', renderIndex(groups));
+  await emitter.write('src/generated/resources/params.ts', renderParamsIndex(groups));
 
   return { groups, operations: spec.operations.length };
 }
@@ -84,9 +90,10 @@ function renderResource(
   className: string,
   operations: readonly Operation[],
   types: TypeMapper,
-): string {
+): { source: string; params: string[] } {
   const used = new Set<string>();
   const paramInterfaces: string[] = [];
+  const paramNames: string[] = [];
   const methods: string[] = [];
 
   for (const operation of operations) {
@@ -94,6 +101,7 @@ function renderResource(
 
     used.add(method.name);
     paramInterfaces.push(method.paramsInterface);
+    paramNames.push(method.paramsName);
     methods.push(method.body);
   }
 
@@ -114,7 +122,7 @@ function renderResource(
     rendered.includes('Models.') ? "import type * as Models from '../models.js';" : '',
   ].filter((line) => line !== '');
 
-  return [
+  const source = [
     docComment([`The \`${tag}\` endpoints, and the options each one takes.`]),
     imports.join('\n'),
     paramInterfaces.join('\n'),
@@ -122,10 +130,13 @@ function renderResource(
   ]
     .filter((part) => part !== '')
     .join('\n\n');
+
+  return { source, params: paramNames.sort((a, b) => a.localeCompare(b)) };
 }
 
 interface DescribedMethod {
   readonly name: string;
+  readonly paramsName: string;
   readonly paramsInterface: string;
   readonly body: string;
 }
@@ -155,10 +166,12 @@ function describeMethod(
 
   return {
     name,
+    paramsName,
     paramsInterface: renderParams(paramsName, operation, fields),
     body:
       `${doc}  ${name}(${argument}): Promise<${returnType}> {\n` +
-      `    return this.client.request<${returnType}>({\n${requestLines(operation, fields)}\n    });\n  }\n`,
+      `    return this.client.${returnType === 'void' ? 'send' : `request<${returnType}>`}({\n` +
+      `${requestLines(operation, fields)}\n    });\n  }\n`,
   };
 }
 
@@ -178,7 +191,7 @@ function collectFields(operation: Operation, types: TypeMapper): Field[] {
   const fields: Field[] = [];
 
   for (const parameter of operation.pathParameters) {
-    const wire = String(parameter['name'] ?? '');
+    const wire = stringAt(parameter, 'name') ?? '';
 
     // Three webhook ingest routes declare a path parameter as `string | None`, an artefact of the
     // handler's annotation: a URL segment always carries a value, and there is no request a null
@@ -194,9 +207,9 @@ function collectFields(operation: Operation, types: TypeMapper): Field[] {
   }
 
   for (const parameter of operation.queryParameters) {
-    const wire = String(parameter['name'] ?? '');
-    const required = parameter['required'] === true;
-    const mapped = types.map(parameter['schema']);
+    const wire = stringAt(parameter, 'name') ?? '';
+    const required = parameter.required === true;
+    const mapped = types.map(parameter.schema);
 
     fields.push({
       key: wire,
@@ -209,7 +222,7 @@ function collectFields(operation: Operation, types: TypeMapper): Field[] {
   }
 
   for (const parameter of operation.headerParameters) {
-    const wire = String(parameter['name'] ?? '');
+    const wire = stringAt(parameter, 'name') ?? '';
     const lower = wire.toLowerCase();
 
     // The upload endpoints declare their content type as a header constant; the raw body below
@@ -218,8 +231,8 @@ function collectFields(operation: Operation, types: TypeMapper): Field[] {
       continue;
     }
 
-    const required = parameter['required'] === true;
-    const mapped = types.map(parameter['schema']);
+    const required = parameter.required === true;
+    const mapped = types.map(parameter.schema);
 
     fields.push({
       key: wire,
@@ -273,8 +286,7 @@ function bodyField(operation: Operation, types: TypeMapper): Field | undefined {
 
 function expectsRawBody(operation: Operation): boolean {
   return operation.headerParameters.some(
-    (parameter) =>
-      isObject(parameter['schema']) && parameter['schema']['const'] === RAW_BODY_CONTENT_TYPE,
+    (parameter) => isObject(parameter.schema) && parameter.schema.const === RAW_BODY_CONTENT_TYPE,
   );
 }
 
@@ -297,7 +309,13 @@ function renderParams(name: string, operation: Operation, fields: readonly Field
     'Extends {@link RequestOptions}, so `signal`, `headers` and `retry` can be set per call.',
   ]);
 
-  return `${doc}export interface ${name} extends RequestOptions {\n${lines.join('\n')}${lines.length === 0 ? '' : '\n'}}\n`;
+  // An alias rather than an empty interface for the operations that take nothing: an interface
+  // declaring no members is just its supertype under a second name.
+  if (lines.length === 0) {
+    return `${doc}export type ${name} = RequestOptions;\n`;
+  }
+
+  return `${doc}export interface ${name} extends RequestOptions {\n${lines.join('\n')}\n}\n`;
 }
 
 function requestLines(operation: Operation, fields: readonly Field[]): string {
@@ -309,7 +327,9 @@ function requestLines(operation: Operation, fields: readonly Field[]): string {
   const query = fields.filter((field) => field.location === 'query');
 
   if (query.length > 0) {
-    const entries = query.map((field) => `${propertyKey(field.wire)}: params[${literal(field.key)}]`);
+    const entries = query.map(
+      (field) => `${propertyKey(field.wire)}: ${propertyAccess('params', field.key)}`,
+    );
 
     lines.push(`      query: { ${entries.join(', ')} },`);
   }
@@ -318,7 +338,7 @@ function requestLines(operation: Operation, fields: readonly Field[]): string {
 
   if (headers.length > 0) {
     const entries = headers.map(
-      (field) => `${propertyKey(field.wire)}: params[${literal(field.key)}]`,
+      (field) => `${propertyKey(field.wire)}: ${propertyAccess('params', field.key)}`,
     );
 
     lines.push(`      headers: { ${entries.join(', ')} },`);
@@ -353,7 +373,7 @@ function pathExpression(operation: Operation, fields: readonly Field[]): string 
   }
 
   const entries = pathFields.map(
-    (field) => `${propertyKey(field.wire)}: params[${literal(field.key)}]`,
+    (field) => `${propertyKey(field.wire)}: ${propertyAccess('params', field.key)}`,
   );
 
   return `expandPath(${literal(template)}, { ${entries.join(', ')} })`;
@@ -392,7 +412,7 @@ function methodDoc(operation: Operation, fields: readonly Field[]): string[] {
 
     if (operation.description.length > MAX_DESCRIPTION) {
       lines.push(
-        `The response is a ${Math.round(operation.description.length / 1024)} KB Markdown`,
+        `The response is a ${String(Math.round(operation.description.length / 1024))} KB Markdown`,
         'document; the vendored copy is in `spec/websocket.md`.',
       );
     } else {
@@ -414,7 +434,7 @@ function methodDoc(operation: Operation, fields: readonly Field[]): string[] {
 }
 
 function parameterDoc(parameter: JsonObject): string[] {
-  const description = parameter['description'];
+  const description = parameter.description;
 
   if (typeof description !== 'string' || description.trim() === '') {
     return [];
@@ -423,16 +443,14 @@ function parameterDoc(parameter: JsonObject): string[] {
   return [`${description.trim().replace(/\.$/, '')}.`];
 }
 
-function renderIndex(
-  groups: ReadonlyMap<string, { readonly className: string; readonly module: string }>,
-): string {
+function renderIndex(groups: ReadonlyMap<string, Group>): string {
   const lines: string[] = [];
   const accessors: string[] = [];
   const imports: string[] = [];
   const assignments: string[] = [];
 
   for (const [tag, { className, module }] of groups) {
-    lines.push(`export * from './${module}.js';`);
+    lines.push(`export { ${className} } from './${module}.js';`);
     accessors.push(`  readonly ${camel(className)}: ${className};`);
     imports.push(`import { ${className} } from './${module}.js';`);
     assignments.push(
@@ -457,13 +475,37 @@ function renderIndex(
   ].join('\n\n');
 }
 
+/**
+ * A barrel of just the per-operation options interfaces.
+ *
+ * Separate from the classes because six group names collide with a schema of the same name —
+ * `Channel`, `User`, `ChannelStream` and three more are both a tag and a model — so the package's
+ * own barrel cannot re-export both flat. The models win the flat namespace, since they are what a
+ * caller handles constantly; the classes are reachable as `groups.Channel`, and these options
+ * interfaces never collide because each is prefixed with its group's name.
+ */
+function renderParamsIndex(groups: ReadonlyMap<string, Group>): string {
+  const lines = [...groups.values()]
+    .filter((group) => group.params.length > 0)
+    .map((group) => `export type { ${group.params.join(', ')} } from './${group.module}.js';`);
+
+  return [
+    docComment([
+      'The options interface for every operation.',
+      '',
+      'One per endpoint, named after its group and method — `ChannelActivityGetActivitiesParams`.',
+    ]),
+    lines.join('\n'),
+  ].join('\n\n');
+}
+
 function uniqueName(name: string, used: ReadonlySet<string>): string {
   if (!used.has(name)) {
     return name;
   }
 
   for (let suffix = 2; ; suffix += 1) {
-    const next = `${name}${suffix}`;
+    const next = `${name}${String(suffix)}`;
 
     if (!used.has(next)) {
       return next;

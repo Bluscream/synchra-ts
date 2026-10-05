@@ -50,7 +50,30 @@ export interface ChannelGetChannelsParams extends RequestOptions {
   cursor?: string | null | undefined;
   name?: string | null | undefined;
   per_page?: number | undefined;
-  provider?: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast" | null | undefined;
+  provider?:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+    | null
+    | undefined;
   provider_channel_name?: string | null | undefined;
 }
 
@@ -80,10 +103,10 @@ export class Channel {
    * Requires the `channel:delete` scope.
    */
   deleteChannel(params: ChannelDeleteChannelParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}", { channel_id: params["channel_id"] }),
-      query: { channel_name: params["channel_name"] },
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}', { channel_id: params.channel_id }),
+      query: { channel_name: params.channel_name },
       options: params,
     });
   }
@@ -103,8 +126,8 @@ export class Channel {
    */
   getChannel(params: ChannelGetChannelParams): Promise<Models.Channel> {
     return this.client.request<Models.Channel>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}", { channel_id: params["channel_id"] }),
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}', { channel_id: params.channel_id }),
       options: params,
     });
   }
@@ -120,8 +143,8 @@ export class Channel {
    */
   updateChannel(params: ChannelUpdateChannelParams): Promise<Models.Channel> {
     return this.client.request<Models.Channel>({
-      method: "PUT",
-      path: expandPath("/channels/{channel_id}", { channel_id: params["channel_id"] }),
+      method: 'PUT',
+      path: expandPath('/channels/{channel_id}', { channel_id: params.channel_id }),
       body: params.body,
       options: params,
     });
@@ -136,9 +159,16 @@ export class Channel {
    */
   getChannels(params: ChannelGetChannelsParams = {}): Promise<Models.PageCursorChannel> {
     return this.client.request<Models.PageCursorChannel>({
-      method: "GET",
-      path: "/channels",
-      query: { name: params["name"], channel_id: params["channel_id"], provider: params["provider"], provider_channel_name: params["provider_channel_name"], cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: '/channels',
+      query: {
+        name: params.name,
+        channel_id: params.channel_id,
+        provider: params.provider,
+        provider_channel_name: params.provider_channel_name,
+        cursor: params.cursor,
+        per_page: params.per_page,
+      },
       options: params,
     });
   }
@@ -154,8 +184,8 @@ export class Channel {
    */
   createChannel(params: ChannelCreateChannelParams): Promise<Models.Channel> {
     return this.client.request<Models.Channel>({
-      method: "POST",
-      path: "/channels",
+      method: 'POST',
+      path: '/channels',
       body: params.body,
       options: params,
     });

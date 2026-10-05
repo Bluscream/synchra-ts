@@ -17,7 +17,12 @@ import type * as Models from '../models.js';
  */
 export interface ObsRemoteCreateObsRemoteCommandParams extends RequestOptions {
   /** The request body. */
-  body: Models.ObsRemoteNoDataCommandCreate | Models.ObsRemoteNamedCommandCreate | Models.ObsRemoteSetInputMuteCommandCreate | Models.ObsRemoteSetInputVolumeCommandCreate | Models.ObsRemoteSetSceneItemEnabledCommandCreate;
+  body:
+    | Models.ObsRemoteNoDataCommandCreate
+    | Models.ObsRemoteNamedCommandCreate
+    | Models.ObsRemoteSetInputMuteCommandCreate
+    | Models.ObsRemoteSetInputVolumeCommandCreate
+    | Models.ObsRemoteSetSceneItemEnabledCommandCreate;
   channel_id: string | number;
   obs_remote_id: string | number;
 }
@@ -68,10 +73,15 @@ export class ObsRemote {
    *
    * @param params.body The request body.
    */
-  createObsRemoteCommand(params: ObsRemoteCreateObsRemoteCommandParams): Promise<Models.ObsRemoteCommand> {
+  createObsRemoteCommand(
+    params: ObsRemoteCreateObsRemoteCommandParams,
+  ): Promise<Models.ObsRemoteCommand> {
     return this.client.request<Models.ObsRemoteCommand>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/obs-remotes/{obs_remote_id}/commands", { channel_id: params["channel_id"], obs_remote_id: params["obs_remote_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/obs-remotes/{obs_remote_id}/commands', {
+        channel_id: params.channel_id,
+        obs_remote_id: params.obs_remote_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -86,10 +96,14 @@ export class ObsRemote {
    *
    * @param params.body The request body.
    */
-  registerObsRemoteChannelProvider(params: ObsRemoteRegisterObsRemoteChannelProviderParams): Promise<Models.ChannelProviderPublic> {
+  registerObsRemoteChannelProvider(
+    params: ObsRemoteRegisterObsRemoteChannelProviderParams,
+  ): Promise<Models.ChannelProviderPublic> {
     return this.client.request<Models.ChannelProviderPublic>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/register-provider/obs_remote", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/register-provider/obs_remote', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -100,10 +114,14 @@ export class ObsRemote {
    *
    * `PATCH /api/2/obs-remotes/{obs_remote_id}/state/heartbeat`
    */
-  updateObsRemoteHeartbeat(params: ObsRemoteUpdateObsRemoteHeartbeatParams): Promise<Models.ChannelProviderPublic> {
+  updateObsRemoteHeartbeat(
+    params: ObsRemoteUpdateObsRemoteHeartbeatParams,
+  ): Promise<Models.ChannelProviderPublic> {
     return this.client.request<Models.ChannelProviderPublic>({
-      method: "PATCH",
-      path: expandPath("/obs-remotes/{obs_remote_id}/state/heartbeat", { obs_remote_id: params["obs_remote_id"] }),
+      method: 'PATCH',
+      path: expandPath('/obs-remotes/{obs_remote_id}/state/heartbeat', {
+        obs_remote_id: params.obs_remote_id,
+      }),
       options: params,
     });
   }
@@ -115,10 +133,14 @@ export class ObsRemote {
    *
    * @param params.body The request body.
    */
-  updateObsRemoteState(params: ObsRemoteUpdateObsRemoteStateParams): Promise<Models.ChannelProviderPublic> {
+  updateObsRemoteState(
+    params: ObsRemoteUpdateObsRemoteStateParams,
+  ): Promise<Models.ChannelProviderPublic> {
     return this.client.request<Models.ChannelProviderPublic>({
-      method: "POST",
-      path: expandPath("/obs-remotes/{obs_remote_id}/state", { obs_remote_id: params["obs_remote_id"] }),
+      method: 'POST',
+      path: expandPath('/obs-remotes/{obs_remote_id}/state', {
+        obs_remote_id: params.obs_remote_id,
+      }),
       body: params.body,
       options: params,
     });

@@ -18,210 +18,225 @@
  */
 
 export const ActivityFeedNotificationSoundTone = {
-  chime: "chime",
-  pop: "pop",
-  bell: "bell",
-  custom: "custom",
+  chime: 'chime',
+  pop: 'pop',
+  bell: 'bell',
+  custom: 'custom',
 } as const;
 
-export type ActivityFeedNotificationSoundTone = (typeof ActivityFeedNotificationSoundTone)[keyof typeof ActivityFeedNotificationSoundTone];
+export type ActivityFeedNotificationSoundTone =
+  (typeof ActivityFeedNotificationSoundTone)[keyof typeof ActivityFeedNotificationSoundTone];
 
 export const ActivityFeedProfileSize = {
-  xs: "xs",
-  sm: "sm",
-  md: "md",
-  lg: "lg",
-  xl: "xl",
+  xs: 'xs',
+  sm: 'sm',
+  md: 'md',
+  lg: 'lg',
+  xl: 'xl',
 } as const;
 
-export type ActivityFeedProfileSize = (typeof ActivityFeedProfileSize)[keyof typeof ActivityFeedProfileSize];
+export type ActivityFeedProfileSize =
+  (typeof ActivityFeedProfileSize)[keyof typeof ActivityFeedProfileSize];
 
 export const ChannelLinkStatsGroupBy = {
-  hour: "hour",
-  day: "day",
-  month: "month",
-  year: "year",
-  total: "total",
+  hour: 'hour',
+  day: 'day',
+  month: 'month',
+  year: 'year',
+  total: 'total',
 } as const;
 
-export type ChannelLinkStatsGroupBy = (typeof ChannelLinkStatsGroupBy)[keyof typeof ChannelLinkStatsGroupBy];
+export type ChannelLinkStatsGroupBy =
+  (typeof ChannelLinkStatsGroupBy)[keyof typeof ChannelLinkStatsGroupBy];
 
 export const ChannelLinkStatsMetric = {
-  referrer: "referrer",
-  channel: "channel",
-  browser: "browser",
-  os: "os",
-  device: "device",
-  country: "country",
-  region: "region",
-  city: "city",
+  referrer: 'referrer',
+  channel: 'channel',
+  browser: 'browser',
+  os: 'os',
+  device: 'device',
+  country: 'country',
+  region: 'region',
+  city: 'city',
 } as const;
 
-export type ChannelLinkStatsMetric = (typeof ChannelLinkStatsMetric)[keyof typeof ChannelLinkStatsMetric];
+export type ChannelLinkStatsMetric =
+  (typeof ChannelLinkStatsMetric)[keyof typeof ChannelLinkStatsMetric];
 
 export const ChannelStreamStatsGroupBy = {
-  day: "day",
-  month: "month",
-  year: "year",
-  total: "total",
+  day: 'day',
+  month: 'month',
+  year: 'year',
+  total: 'total',
 } as const;
 
-export type ChannelStreamStatsGroupBy = (typeof ChannelStreamStatsGroupBy)[keyof typeof ChannelStreamStatsGroupBy];
+export type ChannelStreamStatsGroupBy =
+  (typeof ChannelStreamStatsGroupBy)[keyof typeof ChannelStreamStatsGroupBy];
 
 export const ChatAutomodMessageAction = {
-  allow: "allow",
-  deny: "deny",
+  allow: 'allow',
+  deny: 'deny',
 } as const;
 
-export type ChatAutomodMessageAction = (typeof ChatAutomodMessageAction)[keyof typeof ChatAutomodMessageAction];
+export type ChatAutomodMessageAction =
+  (typeof ChatAutomodMessageAction)[keyof typeof ChatAutomodMessageAction];
 
 export const ChatNotificationSoundTone = {
-  chime: "chime",
-  pop: "pop",
-  bell: "bell",
-  custom: "custom",
+  chime: 'chime',
+  pop: 'pop',
+  bell: 'bell',
+  custom: 'custom',
 } as const;
 
-export type ChatNotificationSoundTone = (typeof ChatNotificationSoundTone)[keyof typeof ChatNotificationSoundTone];
+export type ChatNotificationSoundTone =
+  (typeof ChatNotificationSoundTone)[keyof typeof ChatNotificationSoundTone];
 
 export const ChatProfileChatterFilter = {
-  first_message: "first_message",
-  returning_chatter: "returning_chatter",
+  first_message: 'first_message',
+  returning_chatter: 'returning_chatter',
 } as const;
 
-export type ChatProfileChatterFilter = (typeof ChatProfileChatterFilter)[keyof typeof ChatProfileChatterFilter];
+export type ChatProfileChatterFilter =
+  (typeof ChatProfileChatterFilter)[keyof typeof ChatProfileChatterFilter];
 
 export const ChatProfileFilterMode = {
-  all: "all",
-  include: "include",
-  exclude: "exclude",
+  all: 'all',
+  include: 'include',
+  exclude: 'exclude',
 } as const;
 
-export type ChatProfileFilterMode = (typeof ChatProfileFilterMode)[keyof typeof ChatProfileFilterMode];
+export type ChatProfileFilterMode =
+  (typeof ChatProfileFilterMode)[keyof typeof ChatProfileFilterMode];
 
 export const ChatProfileSize = {
-  xs: "xs",
-  sm: "sm",
-  md: "md",
-  lg: "lg",
-  xl: "xl",
-  xxl: "xxl",
-  xxxl: "xxxl",
+  xs: 'xs',
+  sm: 'sm',
+  md: 'md',
+  lg: 'lg',
+  xl: 'xl',
+  xxl: 'xxl',
+  xxxl: 'xxxl',
 } as const;
 
 export type ChatProfileSize = (typeof ChatProfileSize)[keyof typeof ChatProfileSize];
 
 export const ChatWidgetSize = {
-  xxs: "xxs",
-  xs: "xs",
-  sm: "sm",
-  md: "md",
-  lg: "lg",
-  xl: "xl",
-  xxl: "xxl",
-  xxxl: "xxxl",
+  xxs: 'xxs',
+  xs: 'xs',
+  sm: 'sm',
+  md: 'md',
+  lg: 'lg',
+  xl: 'xl',
+  xxl: 'xxl',
+  xxxl: 'xxxl',
 } as const;
 
 export type ChatWidgetSize = (typeof ChatWidgetSize)[keyof typeof ChatWidgetSize];
 
 export const CurrencyType = {
-  fiat: "fiat",
-  crypto: "crypto",
+  fiat: 'fiat',
+  crypto: 'crypto',
 } as const;
 
 export type CurrencyType = (typeof CurrencyType)[keyof typeof CurrencyType];
 
 export const DashboardSplitDirection = {
-  row: "row",
-  column: "column",
+  row: 'row',
+  column: 'column',
 } as const;
 
-export type DashboardSplitDirection = (typeof DashboardSplitDirection)[keyof typeof DashboardSplitDirection];
+export type DashboardSplitDirection =
+  (typeof DashboardSplitDirection)[keyof typeof DashboardSplitDirection];
 
 export const DashboardWidgetType = {
-  channelProviders: "channel-providers",
-  streamPreview: "stream-preview",
-  streams: "streams",
-  controls: "controls",
-  activityFeed: "activity-feed",
-  chat: "chat",
+  channelProviders: 'channel-providers',
+  streamPreview: 'stream-preview',
+  streams: 'streams',
+  controls: 'controls',
+  activityFeed: 'activity-feed',
+  chat: 'chat',
 } as const;
 
 export type DashboardWidgetType = (typeof DashboardWidgetType)[keyof typeof DashboardWidgetType];
 
 export const Feature = {
-  channel_viewer_chat_logs: "channel_viewer_chat_logs",
-  channel_viewer_extra_stats: "channel_viewer_extra_stats",
-  custom_bot_name: "custom_bot_name",
-  ingest: "ingest",
+  channel_viewer_chat_logs: 'channel_viewer_chat_logs',
+  channel_viewer_extra_stats: 'channel_viewer_extra_stats',
+  custom_bot_name: 'custom_bot_name',
+  ingest: 'ingest',
 } as const;
 
 export type Feature = (typeof Feature)[keyof typeof Feature];
 
 export const LimitKey = {
-  channel_links: "channel_links",
-  channel_widgets: "channel_widgets",
-  channel_timers: "channel_timers",
-  channel_filters: "channel_filters",
-  channel_commands: "channel_commands",
-  obs_remotes: "obs_remotes",
-  file_storage_bytes: "file_storage_bytes",
-  kv_storage_bytes: "kv_storage_bytes",
-  channel_live_notifications: "channel_live_notifications",
+  channel_links: 'channel_links',
+  channel_widgets: 'channel_widgets',
+  channel_timers: 'channel_timers',
+  channel_filters: 'channel_filters',
+  channel_commands: 'channel_commands',
+  obs_remotes: 'obs_remotes',
+  file_storage_bytes: 'file_storage_bytes',
+  kv_storage_bytes: 'kv_storage_bytes',
+  channel_live_notifications: 'channel_live_notifications',
 } as const;
 
 export type LimitKey = (typeof LimitKey)[keyof typeof LimitKey];
 
 export const LiveNotificationWebhookService = {
-  discord: "discord",
-  generic: "generic",
+  discord: 'discord',
+  generic: 'generic',
 } as const;
 
-export type LiveNotificationWebhookService = (typeof LiveNotificationWebhookService)[keyof typeof LiveNotificationWebhookService];
+export type LiveNotificationWebhookService =
+  (typeof LiveNotificationWebhookService)[keyof typeof LiveNotificationWebhookService];
 
 export const ObsRemoteInputCommandName = {
-  set_input_mute: "set_input_mute",
-  set_input_volume: "set_input_volume",
+  set_input_mute: 'set_input_mute',
+  set_input_volume: 'set_input_volume',
 } as const;
 
-export type ObsRemoteInputCommandName = (typeof ObsRemoteInputCommandName)[keyof typeof ObsRemoteInputCommandName];
+export type ObsRemoteInputCommandName =
+  (typeof ObsRemoteInputCommandName)[keyof typeof ObsRemoteInputCommandName];
 
 export const ObsRemoteNamedCommandName = {
-  set_current_scene: "set_current_scene",
-  set_current_profile: "set_current_profile",
-  set_current_scene_collection: "set_current_scene_collection",
+  set_current_scene: 'set_current_scene',
+  set_current_profile: 'set_current_profile',
+  set_current_scene_collection: 'set_current_scene_collection',
 } as const;
 
-export type ObsRemoteNamedCommandName = (typeof ObsRemoteNamedCommandName)[keyof typeof ObsRemoteNamedCommandName];
+export type ObsRemoteNamedCommandName =
+  (typeof ObsRemoteNamedCommandName)[keyof typeof ObsRemoteNamedCommandName];
 
 export const ObsRemoteNoDataCommandName = {
-  refresh_state: "refresh_state",
-  start_streaming: "start_streaming",
-  stop_streaming: "stop_streaming",
-  start_recording: "start_recording",
-  stop_recording: "stop_recording",
-  pause_recording: "pause_recording",
-  unpause_recording: "unpause_recording",
+  refresh_state: 'refresh_state',
+  start_streaming: 'start_streaming',
+  stop_streaming: 'stop_streaming',
+  start_recording: 'start_recording',
+  stop_recording: 'stop_recording',
+  pause_recording: 'pause_recording',
+  unpause_recording: 'unpause_recording',
 } as const;
 
-export type ObsRemoteNoDataCommandName = (typeof ObsRemoteNoDataCommandName)[keyof typeof ObsRemoteNoDataCommandName];
+export type ObsRemoteNoDataCommandName =
+  (typeof ObsRemoteNoDataCommandName)[keyof typeof ObsRemoteNoDataCommandName];
 
 export const PlanKey = {
-  free: "free",
-  plus: "plus",
-  pro: "pro",
-  max: "max",
+  free: 'free',
+  plus: 'plus',
+  pro: 'pro',
+  max: 'max',
 } as const;
 
 export type PlanKey = (typeof PlanKey)[keyof typeof PlanKey];
 
 export const SubscriptionEventStatus = {
-  processing: "processing",
-  processed: "processed",
-  failed: "failed",
+  processing: 'processing',
+  processed: 'processed',
+  failed: 'failed',
 } as const;
 
-export type SubscriptionEventStatus = (typeof SubscriptionEventStatus)[keyof typeof SubscriptionEventStatus];
+export type SubscriptionEventStatus =
+  (typeof SubscriptionEventStatus)[keyof typeof SubscriptionEventStatus];
 
 export const TAccessLevel = {
   n0: 0,
@@ -238,10 +253,10 @@ export const TAccessLevel = {
 export type TAccessLevel = (typeof TAccessLevel)[keyof typeof TAccessLevel];
 
 export const UserProfileType = {
-  dashboard: "dashboard",
-  chat: "chat",
-  activityFeed: "activity-feed",
-  controls: "controls",
+  dashboard: 'dashboard',
+  chat: 'chat',
+  activityFeed: 'activity-feed',
+  controls: 'controls',
 } as const;
 
 export type UserProfileType = (typeof UserProfileType)[keyof typeof UserProfileType];

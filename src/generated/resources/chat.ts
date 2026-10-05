@@ -62,7 +62,28 @@ export interface ChatGetChatEventsParams extends RequestOptions {
  */
 export interface ChatDeleteChatMessageParams extends RequestOptions {
   channel_id: string | number;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
   provider_channel_id: string;
   provider_message_id: string | number;
 }
@@ -79,9 +100,32 @@ export interface ChatGetChatMessagesParams extends RequestOptions {
   lt_created_at?: Models.IsoDateTime | null | undefined;
   lte_created_at?: Models.IsoDateTime | null | undefined;
   per_page?: number | undefined;
-  provider?: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast" | null | undefined;
+  provider?:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast'
+    | null
+    | undefined;
   provider_viewer_id?: string | null | undefined;
-  type?: "message" | "notice" | "status" | "automod" | null | undefined;
+  type?: 'message' | 'notice' | 'status' | 'automod' | null | undefined;
 }
 
 /**
@@ -91,7 +135,28 @@ export interface ChatGetChatMessagesParams extends RequestOptions {
  */
 export interface ChatGetBadgesForChatPreviewParams extends RequestOptions {
   channel_id: string | number;
-  provider: "twitch" | "discord" | "youtube" | "spotify" | "tiktok" | "x" | "rumble" | "kick" | "7tv" | "betterttv" | "frankerfacez" | "streamelements" | "streamlabs" | "ttsmonster" | "elevenlabs" | "amazon_polly" | "obs_remote" | "kofi" | "fourthwall" | "patreon" | "owncast";
+  provider:
+    | 'twitch'
+    | 'discord'
+    | 'youtube'
+    | 'spotify'
+    | 'tiktok'
+    | 'x'
+    | 'rumble'
+    | 'kick'
+    | '7tv'
+    | 'betterttv'
+    | 'frankerfacez'
+    | 'streamelements'
+    | 'streamlabs'
+    | 'ttsmonster'
+    | 'elevenlabs'
+    | 'amazon_polly'
+    | 'obs_remote'
+    | 'kofi'
+    | 'fourthwall'
+    | 'patreon'
+    | 'owncast';
 }
 
 /**
@@ -151,10 +216,13 @@ export class Chat {
    * Requires the `chat:moderate` scope.
    */
   unpinChatMessage(params: ChatUnpinChatMessageParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/chat-events/pinned-message/{provider_message_id}", { channel_id: params["channel_id"], provider_message_id: params["provider_message_id"] }),
-      query: { channel_provider_id: params["channel_provider_id"] },
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/chat-events/pinned-message/{provider_message_id}', {
+        channel_id: params.channel_id,
+        provider_message_id: params.provider_message_id,
+      }),
+      query: { channel_provider_id: params.channel_provider_id },
       options: params,
     });
   }
@@ -170,8 +238,11 @@ export class Chat {
    */
   updatePinnedChatMessage(params: ChatUpdatePinnedChatMessageParams): Promise<Models.ChatEvent> {
     return this.client.request<Models.ChatEvent>({
-      method: "PATCH",
-      path: expandPath("/channels/{channel_id}/chat-events/pinned-message/{provider_message_id}", { channel_id: params["channel_id"], provider_message_id: params["provider_message_id"] }),
+      method: 'PATCH',
+      path: expandPath('/channels/{channel_id}/chat-events/pinned-message/{provider_message_id}', {
+        channel_id: params.channel_id,
+        provider_message_id: params.provider_message_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -188,8 +259,10 @@ export class Chat {
    */
   pinChatMessage(params: ChatPinChatMessageParams): Promise<Models.ChatEvent> {
     return this.client.request<Models.ChatEvent>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/chat-events/pinned-message", { channel_id: params["channel_id"] }),
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/chat-events/pinned-message', {
+        channel_id: params.channel_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -208,9 +281,9 @@ export class Chat {
    */
   getChatEvents(params: ChatGetChatEventsParams): Promise<Models.PageCursorChatEvent> {
     return this.client.request<Models.PageCursorChatEvent>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/chat-events", { channel_id: params["channel_id"] }),
-      query: { cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/chat-events', { channel_id: params.channel_id }),
+      query: { cursor: params.cursor, per_page: params.per_page },
       options: params,
     });
   }
@@ -223,10 +296,13 @@ export class Chat {
    * Requires the `chat:moderate` scope.
    */
   deleteChatMessage(params: ChatDeleteChatMessageParams): Promise<void> {
-    return this.client.request<void>({
-      method: "DELETE",
-      path: expandPath("/channels/{channel_id}/chat-messages/{provider_message_id}", { channel_id: params["channel_id"], provider_message_id: params["provider_message_id"] }),
-      query: { provider: params["provider"], provider_channel_id: params["provider_channel_id"] },
+    return this.client.send({
+      method: 'DELETE',
+      path: expandPath('/channels/{channel_id}/chat-messages/{provider_message_id}', {
+        channel_id: params.channel_id,
+        provider_message_id: params.provider_message_id,
+      }),
+      query: { provider: params.provider, provider_channel_id: params.provider_channel_id },
       options: params,
     });
   }
@@ -255,9 +331,18 @@ export class Chat {
    */
   getChatMessages(params: ChatGetChatMessagesParams): Promise<Models.PageCursorChatMessage> {
     return this.client.request<Models.PageCursorChatMessage>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/chat-messages", { channel_id: params["channel_id"] }),
-      query: { provider: params["provider"], provider_viewer_id: params["provider_viewer_id"], type: params["type"], lte_created_at: params["lte_created_at"], lt_created_at: params["lt_created_at"], gte_created_at: params["gte_created_at"], cursor: params["cursor"], per_page: params["per_page"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/chat-messages', { channel_id: params.channel_id }),
+      query: {
+        provider: params.provider,
+        provider_viewer_id: params.provider_viewer_id,
+        type: params.type,
+        lte_created_at: params.lte_created_at,
+        lt_created_at: params.lt_created_at,
+        gte_created_at: params.gte_created_at,
+        cursor: params.cursor,
+        per_page: params.per_page,
+      },
       options: params,
     });
   }
@@ -269,11 +354,15 @@ export class Chat {
    *
    * Requires the `channel_chat_message:read` scope.
    */
-  getBadgesForChatPreview(params: ChatGetBadgesForChatPreviewParams): Promise<Models.ChatMessageBadgeRequest[]> {
+  getBadgesForChatPreview(
+    params: ChatGetBadgesForChatPreviewParams,
+  ): Promise<Models.ChatMessageBadgeRequest[]> {
     return this.client.request<Models.ChatMessageBadgeRequest[]>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/chat-preview-badges", { channel_id: params["channel_id"] }),
-      query: { provider: params["provider"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/chat-preview-badges', {
+        channel_id: params.channel_id,
+      }),
+      query: { provider: params.provider },
       options: params,
     });
   }
@@ -288,9 +377,12 @@ export class Chat {
    * @param params.body The request body.
    */
   moderateAutomodMessage(params: ChatModerateAutomodMessageParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: expandPath("/channels/{channel_id}/providers/{channel_provider_id}/automod-action", { channel_id: params["channel_id"], channel_provider_id: params["channel_provider_id"] }),
+    return this.client.send({
+      method: 'POST',
+      path: expandPath('/channels/{channel_id}/providers/{channel_provider_id}/automod-action', {
+        channel_id: params.channel_id,
+        channel_provider_id: params.channel_provider_id,
+      }),
       body: params.body,
       options: params,
     });
@@ -307,11 +399,15 @@ export class Chat {
    *
    * **Public** — verified to answer without a token.
    */
-  getRandomChatMessagesForChatPreview(params: ChatGetRandomChatMessagesForChatPreviewParams): Promise<Models.ChatMessage[]> {
+  getRandomChatMessagesForChatPreview(
+    params: ChatGetRandomChatMessagesForChatPreviewParams,
+  ): Promise<Models.ChatMessage[]> {
     return this.client.request<Models.ChatMessage[]>({
-      method: "GET",
-      path: expandPath("/channels/{channel_id}/random-chat-messages", { channel_id: params["channel_id"] }),
-      query: { example: params["example"] },
+      method: 'GET',
+      path: expandPath('/channels/{channel_id}/random-chat-messages', {
+        channel_id: params.channel_id,
+      }),
+      query: { example: params.example },
       options: params,
     });
   }
@@ -334,9 +430,9 @@ export class Chat {
    */
   getEmotes(params: ChatGetEmotesParams): Promise<Models.Emote[]> {
     return this.client.request<Models.Emote[]>({
-      method: "GET",
-      path: "/chat/emotes",
-      query: { channel_provider_id: params["channel_provider_id"] },
+      method: 'GET',
+      path: '/chat/emotes',
+      query: { channel_provider_id: params.channel_provider_id },
       options: params,
     });
   }
@@ -356,9 +452,9 @@ export class Chat {
    * @param params.body The request body.
    */
   sendChatMessage(params: ChatSendChatMessageParams): Promise<void> {
-    return this.client.request<void>({
-      method: "POST",
-      path: "/chat/messages",
+    return this.client.send({
+      method: 'POST',
+      path: '/chat/messages',
       body: params.body,
       options: params,
     });
