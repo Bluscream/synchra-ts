@@ -67,8 +67,8 @@ describe.skipIf(TOKEN === undefined)('the live API, with a token', () => {
   });
 
   it('reads the channels the token can see', async () => {
-    const channels = await synchra.channel.getChannels();
+    const page = await synchra.channel.getChannels();
 
-    expect(Array.isArray(channels)).toBe(true);
+    expect(Array.isArray(page.records)).toBe(true);
   });
 });

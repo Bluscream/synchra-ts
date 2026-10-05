@@ -1,0 +1,63 @@
+name: check
+
+# Disabled: workflows do not run under this account, so an automatic trigger would queue a job that
+# never starts — and anything waiting on it would block forever. Uncomment if you fork this
+# repository; `workflow_dispatch` below is what lets the owner run it by hand.
+#
+# on:
+#   push:
+#     branches: [main]
+#   pull_request:
+#   schedule:
+#     # Weekly, to notice that the live description has drifted from the vendored copy.
+#     - cron: '0 6 * * 1'
+
+on:
+  workflow_dispatch:
+    inputs:
+      refresh-spec:
+        description: 'Refresh spec/ from the live API first, and report what moved'
+        type: boolean
+        default: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+
+      - run: npm ci
+
+      - name: Refresh the API description
+        if: ${{ inputs.refresh-spec }}
+        run: ./tools/fetch-spec.sh --refresh-overlay
+
+      - name: Report what moved in the description
+        if: ${{ inputs.refresh-spec }}
+        run: git --no-pager diff --stat -- spec/
+
+      - name: Regenerate, and check nothing changed
+        run: |
+          npm run generate
+          # The generated tree is committed, so a diff here means the committed copy is stale —
+          # either because the description moved or because the generator did.
+          git --no-pager diff --exit-code -- src/generated
+
+      - run: npm run format:check
+
+      - run: npm run lint
+
+      - run: npm run typecheck
+
+      - run: npm test
+
+      - run: npm run build
+
+      - name: Check the published package contents
+        run: npm pack --dry-run
