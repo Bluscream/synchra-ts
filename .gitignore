@@ -1,0 +1,11 @@
+node_modules/
+dist/
+coverage/
+*.tsbuildinfo
+
+# HAR captures of the dashboard carry live bearer tokens. They are where several of the
+# annotations came from, and they must never be committed.
+*.har
+
+.env
+.env.local
