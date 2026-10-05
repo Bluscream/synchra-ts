@@ -19,6 +19,10 @@ on:
         description: 'Refresh spec/ from the live API first, and report what moved'
         type: boolean
         default: false
+      live:
+        description: 'Also run the live suite against api.synchra.net (read-only GETs)'
+        type: boolean
+        default: false
 
 jobs:
   check:
@@ -61,3 +65,9 @@ jobs:
 
       - name: Check the published package contents
         run: npm pack --dry-run
+
+      - name: Live suite
+        if: ${{ inputs.live }}
+        env:
+          SYNCHRA_PUBLIC_CHANNEL_ID: ${{ vars.SYNCHRA_PUBLIC_CHANNEL_ID }}
+        run: npm run test:live

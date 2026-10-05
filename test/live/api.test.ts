@@ -1,8 +1,9 @@
 /**
  * Read-only checks against the live API.
  *
- * Skipped unless the environment names something to read, so `npm test` on a clean checkout needs
- * no network and no credentials:
+ * Run with `npm run test:live`. Kept out of the default suite by its own config rather than by
+ * skipping itself: a skipped test reports green, so `npm test` has no skips at all and this has no
+ * excuses. It still needs the environment to name what to read:
  *
  * - `SYNCHRA_PUBLIC_CHANNEL_ID` runs the anonymous ones, which need no token.
  * - `SYNCHRA_TOKEN` additionally runs the authenticated ones.
@@ -12,8 +13,8 @@
  */
 import { describe, expect, it } from 'vitest';
 
-import { ApiError, AuthenticationError } from '../src/errors.js';
-import { Synchra } from '../src/synchra.js';
+import { ApiError, AuthenticationError } from '../../src/errors.js';
+import { Synchra } from '../../src/synchra.js';
 
 const CHANNEL = process.env.SYNCHRA_PUBLIC_CHANNEL_ID;
 const TOKEN = process.env.SYNCHRA_TOKEN;

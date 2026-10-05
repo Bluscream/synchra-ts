@@ -53,7 +53,8 @@ First release. Complete coverage of the Synchra API v2 as described by
   a proxy, instrumentation or a test double.
 - **Tests** — 140 unit tests with no network, including structural coverage asserting that every
   operation in the description is reachable _and_ that no method exists without an operation behind
-  it. A read-only live suite skips without `SYNCHRA_PUBLIC_CHANNEL_ID`.
+  it. A read-only live suite runs separately, via `npm run test:live`, so the default gate has no
+  skipped tests.
 
 ### Notes
 

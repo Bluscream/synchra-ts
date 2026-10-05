@@ -308,6 +308,7 @@ claim is checked rather than asserted.
 ```bash
 npm install
 npm run check      # format, lint, typecheck, test, build — the whole gate
+npm run test:live  # read-only GETs against api.synchra.net
 
 ./tools/fetch-spec.sh   # refresh spec/ from the live API
 npm run generate        # rebuild src/generated/, then review the diff
@@ -317,9 +318,10 @@ npm run generate        # rebuild src/generated/, then review the diff
 instead of lingering. Everything else under `src/` is hand-written. The generator lives in
 `tools/generator/` and has its own tests.
 
-The live suite in `test/live.test.ts` is **read-only GETs** and skips unless
-`SYNCHRA_PUBLIC_CHANNEL_ID` (and optionally `SYNCHRA_TOKEN`) is set, so `npm test` on a clean checkout
-needs no network and no credentials.
+The live suite in `test/live/` is **read-only GETs** and has its own config and npm script, so
+`npm test` on a clean checkout needs no network, no credentials and — the point of the split — has
+no skipped tests, which would otherwise report green. Run it with `SYNCHRA_PUBLIC_CHANNEL_ID` set,
+and `SYNCHRA_TOKEN` as well for the authenticated checks.
 
 CI is `workflow_dispatch` only — see the comment at the top of
 [`.github/workflows/check.yml`](.github/workflows/check.yml).
