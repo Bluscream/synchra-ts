@@ -166,10 +166,15 @@ export class EventStream {
    *
    * Safe to call before connecting: the subscription is sent as soon as the socket is up, and
    * re-sent after every reconnect.
+   *
+   * Passing a `nonce` makes the gateway acknowledge it — an `ok` control frame carrying the same
+   * nonce, or an `error` one naming what was wrong. Without one a subscribe is fire-and-forget, so
+   * a typo in the event type is silently nothing rather than a 400 you can see. Watch for the
+   * acknowledgement with {@link EventStream.onAny}.
    */
-  subscribe<T extends EventType>(type: T, data: SubscribeData[T]): this {
-    if (this.subscriptions.add(type, data) && this.isOpen()) {
-      this.send(subscribeCommand({ type, data }));
+  subscribe<T extends EventType>(type: T, data: SubscribeData[T], nonce?: string): this {
+    if (this.subscriptions.add(type, data, nonce) && this.isOpen()) {
+      this.send(subscribeCommand({ type, data, nonce }));
     }
 
     return this;

@@ -46,10 +46,10 @@ class FakeSocket implements WebSocketLike {
     this.onmessage?.({ data });
   }
 
-  commands(): { command?: string; type?: string }[] {
+  commands(): { command?: string; type?: string; nonce?: string }[] {
     return this.sent
       .filter((raw) => raw.startsWith('{'))
-      .map((raw) => JSON.parse(raw) as { command?: string; type?: string });
+      .map((raw) => JSON.parse(raw) as { command?: string; type?: string; nonce?: string });
   }
 }
 
@@ -136,6 +136,37 @@ describe('EventStream', () => {
 
     expect(socket.commands().filter((command) => command.command === 'subscribe')).toHaveLength(1);
     expect(stream.subscribed()).toHaveLength(1);
+
+    stream.close();
+  });
+
+  it('sends a nonce so the gateway acknowledges the subscribe', async () => {
+    const { stream } = streamWith();
+
+    // Verified against the live gateway: with a nonce it answers an `ok` frame carrying the same
+    // nonce, or an `error` one naming an unknown type. Without it a typo is silently nothing.
+    stream.subscribe('chat_message', { channel_id: CHANNEL }, 'sub-1');
+
+    const socket = await connect(stream);
+
+    expect(socket.commands().at(-1)).toMatchObject({ command: 'subscribe', nonce: 'sub-1' });
+
+    stream.close();
+  });
+
+  it('replays a subscription with the nonce it was given', async () => {
+    const { stream } = streamWith();
+
+    stream.subscribe('chat_message', { channel_id: CHANNEL }, 'sub-1');
+
+    const first = await connect(stream);
+
+    first.readyState = 3;
+
+    const second = await connect(stream);
+
+    // A caller watching for the ack should see it again after a reconnect.
+    expect(second.commands().at(-1)).toMatchObject({ nonce: 'sub-1' });
 
     stream.close();
   });
@@ -336,6 +367,16 @@ describe('SubscriptionSet', () => {
 
     expect(set.add('activity', { channel_id: CHANNEL })).toBe(true);
     expect(set.add('activity', { channel_id: CHANNEL })).toBe(false);
+    expect(set.size).toBe(1);
+  });
+
+  it('does not let a different nonce make a second subscription', () => {
+    // The gateway matches an unsubscribe on type and data alone, so two subscribes to the same
+    // channel are one subscription whatever nonce they carried.
+    const set = new SubscriptionSet();
+
+    expect(set.add('activity', { channel_id: CHANNEL }, 'a')).toBe(true);
+    expect(set.add('activity', { channel_id: CHANNEL }, 'b')).toBe(false);
     expect(set.size).toBe(1);
   });
 

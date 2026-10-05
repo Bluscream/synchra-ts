@@ -35,7 +35,7 @@ await stream.connect();
 | Schemas              | **469** interfaces, aliases and value sets |
 | Gateway event types  |                                     **13** |
 | Runtime dependencies |                                      **0** |
-| Tests                |                            137, no network |
+| Tests                |                            140, no network |
 
 Requires Node 20 or newer, Bun, Deno, or a browser — anything with `fetch`. The gateway also needs
 `WebSocket`, which Node has had since 22; on 20, pass one in (see [The gateway](#the-gateway)).
@@ -208,6 +208,10 @@ stream.close(); // closes the socket, the keepalive interval and any reconnect t
   does not.
 - `for await (const event of stream.events())` is there too, with a bounded queue that drops the
   oldest rather than growing without end.
+- **A subscribe is fire-and-forget unless you ask for an acknowledgement.** Pass a nonce —
+  `subscribe('chat_message', { channel_id }, 'sub-1')` — and the gateway answers an `ok` control
+  frame carrying it back, or an `error` one naming what was wrong. Without it, a typo in the event
+  type is silently nothing. The nonce is replayed after a reconnect, so a watcher sees it again.
 
 One payload is `unknown`: the reference types `channel_giveaway`'s `data` as `any`, so there is
 nothing to map it to. Guessing a shape there is how a client ends up asserting a type the service does
